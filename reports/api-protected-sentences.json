@@ -1,0 +1,28 @@
+{
+  "date": "2026-09-12T05:40:19.594Z",
+  "method": "One real API request with three synthetic public technical sentences. Production sentence masking, prompt, parser and local restoration; no browser or competitor timing.",
+  "oldFragments": 9,
+  "newUnits": 3,
+  "input": [
+    "Use GET /api/v1/me to view your account.",
+    "Install React and Docker, then call `show()` to display the result.",
+    "Read the API guide before changing the HTTP headers."
+  ],
+  "restored": [
+    "使用 GET /api/v1/me 查看你的账户。",
+    "安装 React 和 Docker，然后调用 `show()` 以显示结果。",
+    "在更改 HTTP 标头之前，请阅读 API 指南。"
+  ],
+  "model": "deepseek-flash",
+  "requestCount": 1,
+  "firstTokenMs": 2033,
+  "durationMs": 2504,
+  "usage": {
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 310,
+    "prompt_tokens": 310,
+    "completion_tokens": 99,
+    "total_tokens": 409
+  },
+  "estimatedUsd": 0.0001059
+}

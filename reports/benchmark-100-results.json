@@ -1,0 +1,3462 @@
+{
+  "method": "Ten rounds of fixed extracted text snapshots; API only; no local cache; sequential batches; historical code tariff estimates",
+  "records": [
+    {
+      "round": 1,
+      "url": "https://en.wikipedia.org/wiki/Machine_translation",
+      "title": "en.wikipedia.org",
+      "sha256": "e814a1cbc74545195e07897336bda0b4f7ed3711f230b9793312a2e46aaad4d2",
+      "characters": 5000,
+      "startedAt": "2026-09-12T14:22:19.320Z",
+      "batches": [
+        {
+          "durationMs": 5767,
+          "firstTokenMs": 1213,
+          "usage": {
+            "prompt_tokens": 1335,
+            "completion_tokens": 995,
+            "total_tokens": 2330,
+            "prompt_tokens_details": {
+              "cached_tokens": 128
+            },
+            "prompt_cache_hit_tokens": 128,
+            "prompt_cache_miss_tokens": 1207
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.0007784339999999999
+        }
+      ],
+      "status": "error",
+      "usageMayBeIncomplete": true,
+      "durationMs": 5769
+    },
+    {
+      "round": 1,
+      "url": "https://github.com/microsoft/vscode",
+      "title": "github.com",
+      "sha256": "3a3aafa21f14f3a6996cbb6c52ea65c464a0df53d35bb3f10a5bcc6decb4a32f",
+      "characters": 4299,
+      "startedAt": "2026-09-12T14:22:25.093Z",
+      "batches": [
+        {
+          "durationMs": 3278,
+          "firstTokenMs": 697,
+          "usage": {
+            "prompt_tokens": 1001,
+            "completion_tokens": 625,
+            "total_tokens": 1626,
+            "prompt_tokens_details": {
+              "cached_tokens": 128
+            },
+            "prompt_cache_hit_tokens": 128,
+            "prompt_cache_miss_tokens": 873
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000506334
+        },
+        {
+          "durationMs": 1788,
+          "firstTokenMs": 538,
+          "usage": {
+            "prompt_tokens": 581,
+            "completion_tokens": 336,
+            "total_tokens": 917,
+            "prompt_tokens_details": {
+              "cached_tokens": 128
+            },
+            "prompt_cache_hit_tokens": 128,
+            "prompt_cache_miss_tokens": 453
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000269934
+        }
+      ],
+      "status": "success",
+      "durationMs": 5069
+    },
+    {
+      "round": 1,
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+      "title": "developer.mozilla.org",
+      "sha256": "74d016409cd8f7fac6a93685e56a9303da4310ebd9f2708599b39e468b626f10",
+      "characters": 5000,
+      "startedAt": "2026-09-12T14:22:30.162Z",
+      "batches": [
+        {
+          "durationMs": 5073,
+          "firstTokenMs": 716,
+          "usage": {
+            "prompt_tokens": 1351,
+            "completion_tokens": 1260,
+            "total_tokens": 2611,
+            "prompt_tokens_details": {
+              "cached_tokens": 128
+            },
+            "prompt_cache_hit_tokens": 128,
+            "prompt_cache_miss_tokens": 1223
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000939834
+        }
+      ],
+      "status": "error",
+      "usageMayBeIncomplete": true,
+      "durationMs": 5075
+    },
+    {
+      "round": 1,
+      "url": "https://www.bbc.com/news",
+      "title": "www.bbc.com",
+      "sha256": "e4582dd62c1c473c7b6bd402fffed1d3521d7b8cf81ac2ede4703404d41d3214",
+      "characters": 5000,
+      "startedAt": "2026-09-12T14:22:35.238Z",
+      "batches": [
+        {
+          "durationMs": 3663,
+          "firstTokenMs": 359,
+          "usage": {
+            "prompt_tokens": 1087,
+            "completion_tokens": 679,
+            "total_tokens": 1766,
+            "prompt_tokens_details": {
+              "cached_tokens": 128
+            },
+            "prompt_cache_hit_tokens": 128,
+            "prompt_cache_miss_tokens": 959
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.0005516340000000001
+        },
+        {
+          "durationMs": 3544,
+          "firstTokenMs": 541,
+          "usage": {
+            "prompt_tokens": 853,
+            "completion_tokens": 575,
+            "total_tokens": 1428,
+            "prompt_tokens_details": {
+              "cached_tokens": 128
+            },
+            "prompt_cache_hit_tokens": 128,
+            "prompt_cache_miss_tokens": 725
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000454134
+        }
+      ],
+      "status": "success",
+      "durationMs": 7208
+    },
+    {
+      "round": 1,
+      "url": "https://docs.python.org/3/tutorial/appetite.html",
+      "title": "docs.python.org",
+      "sha256": "e04a53c6c08437914022c1df47c90fadb23cc77c0a379ea5ce4c93b1f49d70f1",
+      "characters": 4389,
+      "startedAt": "2026-09-12T14:22:42.447Z",
+      "batches": [
+        {
+          "durationMs": 4572,
+          "firstTokenMs": 692,
+          "usage": {
+            "prompt_tokens": 1222,
+            "completion_tokens": 831,
+            "total_tokens": 2053,
+            "prompt_tokens_details": {
+              "cached_tokens": 128
+            },
+            "prompt_cache_hit_tokens": 128,
+            "prompt_cache_miss_tokens": 1094
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000663084
+        }
+      ],
+      "status": "success",
+      "durationMs": 4572
+    },
+    {
+      "round": 1,
+      "url": "https://nodejs.org/en/learn/getting-started/introduction-to-nodejs",
+      "title": "nodejs.org",
+      "sha256": "8e7aa21586740d4915e35c705717492a2a32d12e523b2934fd8b7c42fdf8d3fa",
+      "characters": 2396,
+      "startedAt": "2026-09-12T14:22:47.020Z",
+      "batches": [
+        {
+          "durationMs": 2224,
+          "firstTokenMs": 355,
+          "usage": {
+            "prompt_tokens": 834,
+            "completion_tokens": 488,
+            "total_tokens": 1322,
+            "prompt_tokens_details": {
+              "cached_tokens": 128
+            },
+            "prompt_cache_hit_tokens": 128,
+            "prompt_cache_miss_tokens": 706
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000399084
+        }
+      ],
+      "status": "success",
+      "durationMs": 2224
+    },
+    {
+      "round": 1,
+      "url": "https://www.w3schools.com/js/js_intro.asp",
+      "title": "www.w3schools.com",
+      "sha256": "bb21bbcbb22d33d3789e282f1ec0c995d627002874b469498a2255ce80234481",
+      "characters": 3369,
+      "startedAt": "2026-09-12T14:22:49.244Z",
+      "batches": [
+        {
+          "durationMs": 2455,
+          "firstTokenMs": 646,
+          "usage": {
+            "prompt_tokens": 886,
+            "completion_tokens": 514,
+            "total_tokens": 1400,
+            "prompt_tokens_details": {
+              "cached_tokens": 128
+            },
+            "prompt_cache_hit_tokens": 128,
+            "prompt_cache_miss_tokens": 758
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000422484
+        },
+        {
+          "durationMs": 1903,
+          "firstTokenMs": 780,
+          "usage": {
+            "prompt_tokens": 679,
+            "completion_tokens": 370,
+            "total_tokens": 1049,
+            "prompt_tokens_details": {
+              "cached_tokens": 128
+            },
+            "prompt_cache_hit_tokens": 128,
+            "prompt_cache_miss_tokens": 551
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000305034
+        }
+      ],
+      "status": "success",
+      "durationMs": 4358
+    },
+    {
+      "round": 1,
+      "url": "https://ubuntu.com/desktop",
+      "title": "ubuntu.com",
+      "sha256": "70969cccf1a46031d080fb0b8bad810525160f86611f405b39d7ab5484deba58",
+      "characters": 5000,
+      "startedAt": "2026-09-12T14:22:53.604Z",
+      "batches": [
+        {
+          "durationMs": 4474,
+          "firstTokenMs": 1205,
+          "usage": {
+            "prompt_tokens": 1174,
+            "completion_tokens": 796,
+            "total_tokens": 1970,
+            "prompt_tokens_details": {
+              "cached_tokens": 128
+            },
+            "prompt_cache_hit_tokens": 128,
+            "prompt_cache_miss_tokens": 1046
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.0006348840000000001
+        },
+        {
+          "durationMs": 1817,
+          "firstTokenMs": 668,
+          "usage": {
+            "prompt_tokens": 518,
+            "completion_tokens": 258,
+            "total_tokens": 776,
+            "prompt_tokens_details": {
+              "cached_tokens": 128
+            },
+            "prompt_cache_hit_tokens": 128,
+            "prompt_cache_miss_tokens": 390
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00021368399999999998
+        }
+      ],
+      "status": "success",
+      "durationMs": 6290
+    },
+    {
+      "round": 1,
+      "url": "https://rust-lang.org/learn/",
+      "title": "rust-lang.org",
+      "sha256": "cb88e2be7b40b734c54e5248087a4c153422b28fd05e2fcb799ee832ac557b32",
+      "characters": 1946,
+      "startedAt": "2026-09-12T14:22:59.896Z",
+      "batches": [
+        {
+          "durationMs": 2585,
+          "firstTokenMs": 637,
+          "usage": {
+            "prompt_tokens": 778,
+            "completion_tokens": 432,
+            "total_tokens": 1210,
+            "prompt_tokens_details": {
+              "cached_tokens": 128
+            },
+            "prompt_cache_hit_tokens": 128,
+            "prompt_cache_miss_tokens": 650
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000357084
+        }
+      ],
+      "status": "success",
+      "durationMs": 2585
+    },
+    {
+      "round": 1,
+      "url": "https://www.mozilla.org/en-US/firefox/new/",
+      "title": "www.mozilla.org",
+      "sha256": "430894fc79d92a1ee3ac66d98e504107c4e26a804bcdd4c807380a8d2bd14a27",
+      "characters": 2415,
+      "startedAt": "2026-09-12T14:23:02.481Z",
+      "batches": [
+        {
+          "durationMs": 3173,
+          "firstTokenMs": 790,
+          "usage": {
+            "prompt_tokens": 969,
+            "completion_tokens": 590,
+            "total_tokens": 1559,
+            "prompt_tokens_details": {
+              "cached_tokens": 128
+            },
+            "prompt_cache_hit_tokens": 128,
+            "prompt_cache_miss_tokens": 841
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000480534
+        }
+      ],
+      "status": "success",
+      "durationMs": 3174
+    },
+    {
+      "round": 2,
+      "url": "https://en.wikipedia.org/wiki/Machine_translation",
+      "title": "en.wikipedia.org",
+      "sha256": "e814a1cbc74545195e07897336bda0b4f7ed3711f230b9793312a2e46aaad4d2",
+      "characters": 5000,
+      "startedAt": "2026-09-12T14:23:05.656Z",
+      "batches": [
+        {
+          "durationMs": 5153,
+          "firstTokenMs": 790,
+          "usage": {
+            "prompt_tokens": 1335,
+            "completion_tokens": 987,
+            "total_tokens": 2322,
+            "prompt_tokens_details": {
+              "cached_tokens": 1152
+            },
+            "prompt_cache_hit_tokens": 1152,
+            "prompt_cache_miss_tokens": 183
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.0006231059999999999
+        }
+      ],
+      "status": "error",
+      "usageMayBeIncomplete": true,
+      "durationMs": 5153
+    },
+    {
+      "round": 2,
+      "url": "https://github.com/microsoft/vscode",
+      "title": "github.com",
+      "sha256": "3a3aafa21f14f3a6996cbb6c52ea65c464a0df53d35bb3f10a5bcc6decb4a32f",
+      "characters": 4299,
+      "startedAt": "2026-09-12T14:23:10.810Z",
+      "batches": [
+        {
+          "durationMs": 2808,
+          "firstTokenMs": 373,
+          "usage": {
+            "prompt_tokens": 1001,
+            "completion_tokens": 627,
+            "total_tokens": 1628,
+            "prompt_tokens_details": {
+              "cached_tokens": 768
+            },
+            "prompt_cache_hit_tokens": 768,
+            "prompt_cache_miss_tokens": 233
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000413454
+        },
+        {
+          "durationMs": 1745,
+          "firstTokenMs": 523,
+          "usage": {
+            "prompt_tokens": 581,
+            "completion_tokens": 336,
+            "total_tokens": 917,
+            "prompt_tokens_details": {
+              "cached_tokens": 384
+            },
+            "prompt_cache_hit_tokens": 384,
+            "prompt_cache_miss_tokens": 197
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00023230199999999999
+        }
+      ],
+      "status": "success",
+      "durationMs": 4554
+    },
+    {
+      "round": 2,
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+      "title": "developer.mozilla.org",
+      "sha256": "74d016409cd8f7fac6a93685e56a9303da4310ebd9f2708599b39e468b626f10",
+      "characters": 5000,
+      "startedAt": "2026-09-12T14:23:15.366Z",
+      "batches": [
+        {
+          "durationMs": 5350,
+          "firstTokenMs": 718,
+          "usage": {
+            "prompt_tokens": 1351,
+            "completion_tokens": 1273,
+            "total_tokens": 2624,
+            "prompt_tokens_details": {
+              "cached_tokens": 1152
+            },
+            "prompt_cache_hit_tokens": 1152,
+            "prompt_cache_miss_tokens": 199
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000797106
+        }
+      ],
+      "status": "error",
+      "usageMayBeIncomplete": true,
+      "durationMs": 5350
+    },
+    {
+      "round": 2,
+      "url": "https://www.bbc.com/news",
+      "title": "www.bbc.com",
+      "sha256": "e4582dd62c1c473c7b6bd402fffed1d3521d7b8cf81ac2ede4703404d41d3214",
+      "characters": 5000,
+      "startedAt": "2026-09-12T14:23:20.717Z",
+      "batches": [
+        {
+          "durationMs": 3785,
+          "firstTokenMs": 442,
+          "usage": {
+            "prompt_tokens": 1087,
+            "completion_tokens": 677,
+            "total_tokens": 1764,
+            "prompt_tokens_details": {
+              "cached_tokens": 896
+            },
+            "prompt_cache_hit_tokens": 896,
+            "prompt_cache_miss_tokens": 191
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000437538
+        },
+        {
+          "durationMs": 4177,
+          "firstTokenMs": 1153,
+          "usage": {
+            "prompt_tokens": 853,
+            "completion_tokens": 569,
+            "total_tokens": 1422,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 213
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00037527
+        }
+      ],
+      "status": "error",
+      "usageMayBeIncomplete": true,
+      "durationMs": 7963
+    },
+    {
+      "round": 2,
+      "url": "https://docs.python.org/3/tutorial/appetite.html",
+      "title": "docs.python.org",
+      "sha256": "e04a53c6c08437914022c1df47c90fadb23cc77c0a379ea5ce4c93b1f49d70f1",
+      "characters": 4389,
+      "startedAt": "2026-09-12T14:23:28.681Z",
+      "batches": [
+        {
+          "durationMs": 4328,
+          "firstTokenMs": 720,
+          "usage": {
+            "prompt_tokens": 1222,
+            "completion_tokens": 831,
+            "total_tokens": 2053,
+            "prompt_tokens_details": {
+              "cached_tokens": 1024
+            },
+            "prompt_cache_hit_tokens": 1024,
+            "prompt_cache_miss_tokens": 198
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000531372
+        }
+      ],
+      "status": "success",
+      "durationMs": 4329
+    },
+    {
+      "round": 2,
+      "url": "https://nodejs.org/en/learn/getting-started/introduction-to-nodejs",
+      "title": "nodejs.org",
+      "sha256": "8e7aa21586740d4915e35c705717492a2a32d12e523b2934fd8b7c42fdf8d3fa",
+      "characters": 2396,
+      "startedAt": "2026-09-12T14:23:33.011Z",
+      "batches": [
+        {
+          "durationMs": 2451,
+          "firstTokenMs": 652,
+          "usage": {
+            "prompt_tokens": 834,
+            "completion_tokens": 491,
+            "total_tokens": 1325,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 194
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00032561999999999994
+        }
+      ],
+      "status": "success",
+      "durationMs": 2452
+    },
+    {
+      "round": 2,
+      "url": "https://www.w3schools.com/js/js_intro.asp",
+      "title": "www.w3schools.com",
+      "sha256": "bb21bbcbb22d33d3789e282f1ec0c995d627002874b469498a2255ce80234481",
+      "characters": 3369,
+      "startedAt": "2026-09-12T14:23:35.464Z",
+      "batches": [
+        {
+          "durationMs": 2123,
+          "firstTokenMs": 343,
+          "usage": {
+            "prompt_tokens": 886,
+            "completion_tokens": 513,
+            "total_tokens": 1399,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 246
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00034662
+        },
+        {
+          "durationMs": 1854,
+          "firstTokenMs": 605,
+          "usage": {
+            "prompt_tokens": 679,
+            "completion_tokens": 371,
+            "total_tokens": 1050,
+            "prompt_tokens_details": {
+              "cached_tokens": 512
+            },
+            "prompt_cache_hit_tokens": 512,
+            "prompt_cache_miss_tokens": 167
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000249186
+        }
+      ],
+      "status": "success",
+      "durationMs": 3978
+    },
+    {
+      "round": 2,
+      "url": "https://ubuntu.com/desktop",
+      "title": "ubuntu.com",
+      "sha256": "70969cccf1a46031d080fb0b8bad810525160f86611f405b39d7ab5484deba58",
+      "characters": 5000,
+      "startedAt": "2026-09-12T14:23:39.443Z",
+      "batches": [
+        {
+          "durationMs": 3820,
+          "firstTokenMs": 721,
+          "usage": {
+            "prompt_tokens": 1174,
+            "completion_tokens": 788,
+            "total_tokens": 1962,
+            "prompt_tokens_details": {
+              "cached_tokens": 1024
+            },
+            "prompt_cache_hit_tokens": 1024,
+            "prompt_cache_miss_tokens": 150
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000498372
+        },
+        {
+          "durationMs": 1898,
+          "firstTokenMs": 656,
+          "usage": {
+            "prompt_tokens": 518,
+            "completion_tokens": 259,
+            "total_tokens": 777,
+            "prompt_tokens_details": {
+              "cached_tokens": 384
+            },
+            "prompt_cache_hit_tokens": 384,
+            "prompt_cache_miss_tokens": 134
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00017665200000000002
+        }
+      ],
+      "status": "success",
+      "durationMs": 5719
+    },
+    {
+      "round": 2,
+      "url": "https://rust-lang.org/learn/",
+      "title": "rust-lang.org",
+      "sha256": "cb88e2be7b40b734c54e5248087a4c153422b28fd05e2fcb799ee832ac557b32",
+      "characters": 1946,
+      "startedAt": "2026-09-12T14:23:45.164Z",
+      "batches": [
+        {
+          "durationMs": 2561,
+          "firstTokenMs": 680,
+          "usage": {
+            "prompt_tokens": 778,
+            "completion_tokens": 434,
+            "total_tokens": 1212,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 138
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00028302
+        }
+      ],
+      "status": "success",
+      "durationMs": 2561
+    },
+    {
+      "round": 2,
+      "url": "https://www.mozilla.org/en-US/firefox/new/",
+      "title": "www.mozilla.org",
+      "sha256": "430894fc79d92a1ee3ac66d98e504107c4e26a804bcdd4c807380a8d2bd14a27",
+      "characters": 2415,
+      "startedAt": "2026-09-12T14:23:47.728Z",
+      "batches": [
+        {
+          "durationMs": 2936,
+          "firstTokenMs": 664,
+          "usage": {
+            "prompt_tokens": 969,
+            "completion_tokens": 589,
+            "total_tokens": 1558,
+            "prompt_tokens_details": {
+              "cached_tokens": 768
+            },
+            "prompt_cache_hit_tokens": 768,
+            "prompt_cache_miss_tokens": 201
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000385854
+        }
+      ],
+      "status": "success",
+      "durationMs": 2937
+    },
+    {
+      "round": 3,
+      "url": "https://en.wikipedia.org/wiki/Machine_translation",
+      "title": "en.wikipedia.org",
+      "sha256": "e814a1cbc74545195e07897336bda0b4f7ed3711f230b9793312a2e46aaad4d2",
+      "characters": 5000,
+      "startedAt": "2026-09-12T14:23:50.666Z",
+      "batches": [
+        {
+          "durationMs": 5100,
+          "firstTokenMs": 759,
+          "usage": {
+            "prompt_tokens": 1335,
+            "completion_tokens": 988,
+            "total_tokens": 2323,
+            "prompt_tokens_details": {
+              "cached_tokens": 1152
+            },
+            "prompt_cache_hit_tokens": 1152,
+            "prompt_cache_miss_tokens": 183
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.0006237059999999999
+        }
+      ],
+      "status": "error",
+      "usageMayBeIncomplete": true,
+      "durationMs": 5102
+    },
+    {
+      "round": 3,
+      "url": "https://github.com/microsoft/vscode",
+      "title": "github.com",
+      "sha256": "3a3aafa21f14f3a6996cbb6c52ea65c464a0df53d35bb3f10a5bcc6decb4a32f",
+      "characters": 4299,
+      "startedAt": "2026-09-12T14:23:55.768Z",
+      "batches": [
+        {
+          "durationMs": 3432,
+          "firstTokenMs": 821,
+          "usage": {
+            "prompt_tokens": 1001,
+            "completion_tokens": 630,
+            "total_tokens": 1631,
+            "prompt_tokens_details": {
+              "cached_tokens": 768
+            },
+            "prompt_cache_hit_tokens": 768,
+            "prompt_cache_miss_tokens": 233
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000415254
+        },
+        {
+          "durationMs": 2031,
+          "firstTokenMs": 768,
+          "usage": {
+            "prompt_tokens": 581,
+            "completion_tokens": 335,
+            "total_tokens": 916,
+            "prompt_tokens_details": {
+              "cached_tokens": 384
+            },
+            "prompt_cache_hit_tokens": 384,
+            "prompt_cache_miss_tokens": 197
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000231702
+        }
+      ],
+      "status": "success",
+      "durationMs": 5464
+    },
+    {
+      "round": 3,
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+      "title": "developer.mozilla.org",
+      "sha256": "74d016409cd8f7fac6a93685e56a9303da4310ebd9f2708599b39e468b626f10",
+      "characters": 5000,
+      "startedAt": "2026-09-12T14:24:01.233Z",
+      "batches": [
+        {
+          "durationMs": 5384,
+          "firstTokenMs": 771,
+          "usage": {
+            "prompt_tokens": 1351,
+            "completion_tokens": 1258,
+            "total_tokens": 2609,
+            "prompt_tokens_details": {
+              "cached_tokens": 1152
+            },
+            "prompt_cache_hit_tokens": 1152,
+            "prompt_cache_miss_tokens": 199
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000788106
+        }
+      ],
+      "status": "error",
+      "usageMayBeIncomplete": true,
+      "durationMs": 5385
+    },
+    {
+      "round": 3,
+      "url": "https://www.bbc.com/news",
+      "title": "www.bbc.com",
+      "sha256": "e4582dd62c1c473c7b6bd402fffed1d3521d7b8cf81ac2ede4703404d41d3214",
+      "characters": 5000,
+      "startedAt": "2026-09-12T14:24:06.622Z",
+      "batches": [
+        {
+          "durationMs": 3990,
+          "firstTokenMs": 700,
+          "usage": {
+            "prompt_tokens": 1087,
+            "completion_tokens": 680,
+            "total_tokens": 1767,
+            "prompt_tokens_details": {
+              "cached_tokens": 896
+            },
+            "prompt_cache_hit_tokens": 896,
+            "prompt_cache_miss_tokens": 191
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000439338
+        },
+        {
+          "durationMs": 3738,
+          "firstTokenMs": 653,
+          "usage": {
+            "prompt_tokens": 853,
+            "completion_tokens": 569,
+            "total_tokens": 1422,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 213
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00037527
+        }
+      ],
+      "status": "success",
+      "durationMs": 7730
+    },
+    {
+      "round": 3,
+      "url": "https://docs.python.org/3/tutorial/appetite.html",
+      "title": "docs.python.org",
+      "sha256": "e04a53c6c08437914022c1df47c90fadb23cc77c0a379ea5ce4c93b1f49d70f1",
+      "characters": 4389,
+      "startedAt": "2026-09-12T14:24:14.354Z",
+      "batches": [
+        {
+          "durationMs": 4635,
+          "firstTokenMs": 1044,
+          "usage": {
+            "prompt_tokens": 1222,
+            "completion_tokens": 827,
+            "total_tokens": 2049,
+            "prompt_tokens_details": {
+              "cached_tokens": 1024
+            },
+            "prompt_cache_hit_tokens": 1024,
+            "prompt_cache_miss_tokens": 198
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000528972
+        }
+      ],
+      "status": "success",
+      "durationMs": 4635
+    },
+    {
+      "round": 3,
+      "url": "https://nodejs.org/en/learn/getting-started/introduction-to-nodejs",
+      "title": "nodejs.org",
+      "sha256": "8e7aa21586740d4915e35c705717492a2a32d12e523b2934fd8b7c42fdf8d3fa",
+      "characters": 2396,
+      "startedAt": "2026-09-12T14:24:18.993Z",
+      "batches": [
+        {
+          "durationMs": 2522,
+          "firstTokenMs": 713,
+          "usage": {
+            "prompt_tokens": 834,
+            "completion_tokens": 489,
+            "total_tokens": 1323,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 194
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00032441999999999996
+        }
+      ],
+      "status": "success",
+      "durationMs": 2523
+    },
+    {
+      "round": 3,
+      "url": "https://www.w3schools.com/js/js_intro.asp",
+      "title": "www.w3schools.com",
+      "sha256": "bb21bbcbb22d33d3789e282f1ec0c995d627002874b469498a2255ce80234481",
+      "characters": 3369,
+      "startedAt": "2026-09-12T14:24:21.516Z",
+      "batches": [
+        {
+          "durationMs": 2270,
+          "firstTokenMs": 454,
+          "usage": {
+            "prompt_tokens": 886,
+            "completion_tokens": 513,
+            "total_tokens": 1399,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 246
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00034662
+        },
+        {
+          "durationMs": 2445,
+          "firstTokenMs": 1267,
+          "usage": {
+            "prompt_tokens": 679,
+            "completion_tokens": 371,
+            "total_tokens": 1050,
+            "prompt_tokens_details": {
+              "cached_tokens": 512
+            },
+            "prompt_cache_hit_tokens": 512,
+            "prompt_cache_miss_tokens": 167
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000249186
+        }
+      ],
+      "status": "success",
+      "durationMs": 4715
+    },
+    {
+      "round": 3,
+      "url": "https://ubuntu.com/desktop",
+      "title": "ubuntu.com",
+      "sha256": "70969cccf1a46031d080fb0b8bad810525160f86611f405b39d7ab5484deba58",
+      "characters": 5000,
+      "startedAt": "2026-09-12T14:24:26.233Z",
+      "batches": [
+        {
+          "durationMs": 3975,
+          "firstTokenMs": 810,
+          "usage": {
+            "prompt_tokens": 1174,
+            "completion_tokens": 797,
+            "total_tokens": 1971,
+            "prompt_tokens_details": {
+              "cached_tokens": 1024
+            },
+            "prompt_cache_hit_tokens": 1024,
+            "prompt_cache_miss_tokens": 150
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000503772
+        },
+        {
+          "durationMs": 1779,
+          "firstTokenMs": 615,
+          "usage": {
+            "prompt_tokens": 518,
+            "completion_tokens": 264,
+            "total_tokens": 782,
+            "prompt_tokens_details": {
+              "cached_tokens": 384
+            },
+            "prompt_cache_hit_tokens": 384,
+            "prompt_cache_miss_tokens": 134
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000179652
+        }
+      ],
+      "status": "success",
+      "durationMs": 5755
+    },
+    {
+      "round": 3,
+      "url": "https://rust-lang.org/learn/",
+      "title": "rust-lang.org",
+      "sha256": "cb88e2be7b40b734c54e5248087a4c153422b28fd05e2fcb799ee832ac557b32",
+      "characters": 1946,
+      "startedAt": "2026-09-12T14:24:31.988Z",
+      "batches": [
+        {
+          "durationMs": 2360,
+          "firstTokenMs": 588,
+          "usage": {
+            "prompt_tokens": 778,
+            "completion_tokens": 431,
+            "total_tokens": 1209,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 138
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00028122
+        }
+      ],
+      "status": "success",
+      "durationMs": 2360
+    },
+    {
+      "round": 3,
+      "url": "https://www.mozilla.org/en-US/firefox/new/",
+      "title": "www.mozilla.org",
+      "sha256": "430894fc79d92a1ee3ac66d98e504107c4e26a804bcdd4c807380a8d2bd14a27",
+      "characters": 2415,
+      "startedAt": "2026-09-12T14:24:34.350Z",
+      "batches": [
+        {
+          "durationMs": 3115,
+          "firstTokenMs": 785,
+          "usage": {
+            "prompt_tokens": 969,
+            "completion_tokens": 591,
+            "total_tokens": 1560,
+            "prompt_tokens_details": {
+              "cached_tokens": 768
+            },
+            "prompt_cache_hit_tokens": 768,
+            "prompt_cache_miss_tokens": 201
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00038705399999999996
+        }
+      ],
+      "status": "success",
+      "durationMs": 3116
+    },
+    {
+      "round": 4,
+      "url": "https://en.wikipedia.org/wiki/Machine_translation",
+      "title": "en.wikipedia.org",
+      "sha256": "e814a1cbc74545195e07897336bda0b4f7ed3711f230b9793312a2e46aaad4d2",
+      "characters": 5000,
+      "startedAt": "2026-09-12T14:24:37.466Z",
+      "batches": [
+        {
+          "durationMs": 5141,
+          "firstTokenMs": 527,
+          "usage": {
+            "prompt_tokens": 1335,
+            "completion_tokens": 982,
+            "total_tokens": 2317,
+            "prompt_tokens_details": {
+              "cached_tokens": 1152
+            },
+            "prompt_cache_hit_tokens": 1152,
+            "prompt_cache_miss_tokens": 183
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.0006201059999999999
+        }
+      ],
+      "status": "success",
+      "durationMs": 5141
+    },
+    {
+      "round": 4,
+      "url": "https://github.com/microsoft/vscode",
+      "title": "github.com",
+      "sha256": "3a3aafa21f14f3a6996cbb6c52ea65c464a0df53d35bb3f10a5bcc6decb4a32f",
+      "characters": 4299,
+      "startedAt": "2026-09-12T14:24:42.607Z",
+      "batches": [
+        {
+          "durationMs": 3375,
+          "firstTokenMs": 824,
+          "usage": {
+            "prompt_tokens": 1001,
+            "completion_tokens": 627,
+            "total_tokens": 1628,
+            "prompt_tokens_details": {
+              "cached_tokens": 768
+            },
+            "prompt_cache_hit_tokens": 768,
+            "prompt_cache_miss_tokens": 233
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000413454
+        },
+        {
+          "durationMs": 1867,
+          "firstTokenMs": 526,
+          "usage": {
+            "prompt_tokens": 581,
+            "completion_tokens": 336,
+            "total_tokens": 917,
+            "prompt_tokens_details": {
+              "cached_tokens": 384
+            },
+            "prompt_cache_hit_tokens": 384,
+            "prompt_cache_miss_tokens": 197
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00023230199999999999
+        }
+      ],
+      "status": "success",
+      "durationMs": 5245
+    },
+    {
+      "round": 4,
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+      "title": "developer.mozilla.org",
+      "sha256": "74d016409cd8f7fac6a93685e56a9303da4310ebd9f2708599b39e468b626f10",
+      "characters": 5000,
+      "startedAt": "2026-09-12T14:24:47.853Z",
+      "batches": [
+        {
+          "durationMs": 4887,
+          "firstTokenMs": 505,
+          "usage": {
+            "prompt_tokens": 1351,
+            "completion_tokens": 1253,
+            "total_tokens": 2604,
+            "prompt_tokens_details": {
+              "cached_tokens": 1152
+            },
+            "prompt_cache_hit_tokens": 1152,
+            "prompt_cache_miss_tokens": 199
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000785106
+        }
+      ],
+      "status": "error",
+      "usageMayBeIncomplete": true,
+      "durationMs": 4889
+    },
+    {
+      "round": 4,
+      "url": "https://www.bbc.com/news",
+      "title": "www.bbc.com",
+      "sha256": "e4582dd62c1c473c7b6bd402fffed1d3521d7b8cf81ac2ede4703404d41d3214",
+      "characters": 5000,
+      "startedAt": "2026-09-12T14:24:52.745Z",
+      "batches": [
+        {
+          "durationMs": 4128,
+          "firstTokenMs": 743,
+          "usage": {
+            "prompt_tokens": 1087,
+            "completion_tokens": 686,
+            "total_tokens": 1773,
+            "prompt_tokens_details": {
+              "cached_tokens": 896
+            },
+            "prompt_cache_hit_tokens": 896,
+            "prompt_cache_miss_tokens": 191
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000442938
+        },
+        {
+          "durationMs": 3973,
+          "firstTokenMs": 850,
+          "usage": {
+            "prompt_tokens": 853,
+            "completion_tokens": 572,
+            "total_tokens": 1425,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 213
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00037707
+        }
+      ],
+      "status": "success",
+      "durationMs": 8104
+    },
+    {
+      "round": 4,
+      "url": "https://docs.python.org/3/tutorial/appetite.html",
+      "title": "docs.python.org",
+      "sha256": "e04a53c6c08437914022c1df47c90fadb23cc77c0a379ea5ce4c93b1f49d70f1",
+      "characters": 4389,
+      "startedAt": "2026-09-12T14:25:00.850Z",
+      "batches": [
+        {
+          "durationMs": 4046,
+          "firstTokenMs": 452,
+          "usage": {
+            "prompt_tokens": 1222,
+            "completion_tokens": 831,
+            "total_tokens": 2053,
+            "prompt_tokens_details": {
+              "cached_tokens": 1024
+            },
+            "prompt_cache_hit_tokens": 1024,
+            "prompt_cache_miss_tokens": 198
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000531372
+        }
+      ],
+      "status": "success",
+      "durationMs": 4046
+    },
+    {
+      "round": 4,
+      "url": "https://nodejs.org/en/learn/getting-started/introduction-to-nodejs",
+      "title": "nodejs.org",
+      "sha256": "8e7aa21586740d4915e35c705717492a2a32d12e523b2934fd8b7c42fdf8d3fa",
+      "characters": 2396,
+      "startedAt": "2026-09-12T14:25:04.897Z",
+      "batches": [
+        {
+          "durationMs": 2487,
+          "firstTokenMs": 644,
+          "usage": {
+            "prompt_tokens": 834,
+            "completion_tokens": 490,
+            "total_tokens": 1324,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 194
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00032502
+        }
+      ],
+      "status": "success",
+      "durationMs": 2488
+    },
+    {
+      "round": 4,
+      "url": "https://www.w3schools.com/js/js_intro.asp",
+      "title": "www.w3schools.com",
+      "sha256": "bb21bbcbb22d33d3789e282f1ec0c995d627002874b469498a2255ce80234481",
+      "characters": 3369,
+      "startedAt": "2026-09-12T14:25:07.386Z",
+      "batches": [
+        {
+          "durationMs": 2331,
+          "firstTokenMs": 524,
+          "usage": {
+            "prompt_tokens": 886,
+            "completion_tokens": 517,
+            "total_tokens": 1403,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 246
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00034901999999999996
+        },
+        {
+          "durationMs": 2741,
+          "firstTokenMs": 1533,
+          "usage": {
+            "prompt_tokens": 679,
+            "completion_tokens": 371,
+            "total_tokens": 1050,
+            "prompt_tokens_details": {
+              "cached_tokens": 512
+            },
+            "prompt_cache_hit_tokens": 512,
+            "prompt_cache_miss_tokens": 167
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000249186
+        }
+      ],
+      "status": "success",
+      "durationMs": 5074
+    },
+    {
+      "round": 4,
+      "url": "https://ubuntu.com/desktop",
+      "title": "ubuntu.com",
+      "sha256": "70969cccf1a46031d080fb0b8bad810525160f86611f405b39d7ab5484deba58",
+      "characters": 5000,
+      "startedAt": "2026-09-12T14:25:12.461Z",
+      "batches": [
+        {
+          "durationMs": 3866,
+          "firstTokenMs": 763,
+          "usage": {
+            "prompt_tokens": 1174,
+            "completion_tokens": 795,
+            "total_tokens": 1969,
+            "prompt_tokens_details": {
+              "cached_tokens": 1024
+            },
+            "prompt_cache_hit_tokens": 1024,
+            "prompt_cache_miss_tokens": 150
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000502572
+        },
+        {
+          "durationMs": 1969,
+          "firstTokenMs": 798,
+          "usage": {
+            "prompt_tokens": 518,
+            "completion_tokens": 259,
+            "total_tokens": 777,
+            "prompt_tokens_details": {
+              "cached_tokens": 384
+            },
+            "prompt_cache_hit_tokens": 384,
+            "prompt_cache_miss_tokens": 134
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00017665200000000002
+        }
+      ],
+      "status": "success",
+      "durationMs": 5836
+    },
+    {
+      "round": 4,
+      "url": "https://rust-lang.org/learn/",
+      "title": "rust-lang.org",
+      "sha256": "cb88e2be7b40b734c54e5248087a4c153422b28fd05e2fcb799ee832ac557b32",
+      "characters": 1946,
+      "startedAt": "2026-09-12T14:25:18.300Z",
+      "batches": [
+        {
+          "durationMs": 2172,
+          "firstTokenMs": 385,
+          "usage": {
+            "prompt_tokens": 778,
+            "completion_tokens": 435,
+            "total_tokens": 1213,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 138
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00028362
+        }
+      ],
+      "status": "success",
+      "durationMs": 2173
+    },
+    {
+      "round": 4,
+      "url": "https://www.mozilla.org/en-US/firefox/new/",
+      "title": "www.mozilla.org",
+      "sha256": "430894fc79d92a1ee3ac66d98e504107c4e26a804bcdd4c807380a8d2bd14a27",
+      "characters": 2415,
+      "startedAt": "2026-09-12T14:25:20.474Z",
+      "batches": [
+        {
+          "durationMs": 3045,
+          "firstTokenMs": 855,
+          "usage": {
+            "prompt_tokens": 969,
+            "completion_tokens": 592,
+            "total_tokens": 1561,
+            "prompt_tokens_details": {
+              "cached_tokens": 768
+            },
+            "prompt_cache_hit_tokens": 768,
+            "prompt_cache_miss_tokens": 201
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00038765399999999997
+        }
+      ],
+      "status": "success",
+      "durationMs": 3045
+    },
+    {
+      "round": 5,
+      "url": "https://en.wikipedia.org/wiki/Machine_translation",
+      "title": "en.wikipedia.org",
+      "sha256": "e814a1cbc74545195e07897336bda0b4f7ed3711f230b9793312a2e46aaad4d2",
+      "characters": 5000,
+      "startedAt": "2026-09-12T14:25:23.520Z",
+      "batches": [
+        {
+          "durationMs": 5319,
+          "firstTokenMs": 800,
+          "usage": {
+            "prompt_tokens": 1335,
+            "completion_tokens": 992,
+            "total_tokens": 2327,
+            "prompt_tokens_details": {
+              "cached_tokens": 1152
+            },
+            "prompt_cache_hit_tokens": 1152,
+            "prompt_cache_miss_tokens": 183
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.0006261059999999999
+        }
+      ],
+      "status": "error",
+      "usageMayBeIncomplete": true,
+      "durationMs": 5319
+    },
+    {
+      "round": 5,
+      "url": "https://github.com/microsoft/vscode",
+      "title": "github.com",
+      "sha256": "3a3aafa21f14f3a6996cbb6c52ea65c464a0df53d35bb3f10a5bcc6decb4a32f",
+      "characters": 4299,
+      "startedAt": "2026-09-12T14:25:28.841Z",
+      "batches": [
+        {
+          "durationMs": 3405,
+          "firstTokenMs": 935,
+          "usage": {
+            "prompt_tokens": 1001,
+            "completion_tokens": 639,
+            "total_tokens": 1640,
+            "prompt_tokens_details": {
+              "cached_tokens": 768
+            },
+            "prompt_cache_hit_tokens": 768,
+            "prompt_cache_miss_tokens": 233
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000420654
+        },
+        {
+          "durationMs": 1597,
+          "firstTokenMs": 280,
+          "usage": {
+            "prompt_tokens": 581,
+            "completion_tokens": 336,
+            "total_tokens": 917,
+            "prompt_tokens_details": {
+              "cached_tokens": 384
+            },
+            "prompt_cache_hit_tokens": 384,
+            "prompt_cache_miss_tokens": 197
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00023230199999999999
+        }
+      ],
+      "status": "success",
+      "durationMs": 5004
+    },
+    {
+      "round": 5,
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+      "title": "developer.mozilla.org",
+      "sha256": "74d016409cd8f7fac6a93685e56a9303da4310ebd9f2708599b39e468b626f10",
+      "characters": 5000,
+      "startedAt": "2026-09-12T14:25:33.845Z",
+      "batches": [
+        {
+          "durationMs": 5074,
+          "firstTokenMs": 528,
+          "usage": {
+            "prompt_tokens": 1351,
+            "completion_tokens": 1257,
+            "total_tokens": 2608,
+            "prompt_tokens_details": {
+              "cached_tokens": 1152
+            },
+            "prompt_cache_hit_tokens": 1152,
+            "prompt_cache_miss_tokens": 199
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000787506
+        }
+      ],
+      "status": "error",
+      "usageMayBeIncomplete": true,
+      "durationMs": 5075
+    },
+    {
+      "round": 5,
+      "url": "https://www.bbc.com/news",
+      "title": "www.bbc.com",
+      "sha256": "e4582dd62c1c473c7b6bd402fffed1d3521d7b8cf81ac2ede4703404d41d3214",
+      "characters": 5000,
+      "startedAt": "2026-09-12T14:25:38.922Z",
+      "batches": [
+        {
+          "durationMs": 4042,
+          "firstTokenMs": 698,
+          "usage": {
+            "prompt_tokens": 1087,
+            "completion_tokens": 687,
+            "total_tokens": 1774,
+            "prompt_tokens_details": {
+              "cached_tokens": 896
+            },
+            "prompt_cache_hit_tokens": 896,
+            "prompt_cache_miss_tokens": 191
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000443538
+        },
+        {
+          "durationMs": 3974,
+          "firstTokenMs": 669,
+          "usage": {
+            "prompt_tokens": 853,
+            "completion_tokens": 570,
+            "total_tokens": 1423,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 213
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00037587
+        }
+      ],
+      "status": "success",
+      "durationMs": 8017
+    },
+    {
+      "round": 5,
+      "url": "https://docs.python.org/3/tutorial/appetite.html",
+      "title": "docs.python.org",
+      "sha256": "e04a53c6c08437914022c1df47c90fadb23cc77c0a379ea5ce4c93b1f49d70f1",
+      "characters": 4389,
+      "startedAt": "2026-09-12T14:25:46.940Z",
+      "batches": [
+        {
+          "durationMs": 4300,
+          "firstTokenMs": 662,
+          "usage": {
+            "prompt_tokens": 1222,
+            "completion_tokens": 830,
+            "total_tokens": 2052,
+            "prompt_tokens_details": {
+              "cached_tokens": 1024
+            },
+            "prompt_cache_hit_tokens": 1024,
+            "prompt_cache_miss_tokens": 198
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.0005307720000000001
+        }
+      ],
+      "status": "success",
+      "durationMs": 4301
+    },
+    {
+      "round": 5,
+      "url": "https://nodejs.org/en/learn/getting-started/introduction-to-nodejs",
+      "title": "nodejs.org",
+      "sha256": "8e7aa21586740d4915e35c705717492a2a32d12e523b2934fd8b7c42fdf8d3fa",
+      "characters": 2396,
+      "startedAt": "2026-09-12T14:25:51.242Z",
+      "batches": [
+        {
+          "durationMs": 2555,
+          "firstTokenMs": 655,
+          "usage": {
+            "prompt_tokens": 834,
+            "completion_tokens": 490,
+            "total_tokens": 1324,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 194
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00032502
+        }
+      ],
+      "status": "success",
+      "durationMs": 2555
+    },
+    {
+      "round": 5,
+      "url": "https://www.w3schools.com/js/js_intro.asp",
+      "title": "www.w3schools.com",
+      "sha256": "bb21bbcbb22d33d3789e282f1ec0c995d627002874b469498a2255ce80234481",
+      "characters": 3369,
+      "startedAt": "2026-09-12T14:25:53.798Z",
+      "batches": [
+        {
+          "durationMs": 2349,
+          "firstTokenMs": 544,
+          "usage": {
+            "prompt_tokens": 886,
+            "completion_tokens": 512,
+            "total_tokens": 1398,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 246
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00034602
+        },
+        {
+          "durationMs": 2053,
+          "firstTokenMs": 707,
+          "usage": {
+            "prompt_tokens": 679,
+            "completion_tokens": 371,
+            "total_tokens": 1050,
+            "prompt_tokens_details": {
+              "cached_tokens": 512
+            },
+            "prompt_cache_hit_tokens": 512,
+            "prompt_cache_miss_tokens": 167
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000249186
+        }
+      ],
+      "status": "success",
+      "durationMs": 4404
+    },
+    {
+      "round": 5,
+      "url": "https://ubuntu.com/desktop",
+      "title": "ubuntu.com",
+      "sha256": "70969cccf1a46031d080fb0b8bad810525160f86611f405b39d7ab5484deba58",
+      "characters": 5000,
+      "startedAt": "2026-09-12T14:25:58.204Z",
+      "batches": [
+        {
+          "durationMs": 4389,
+          "firstTokenMs": 1040,
+          "usage": {
+            "prompt_tokens": 1174,
+            "completion_tokens": 796,
+            "total_tokens": 1970,
+            "prompt_tokens_details": {
+              "cached_tokens": 1024
+            },
+            "prompt_cache_hit_tokens": 1024,
+            "prompt_cache_miss_tokens": 150
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000503172
+        },
+        {
+          "durationMs": 1889,
+          "firstTokenMs": 662,
+          "usage": {
+            "prompt_tokens": 518,
+            "completion_tokens": 263,
+            "total_tokens": 781,
+            "prompt_tokens_details": {
+              "cached_tokens": 384
+            },
+            "prompt_cache_hit_tokens": 384,
+            "prompt_cache_miss_tokens": 134
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000179052
+        }
+      ],
+      "status": "success",
+      "durationMs": 6279
+    },
+    {
+      "round": 5,
+      "url": "https://rust-lang.org/learn/",
+      "title": "rust-lang.org",
+      "sha256": "cb88e2be7b40b734c54e5248087a4c153422b28fd05e2fcb799ee832ac557b32",
+      "characters": 1946,
+      "startedAt": "2026-09-12T14:26:04.484Z",
+      "batches": [
+        {
+          "durationMs": 2568,
+          "firstTokenMs": 797,
+          "usage": {
+            "prompt_tokens": 778,
+            "completion_tokens": 433,
+            "total_tokens": 1211,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 138
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00028242
+        }
+      ],
+      "status": "success",
+      "durationMs": 2569
+    },
+    {
+      "round": 5,
+      "url": "https://www.mozilla.org/en-US/firefox/new/",
+      "title": "www.mozilla.org",
+      "sha256": "430894fc79d92a1ee3ac66d98e504107c4e26a804bcdd4c807380a8d2bd14a27",
+      "characters": 2415,
+      "startedAt": "2026-09-12T14:26:07.054Z",
+      "batches": [
+        {
+          "durationMs": 2649,
+          "firstTokenMs": 400,
+          "usage": {
+            "prompt_tokens": 969,
+            "completion_tokens": 590,
+            "total_tokens": 1559,
+            "prompt_tokens_details": {
+              "cached_tokens": 768
+            },
+            "prompt_cache_hit_tokens": 768,
+            "prompt_cache_miss_tokens": 201
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000386454
+        }
+      ],
+      "status": "success",
+      "durationMs": 2649
+    },
+    {
+      "round": 6,
+      "url": "https://en.wikipedia.org/wiki/Machine_translation",
+      "title": "en.wikipedia.org",
+      "sha256": "e814a1cbc74545195e07897336bda0b4f7ed3711f230b9793312a2e46aaad4d2",
+      "characters": 5000,
+      "startedAt": "2026-09-12T14:26:09.704Z",
+      "batches": [
+        {
+          "durationMs": 4573,
+          "firstTokenMs": 350,
+          "usage": {
+            "prompt_tokens": 1335,
+            "completion_tokens": 1027,
+            "total_tokens": 2362,
+            "prompt_tokens_details": {
+              "cached_tokens": 1152
+            },
+            "prompt_cache_hit_tokens": 1152,
+            "prompt_cache_miss_tokens": 183
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.0006471059999999998
+        }
+      ],
+      "status": "error",
+      "usageMayBeIncomplete": true,
+      "durationMs": 4574
+    },
+    {
+      "round": 6,
+      "url": "https://github.com/microsoft/vscode",
+      "title": "github.com",
+      "sha256": "3a3aafa21f14f3a6996cbb6c52ea65c464a0df53d35bb3f10a5bcc6decb4a32f",
+      "characters": 4299,
+      "startedAt": "2026-09-12T14:26:14.279Z",
+      "batches": [
+        {
+          "durationMs": 3471,
+          "firstTokenMs": 662,
+          "usage": {
+            "prompt_tokens": 1001,
+            "completion_tokens": 629,
+            "total_tokens": 1630,
+            "prompt_tokens_details": {
+              "cached_tokens": 768
+            },
+            "prompt_cache_hit_tokens": 768,
+            "prompt_cache_miss_tokens": 233
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000414654
+        },
+        {
+          "durationMs": 2401,
+          "firstTokenMs": 1117,
+          "usage": {
+            "prompt_tokens": 581,
+            "completion_tokens": 336,
+            "total_tokens": 917,
+            "prompt_tokens_details": {
+              "cached_tokens": 384
+            },
+            "prompt_cache_hit_tokens": 384,
+            "prompt_cache_miss_tokens": 197
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00023230199999999999
+        }
+      ],
+      "status": "success",
+      "durationMs": 5874
+    },
+    {
+      "round": 6,
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+      "title": "developer.mozilla.org",
+      "sha256": "74d016409cd8f7fac6a93685e56a9303da4310ebd9f2708599b39e468b626f10",
+      "characters": 5000,
+      "startedAt": "2026-09-12T14:26:20.155Z",
+      "batches": [
+        {
+          "durationMs": 4997,
+          "firstTokenMs": 649,
+          "usage": {
+            "prompt_tokens": 1351,
+            "completion_tokens": 1259,
+            "total_tokens": 2610,
+            "prompt_tokens_details": {
+              "cached_tokens": 1152
+            },
+            "prompt_cache_hit_tokens": 1152,
+            "prompt_cache_miss_tokens": 199
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000788706
+        }
+      ],
+      "status": "error",
+      "usageMayBeIncomplete": true,
+      "durationMs": 4998
+    },
+    {
+      "round": 6,
+      "url": "https://www.bbc.com/news",
+      "title": "www.bbc.com",
+      "sha256": "e4582dd62c1c473c7b6bd402fffed1d3521d7b8cf81ac2ede4703404d41d3214",
+      "characters": 5000,
+      "startedAt": "2026-09-12T14:26:25.153Z",
+      "batches": [
+        {
+          "durationMs": 4609,
+          "firstTokenMs": 1142,
+          "usage": {
+            "prompt_tokens": 1087,
+            "completion_tokens": 682,
+            "total_tokens": 1769,
+            "prompt_tokens_details": {
+              "cached_tokens": 896
+            },
+            "prompt_cache_hit_tokens": 896,
+            "prompt_cache_miss_tokens": 191
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00044053800000000003
+        },
+        {
+          "durationMs": 3855,
+          "firstTokenMs": 795,
+          "usage": {
+            "prompt_tokens": 853,
+            "completion_tokens": 570,
+            "total_tokens": 1423,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 213
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00037587
+        }
+      ],
+      "status": "success",
+      "durationMs": 8467
+    },
+    {
+      "round": 6,
+      "url": "https://docs.python.org/3/tutorial/appetite.html",
+      "title": "docs.python.org",
+      "sha256": "e04a53c6c08437914022c1df47c90fadb23cc77c0a379ea5ce4c93b1f49d70f1",
+      "characters": 4389,
+      "startedAt": "2026-09-12T14:26:33.621Z",
+      "batches": [
+        {
+          "durationMs": 4367,
+          "firstTokenMs": 762,
+          "usage": {
+            "prompt_tokens": 1222,
+            "completion_tokens": 831,
+            "total_tokens": 2053,
+            "prompt_tokens_details": {
+              "cached_tokens": 1024
+            },
+            "prompt_cache_hit_tokens": 1024,
+            "prompt_cache_miss_tokens": 198
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000531372
+        }
+      ],
+      "status": "success",
+      "durationMs": 4367
+    },
+    {
+      "round": 6,
+      "url": "https://nodejs.org/en/learn/getting-started/introduction-to-nodejs",
+      "title": "nodejs.org",
+      "sha256": "8e7aa21586740d4915e35c705717492a2a32d12e523b2934fd8b7c42fdf8d3fa",
+      "characters": 2396,
+      "startedAt": "2026-09-12T14:26:37.991Z",
+      "batches": [
+        {
+          "durationMs": 2989,
+          "firstTokenMs": 982,
+          "usage": {
+            "prompt_tokens": 834,
+            "completion_tokens": 493,
+            "total_tokens": 1327,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 194
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00032682
+        }
+      ],
+      "status": "success",
+      "durationMs": 2990
+    },
+    {
+      "round": 6,
+      "url": "https://www.w3schools.com/js/js_intro.asp",
+      "title": "www.w3schools.com",
+      "sha256": "bb21bbcbb22d33d3789e282f1ec0c995d627002874b469498a2255ce80234481",
+      "characters": 3369,
+      "startedAt": "2026-09-12T14:26:40.982Z",
+      "batches": [
+        {
+          "durationMs": 2605,
+          "firstTokenMs": 664,
+          "usage": {
+            "prompt_tokens": 886,
+            "completion_tokens": 513,
+            "total_tokens": 1399,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 246
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00034662
+        },
+        {
+          "durationMs": 1603,
+          "firstTokenMs": 271,
+          "usage": {
+            "prompt_tokens": 679,
+            "completion_tokens": 370,
+            "total_tokens": 1049,
+            "prompt_tokens_details": {
+              "cached_tokens": 512
+            },
+            "prompt_cache_hit_tokens": 512,
+            "prompt_cache_miss_tokens": 167
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000248586
+        }
+      ],
+      "status": "success",
+      "durationMs": 4209
+    },
+    {
+      "round": 6,
+      "url": "https://ubuntu.com/desktop",
+      "title": "ubuntu.com",
+      "sha256": "70969cccf1a46031d080fb0b8bad810525160f86611f405b39d7ab5484deba58",
+      "characters": 5000,
+      "startedAt": "2026-09-12T14:26:45.192Z",
+      "batches": [
+        {
+          "durationMs": 3698,
+          "firstTokenMs": 528,
+          "usage": {
+            "prompt_tokens": 1174,
+            "completion_tokens": 799,
+            "total_tokens": 1973,
+            "prompt_tokens_details": {
+              "cached_tokens": 1024
+            },
+            "prompt_cache_hit_tokens": 1024,
+            "prompt_cache_miss_tokens": 150
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000504972
+        },
+        {
+          "durationMs": 1890,
+          "firstTokenMs": 805,
+          "usage": {
+            "prompt_tokens": 518,
+            "completion_tokens": 260,
+            "total_tokens": 778,
+            "prompt_tokens_details": {
+              "cached_tokens": 384
+            },
+            "prompt_cache_hit_tokens": 384,
+            "prompt_cache_miss_tokens": 134
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000177252
+        }
+      ],
+      "status": "success",
+      "durationMs": 5588
+    },
+    {
+      "round": 6,
+      "url": "https://rust-lang.org/learn/",
+      "title": "rust-lang.org",
+      "sha256": "cb88e2be7b40b734c54e5248087a4c153422b28fd05e2fcb799ee832ac557b32",
+      "characters": 1946,
+      "startedAt": "2026-09-12T14:26:50.781Z",
+      "batches": [
+        {
+          "durationMs": 2312,
+          "firstTokenMs": 559,
+          "usage": {
+            "prompt_tokens": 778,
+            "completion_tokens": 432,
+            "total_tokens": 1210,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 138
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00028182
+        }
+      ],
+      "status": "success",
+      "durationMs": 2313
+    },
+    {
+      "round": 6,
+      "url": "https://www.mozilla.org/en-US/firefox/new/",
+      "title": "www.mozilla.org",
+      "sha256": "430894fc79d92a1ee3ac66d98e504107c4e26a804bcdd4c807380a8d2bd14a27",
+      "characters": 2415,
+      "startedAt": "2026-09-12T14:26:53.094Z",
+      "batches": [
+        {
+          "durationMs": 2697,
+          "firstTokenMs": 404,
+          "usage": {
+            "prompt_tokens": 969,
+            "completion_tokens": 590,
+            "total_tokens": 1559,
+            "prompt_tokens_details": {
+              "cached_tokens": 768
+            },
+            "prompt_cache_hit_tokens": 768,
+            "prompt_cache_miss_tokens": 201
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000386454
+        }
+      ],
+      "status": "success",
+      "durationMs": 2698
+    },
+    {
+      "round": 7,
+      "url": "https://en.wikipedia.org/wiki/Machine_translation",
+      "title": "en.wikipedia.org",
+      "sha256": "e814a1cbc74545195e07897336bda0b4f7ed3711f230b9793312a2e46aaad4d2",
+      "characters": 5000,
+      "startedAt": "2026-09-12T14:26:55.794Z",
+      "batches": [
+        {
+          "durationMs": 5366,
+          "firstTokenMs": 833,
+          "usage": {
+            "prompt_tokens": 1335,
+            "completion_tokens": 983,
+            "total_tokens": 2318,
+            "prompt_tokens_details": {
+              "cached_tokens": 1152
+            },
+            "prompt_cache_hit_tokens": 1152,
+            "prompt_cache_miss_tokens": 183
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000620706
+        }
+      ],
+      "status": "success",
+      "durationMs": 5366
+    },
+    {
+      "round": 7,
+      "url": "https://github.com/microsoft/vscode",
+      "title": "github.com",
+      "sha256": "3a3aafa21f14f3a6996cbb6c52ea65c464a0df53d35bb3f10a5bcc6decb4a32f",
+      "characters": 4299,
+      "startedAt": "2026-09-12T14:27:01.163Z",
+      "batches": [
+        {
+          "durationMs": 3351,
+          "firstTokenMs": 1049,
+          "usage": {
+            "prompt_tokens": 1001,
+            "completion_tokens": 626,
+            "total_tokens": 1627,
+            "prompt_tokens_details": {
+              "cached_tokens": 768
+            },
+            "prompt_cache_hit_tokens": 768,
+            "prompt_cache_miss_tokens": 233
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000412854
+        },
+        {
+          "durationMs": 2231,
+          "firstTokenMs": 866,
+          "usage": {
+            "prompt_tokens": 581,
+            "completion_tokens": 336,
+            "total_tokens": 917,
+            "prompt_tokens_details": {
+              "cached_tokens": 384
+            },
+            "prompt_cache_hit_tokens": 384,
+            "prompt_cache_miss_tokens": 197
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00023230199999999999
+        }
+      ],
+      "status": "success",
+      "durationMs": 5582
+    },
+    {
+      "round": 7,
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+      "title": "developer.mozilla.org",
+      "sha256": "74d016409cd8f7fac6a93685e56a9303da4310ebd9f2708599b39e468b626f10",
+      "characters": 5000,
+      "startedAt": "2026-09-12T14:27:06.745Z",
+      "batches": [
+        {
+          "durationMs": 5652,
+          "firstTokenMs": 1164,
+          "usage": {
+            "prompt_tokens": 1351,
+            "completion_tokens": 1259,
+            "total_tokens": 2610,
+            "prompt_tokens_details": {
+              "cached_tokens": 1152
+            },
+            "prompt_cache_hit_tokens": 1152,
+            "prompt_cache_miss_tokens": 199
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000788706
+        }
+      ],
+      "status": "error",
+      "usageMayBeIncomplete": true,
+      "durationMs": 5653
+    },
+    {
+      "round": 7,
+      "url": "https://www.bbc.com/news",
+      "title": "www.bbc.com",
+      "sha256": "e4582dd62c1c473c7b6bd402fffed1d3521d7b8cf81ac2ede4703404d41d3214",
+      "characters": 5000,
+      "startedAt": "2026-09-12T14:27:12.401Z",
+      "batches": [
+        {
+          "durationMs": 3723,
+          "firstTokenMs": 293,
+          "usage": {
+            "prompt_tokens": 1087,
+            "completion_tokens": 682,
+            "total_tokens": 1769,
+            "prompt_tokens_details": {
+              "cached_tokens": 896
+            },
+            "prompt_cache_hit_tokens": 896,
+            "prompt_cache_miss_tokens": 191
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00044053800000000003
+        },
+        {
+          "durationMs": 4403,
+          "firstTokenMs": 1324,
+          "usage": {
+            "prompt_tokens": 853,
+            "completion_tokens": 563,
+            "total_tokens": 1416,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 213
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00037167
+        }
+      ],
+      "status": "success",
+      "durationMs": 8127
+    },
+    {
+      "round": 7,
+      "url": "https://docs.python.org/3/tutorial/appetite.html",
+      "title": "docs.python.org",
+      "sha256": "e04a53c6c08437914022c1df47c90fadb23cc77c0a379ea5ce4c93b1f49d70f1",
+      "characters": 4389,
+      "startedAt": "2026-09-12T14:27:20.532Z",
+      "batches": [
+        {
+          "durationMs": 4192,
+          "firstTokenMs": 566,
+          "usage": {
+            "prompt_tokens": 1222,
+            "completion_tokens": 831,
+            "total_tokens": 2053,
+            "prompt_tokens_details": {
+              "cached_tokens": 1024
+            },
+            "prompt_cache_hit_tokens": 1024,
+            "prompt_cache_miss_tokens": 198
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000531372
+        }
+      ],
+      "status": "success",
+      "durationMs": 4192
+    },
+    {
+      "round": 7,
+      "url": "https://nodejs.org/en/learn/getting-started/introduction-to-nodejs",
+      "title": "nodejs.org",
+      "sha256": "8e7aa21586740d4915e35c705717492a2a32d12e523b2934fd8b7c42fdf8d3fa",
+      "characters": 2396,
+      "startedAt": "2026-09-12T14:27:24.726Z",
+      "batches": [
+        {
+          "durationMs": 2588,
+          "firstTokenMs": 721,
+          "usage": {
+            "prompt_tokens": 834,
+            "completion_tokens": 489,
+            "total_tokens": 1323,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 194
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00032441999999999996
+        }
+      ],
+      "status": "success",
+      "durationMs": 2589
+    },
+    {
+      "round": 7,
+      "url": "https://www.w3schools.com/js/js_intro.asp",
+      "title": "www.w3schools.com",
+      "sha256": "bb21bbcbb22d33d3789e282f1ec0c995d627002874b469498a2255ce80234481",
+      "characters": 3369,
+      "startedAt": "2026-09-12T14:27:27.316Z",
+      "batches": [
+        {
+          "durationMs": 2332,
+          "firstTokenMs": 795,
+          "usage": {
+            "prompt_tokens": 886,
+            "completion_tokens": 512,
+            "total_tokens": 1398,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 246
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00034602
+        },
+        {
+          "durationMs": 2080,
+          "firstTokenMs": 777,
+          "usage": {
+            "prompt_tokens": 679,
+            "completion_tokens": 371,
+            "total_tokens": 1050,
+            "prompt_tokens_details": {
+              "cached_tokens": 512
+            },
+            "prompt_cache_hit_tokens": 512,
+            "prompt_cache_miss_tokens": 167
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000249186
+        }
+      ],
+      "status": "success",
+      "durationMs": 4413
+    },
+    {
+      "round": 7,
+      "url": "https://ubuntu.com/desktop",
+      "title": "ubuntu.com",
+      "sha256": "70969cccf1a46031d080fb0b8bad810525160f86611f405b39d7ab5484deba58",
+      "characters": 5000,
+      "startedAt": "2026-09-12T14:27:31.731Z",
+      "batches": [
+        {
+          "durationMs": 3937,
+          "firstTokenMs": 715,
+          "usage": {
+            "prompt_tokens": 1174,
+            "completion_tokens": 797,
+            "total_tokens": 1971,
+            "prompt_tokens_details": {
+              "cached_tokens": 1024
+            },
+            "prompt_cache_hit_tokens": 1024,
+            "prompt_cache_miss_tokens": 150
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000503772
+        },
+        {
+          "durationMs": 1637,
+          "firstTokenMs": 537,
+          "usage": {
+            "prompt_tokens": 518,
+            "completion_tokens": 254,
+            "total_tokens": 772,
+            "prompt_tokens_details": {
+              "cached_tokens": 384
+            },
+            "prompt_cache_hit_tokens": 384,
+            "prompt_cache_miss_tokens": 134
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00017365200000000002
+        }
+      ],
+      "status": "success",
+      "durationMs": 5576
+    },
+    {
+      "round": 7,
+      "url": "https://rust-lang.org/learn/",
+      "title": "rust-lang.org",
+      "sha256": "cb88e2be7b40b734c54e5248087a4c153422b28fd05e2fcb799ee832ac557b32",
+      "characters": 1946,
+      "startedAt": "2026-09-12T14:27:37.311Z",
+      "batches": [
+        {
+          "durationMs": 2120,
+          "firstTokenMs": 325,
+          "usage": {
+            "prompt_tokens": 778,
+            "completion_tokens": 433,
+            "total_tokens": 1211,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 138
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00028242
+        }
+      ],
+      "status": "success",
+      "durationMs": 2120
+    },
+    {
+      "round": 7,
+      "url": "https://www.mozilla.org/en-US/firefox/new/",
+      "title": "www.mozilla.org",
+      "sha256": "430894fc79d92a1ee3ac66d98e504107c4e26a804bcdd4c807380a8d2bd14a27",
+      "characters": 2415,
+      "startedAt": "2026-09-12T14:27:39.432Z",
+      "batches": [
+        {
+          "durationMs": 3301,
+          "firstTokenMs": 948,
+          "usage": {
+            "prompt_tokens": 969,
+            "completion_tokens": 591,
+            "total_tokens": 1560,
+            "prompt_tokens_details": {
+              "cached_tokens": 768
+            },
+            "prompt_cache_hit_tokens": 768,
+            "prompt_cache_miss_tokens": 201
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00038705399999999996
+        }
+      ],
+      "status": "success",
+      "durationMs": 3300
+    },
+    {
+      "round": 8,
+      "url": "https://en.wikipedia.org/wiki/Machine_translation",
+      "title": "en.wikipedia.org",
+      "sha256": "e814a1cbc74545195e07897336bda0b4f7ed3711f230b9793312a2e46aaad4d2",
+      "characters": 5000,
+      "startedAt": "2026-09-12T14:27:42.734Z",
+      "batches": [
+        {
+          "durationMs": 5275,
+          "firstTokenMs": 717,
+          "usage": {
+            "prompt_tokens": 1335,
+            "completion_tokens": 1000,
+            "total_tokens": 2335,
+            "prompt_tokens_details": {
+              "cached_tokens": 1152
+            },
+            "prompt_cache_hit_tokens": 1152,
+            "prompt_cache_miss_tokens": 183
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000630906
+        }
+      ],
+      "status": "success",
+      "durationMs": 5276
+    },
+    {
+      "round": 8,
+      "url": "https://github.com/microsoft/vscode",
+      "title": "github.com",
+      "sha256": "3a3aafa21f14f3a6996cbb6c52ea65c464a0df53d35bb3f10a5bcc6decb4a32f",
+      "characters": 4299,
+      "startedAt": "2026-09-12T14:27:48.011Z",
+      "batches": [
+        {
+          "durationMs": 3050,
+          "firstTokenMs": 660,
+          "usage": {
+            "prompt_tokens": 1001,
+            "completion_tokens": 621,
+            "total_tokens": 1622,
+            "prompt_tokens_details": {
+              "cached_tokens": 768
+            },
+            "prompt_cache_hit_tokens": 768,
+            "prompt_cache_miss_tokens": 233
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00040985399999999997
+        },
+        {
+          "durationMs": 2091,
+          "firstTokenMs": 804,
+          "usage": {
+            "prompt_tokens": 581,
+            "completion_tokens": 337,
+            "total_tokens": 918,
+            "prompt_tokens_details": {
+              "cached_tokens": 384
+            },
+            "prompt_cache_hit_tokens": 384,
+            "prompt_cache_miss_tokens": 197
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00023290199999999997
+        }
+      ],
+      "status": "success",
+      "durationMs": 5143
+    },
+    {
+      "round": 8,
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+      "title": "developer.mozilla.org",
+      "sha256": "74d016409cd8f7fac6a93685e56a9303da4310ebd9f2708599b39e468b626f10",
+      "characters": 5000,
+      "startedAt": "2026-09-12T14:27:53.155Z",
+      "batches": [
+        {
+          "durationMs": 5076,
+          "firstTokenMs": 611,
+          "usage": {
+            "prompt_tokens": 1351,
+            "completion_tokens": 1257,
+            "total_tokens": 2608,
+            "prompt_tokens_details": {
+              "cached_tokens": 1152
+            },
+            "prompt_cache_hit_tokens": 1152,
+            "prompt_cache_miss_tokens": 199
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000787506
+        }
+      ],
+      "status": "error",
+      "usageMayBeIncomplete": true,
+      "durationMs": 5078
+    },
+    {
+      "round": 8,
+      "url": "https://www.bbc.com/news",
+      "title": "www.bbc.com",
+      "sha256": "e4582dd62c1c473c7b6bd402fffed1d3521d7b8cf81ac2ede4703404d41d3214",
+      "characters": 5000,
+      "startedAt": "2026-09-12T14:27:58.237Z",
+      "batches": [
+        {
+          "durationMs": 4123,
+          "firstTokenMs": 724,
+          "usage": {
+            "prompt_tokens": 1087,
+            "completion_tokens": 679,
+            "total_tokens": 1766,
+            "prompt_tokens_details": {
+              "cached_tokens": 896
+            },
+            "prompt_cache_hit_tokens": 896,
+            "prompt_cache_miss_tokens": 191
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000438738
+        },
+        {
+          "durationMs": 4886,
+          "firstTokenMs": 761,
+          "usage": {
+            "prompt_tokens": 853,
+            "completion_tokens": 567,
+            "total_tokens": 1420,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 213
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00037407
+        }
+      ],
+      "status": "success",
+      "durationMs": 9010
+    },
+    {
+      "round": 8,
+      "url": "https://docs.python.org/3/tutorial/appetite.html",
+      "title": "docs.python.org",
+      "sha256": "e04a53c6c08437914022c1df47c90fadb23cc77c0a379ea5ce4c93b1f49d70f1",
+      "characters": 4389,
+      "startedAt": "2026-09-12T14:28:07.249Z",
+      "batches": [
+        {
+          "durationMs": 4624,
+          "firstTokenMs": 886,
+          "usage": {
+            "prompt_tokens": 1222,
+            "completion_tokens": 830,
+            "total_tokens": 2052,
+            "prompt_tokens_details": {
+              "cached_tokens": 1024
+            },
+            "prompt_cache_hit_tokens": 1024,
+            "prompt_cache_miss_tokens": 198
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.0005307720000000001
+        }
+      ],
+      "status": "success",
+      "durationMs": 4625
+    },
+    {
+      "round": 8,
+      "url": "https://nodejs.org/en/learn/getting-started/introduction-to-nodejs",
+      "title": "nodejs.org",
+      "sha256": "8e7aa21586740d4915e35c705717492a2a32d12e523b2934fd8b7c42fdf8d3fa",
+      "characters": 2396,
+      "startedAt": "2026-09-12T14:28:11.875Z",
+      "batches": [
+        {
+          "durationMs": 2513,
+          "firstTokenMs": 668,
+          "usage": {
+            "prompt_tokens": 834,
+            "completion_tokens": 491,
+            "total_tokens": 1325,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 194
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00032561999999999994
+        }
+      ],
+      "status": "success",
+      "durationMs": 2514
+    },
+    {
+      "round": 8,
+      "url": "https://www.w3schools.com/js/js_intro.asp",
+      "title": "www.w3schools.com",
+      "sha256": "bb21bbcbb22d33d3789e282f1ec0c995d627002874b469498a2255ce80234481",
+      "characters": 3369,
+      "startedAt": "2026-09-12T14:28:14.391Z",
+      "batches": [
+        {
+          "durationMs": 2440,
+          "firstTokenMs": 657,
+          "usage": {
+            "prompt_tokens": 886,
+            "completion_tokens": 515,
+            "total_tokens": 1401,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 246
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00034782
+        },
+        {
+          "durationMs": 1822,
+          "firstTokenMs": 521,
+          "usage": {
+            "prompt_tokens": 679,
+            "completion_tokens": 371,
+            "total_tokens": 1050,
+            "prompt_tokens_details": {
+              "cached_tokens": 512
+            },
+            "prompt_cache_hit_tokens": 512,
+            "prompt_cache_miss_tokens": 167
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000249186
+        }
+      ],
+      "status": "success",
+      "durationMs": 4262
+    },
+    {
+      "round": 8,
+      "url": "https://ubuntu.com/desktop",
+      "title": "ubuntu.com",
+      "sha256": "70969cccf1a46031d080fb0b8bad810525160f86611f405b39d7ab5484deba58",
+      "characters": 5000,
+      "startedAt": "2026-09-12T14:28:18.655Z",
+      "batches": [
+        {
+          "durationMs": 3969,
+          "firstTokenMs": 915,
+          "usage": {
+            "prompt_tokens": 1174,
+            "completion_tokens": 792,
+            "total_tokens": 1966,
+            "prompt_tokens_details": {
+              "cached_tokens": 1024
+            },
+            "prompt_cache_hit_tokens": 1024,
+            "prompt_cache_miss_tokens": 150
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000500772
+        },
+        {
+          "durationMs": 1908,
+          "firstTokenMs": 770,
+          "usage": {
+            "prompt_tokens": 518,
+            "completion_tokens": 261,
+            "total_tokens": 779,
+            "prompt_tokens_details": {
+              "cached_tokens": 384
+            },
+            "prompt_cache_hit_tokens": 384,
+            "prompt_cache_miss_tokens": 134
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000177852
+        }
+      ],
+      "status": "success",
+      "durationMs": 5881
+    },
+    {
+      "round": 8,
+      "url": "https://rust-lang.org/learn/",
+      "title": "rust-lang.org",
+      "sha256": "cb88e2be7b40b734c54e5248087a4c153422b28fd05e2fcb799ee832ac557b32",
+      "characters": 1946,
+      "startedAt": "2026-09-12T14:28:24.538Z",
+      "batches": [
+        {
+          "durationMs": 2283,
+          "firstTokenMs": 485,
+          "usage": {
+            "prompt_tokens": 778,
+            "completion_tokens": 441,
+            "total_tokens": 1219,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 138
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00028722
+        }
+      ],
+      "status": "success",
+      "durationMs": 2284
+    },
+    {
+      "round": 8,
+      "url": "https://www.mozilla.org/en-US/firefox/new/",
+      "title": "www.mozilla.org",
+      "sha256": "430894fc79d92a1ee3ac66d98e504107c4e26a804bcdd4c807380a8d2bd14a27",
+      "characters": 2415,
+      "startedAt": "2026-09-12T14:28:26.824Z",
+      "batches": [
+        {
+          "durationMs": 3216,
+          "firstTokenMs": 682,
+          "usage": {
+            "prompt_tokens": 969,
+            "completion_tokens": 590,
+            "total_tokens": 1559,
+            "prompt_tokens_details": {
+              "cached_tokens": 768
+            },
+            "prompt_cache_hit_tokens": 768,
+            "prompt_cache_miss_tokens": 201
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000386454
+        }
+      ],
+      "status": "success",
+      "durationMs": 3216
+    },
+    {
+      "round": 9,
+      "url": "https://en.wikipedia.org/wiki/Machine_translation",
+      "title": "en.wikipedia.org",
+      "sha256": "e814a1cbc74545195e07897336bda0b4f7ed3711f230b9793312a2e46aaad4d2",
+      "characters": 5000,
+      "startedAt": "2026-09-12T14:28:30.041Z",
+      "batches": [
+        {
+          "durationMs": 4933,
+          "firstTokenMs": 531,
+          "usage": {
+            "prompt_tokens": 1335,
+            "completion_tokens": 978,
+            "total_tokens": 2313,
+            "prompt_tokens_details": {
+              "cached_tokens": 1152
+            },
+            "prompt_cache_hit_tokens": 1152,
+            "prompt_cache_miss_tokens": 183
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.0006177059999999999
+        }
+      ],
+      "status": "error",
+      "usageMayBeIncomplete": true,
+      "durationMs": 4934
+    },
+    {
+      "round": 9,
+      "url": "https://github.com/microsoft/vscode",
+      "title": "github.com",
+      "sha256": "3a3aafa21f14f3a6996cbb6c52ea65c464a0df53d35bb3f10a5bcc6decb4a32f",
+      "characters": 4299,
+      "startedAt": "2026-09-12T14:28:34.977Z",
+      "batches": [
+        {
+          "durationMs": 2677,
+          "firstTokenMs": 305,
+          "usage": {
+            "prompt_tokens": 1001,
+            "completion_tokens": 626,
+            "total_tokens": 1627,
+            "prompt_tokens_details": {
+              "cached_tokens": 768
+            },
+            "prompt_cache_hit_tokens": 768,
+            "prompt_cache_miss_tokens": 233
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000412854
+        },
+        {
+          "durationMs": 2915,
+          "firstTokenMs": 1540,
+          "usage": {
+            "prompt_tokens": 581,
+            "completion_tokens": 336,
+            "total_tokens": 917,
+            "prompt_tokens_details": {
+              "cached_tokens": 384
+            },
+            "prompt_cache_hit_tokens": 384,
+            "prompt_cache_miss_tokens": 197
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00023230199999999999
+        }
+      ],
+      "status": "success",
+      "durationMs": 5592
+    },
+    {
+      "round": 9,
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+      "title": "developer.mozilla.org",
+      "sha256": "74d016409cd8f7fac6a93685e56a9303da4310ebd9f2708599b39e468b626f10",
+      "characters": 5000,
+      "startedAt": "2026-09-12T14:28:40.573Z",
+      "batches": [
+        {
+          "durationMs": 5112,
+          "firstTokenMs": 731,
+          "usage": {
+            "prompt_tokens": 1351,
+            "completion_tokens": 1258,
+            "total_tokens": 2609,
+            "prompt_tokens_details": {
+              "cached_tokens": 1152
+            },
+            "prompt_cache_hit_tokens": 1152,
+            "prompt_cache_miss_tokens": 199
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000788106
+        }
+      ],
+      "status": "error",
+      "usageMayBeIncomplete": true,
+      "durationMs": 5112
+    },
+    {
+      "round": 9,
+      "url": "https://www.bbc.com/news",
+      "title": "www.bbc.com",
+      "sha256": "e4582dd62c1c473c7b6bd402fffed1d3521d7b8cf81ac2ede4703404d41d3214",
+      "characters": 5000,
+      "startedAt": "2026-09-12T14:28:45.685Z",
+      "batches": [
+        {
+          "durationMs": 3752,
+          "firstTokenMs": 473,
+          "usage": {
+            "prompt_tokens": 1087,
+            "completion_tokens": 682,
+            "total_tokens": 1769,
+            "prompt_tokens_details": {
+              "cached_tokens": 896
+            },
+            "prompt_cache_hit_tokens": 896,
+            "prompt_cache_miss_tokens": 191
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00044053800000000003
+        },
+        {
+          "durationMs": 3682,
+          "firstTokenMs": 475,
+          "usage": {
+            "prompt_tokens": 853,
+            "completion_tokens": 566,
+            "total_tokens": 1419,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 213
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00037347
+        }
+      ],
+      "status": "success",
+      "durationMs": 7435
+    },
+    {
+      "round": 9,
+      "url": "https://docs.python.org/3/tutorial/appetite.html",
+      "title": "docs.python.org",
+      "sha256": "e04a53c6c08437914022c1df47c90fadb23cc77c0a379ea5ce4c93b1f49d70f1",
+      "characters": 4389,
+      "startedAt": "2026-09-12T14:28:53.122Z",
+      "batches": [
+        {
+          "durationMs": 4315,
+          "firstTokenMs": 699,
+          "usage": {
+            "prompt_tokens": 1222,
+            "completion_tokens": 833,
+            "total_tokens": 2055,
+            "prompt_tokens_details": {
+              "cached_tokens": 1024
+            },
+            "prompt_cache_hit_tokens": 1024,
+            "prompt_cache_miss_tokens": 198
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000532572
+        }
+      ],
+      "status": "success",
+      "durationMs": 4315
+    },
+    {
+      "round": 9,
+      "url": "https://nodejs.org/en/learn/getting-started/introduction-to-nodejs",
+      "title": "nodejs.org",
+      "sha256": "8e7aa21586740d4915e35c705717492a2a32d12e523b2934fd8b7c42fdf8d3fa",
+      "characters": 2396,
+      "startedAt": "2026-09-12T14:28:57.438Z",
+      "batches": [
+        {
+          "durationMs": 2508,
+          "firstTokenMs": 603,
+          "usage": {
+            "prompt_tokens": 834,
+            "completion_tokens": 491,
+            "total_tokens": 1325,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 194
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00032561999999999994
+        }
+      ],
+      "status": "success",
+      "durationMs": 2508
+    },
+    {
+      "round": 9,
+      "url": "https://www.w3schools.com/js/js_intro.asp",
+      "title": "www.w3schools.com",
+      "sha256": "bb21bbcbb22d33d3789e282f1ec0c995d627002874b469498a2255ce80234481",
+      "characters": 3369,
+      "startedAt": "2026-09-12T14:28:59.948Z",
+      "batches": [
+        {
+          "durationMs": 2555,
+          "firstTokenMs": 733,
+          "usage": {
+            "prompt_tokens": 886,
+            "completion_tokens": 514,
+            "total_tokens": 1400,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 246
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00034721999999999997
+        },
+        {
+          "durationMs": 1886,
+          "firstTokenMs": 643,
+          "usage": {
+            "prompt_tokens": 679,
+            "completion_tokens": 371,
+            "total_tokens": 1050,
+            "prompt_tokens_details": {
+              "cached_tokens": 512
+            },
+            "prompt_cache_hit_tokens": 512,
+            "prompt_cache_miss_tokens": 167
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000249186
+        }
+      ],
+      "status": "success",
+      "durationMs": 4442
+    },
+    {
+      "round": 9,
+      "url": "https://ubuntu.com/desktop",
+      "title": "ubuntu.com",
+      "sha256": "70969cccf1a46031d080fb0b8bad810525160f86611f405b39d7ab5484deba58",
+      "characters": 5000,
+      "startedAt": "2026-09-12T14:29:04.392Z",
+      "batches": [
+        {
+          "durationMs": 4387,
+          "firstTokenMs": 1160,
+          "usage": {
+            "prompt_tokens": 1174,
+            "completion_tokens": 793,
+            "total_tokens": 1967,
+            "prompt_tokens_details": {
+              "cached_tokens": 1024
+            },
+            "prompt_cache_hit_tokens": 1024,
+            "prompt_cache_miss_tokens": 150
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.0005013719999999999
+        },
+        {
+          "durationMs": 2001,
+          "firstTokenMs": 789,
+          "usage": {
+            "prompt_tokens": 518,
+            "completion_tokens": 259,
+            "total_tokens": 777,
+            "prompt_tokens_details": {
+              "cached_tokens": 384
+            },
+            "prompt_cache_hit_tokens": 384,
+            "prompt_cache_miss_tokens": 134
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00017665200000000002
+        }
+      ],
+      "status": "success",
+      "durationMs": 6389
+    },
+    {
+      "round": 9,
+      "url": "https://rust-lang.org/learn/",
+      "title": "rust-lang.org",
+      "sha256": "cb88e2be7b40b734c54e5248087a4c153422b28fd05e2fcb799ee832ac557b32",
+      "characters": 1946,
+      "startedAt": "2026-09-12T14:29:10.782Z",
+      "batches": [
+        {
+          "durationMs": 2432,
+          "firstTokenMs": 532,
+          "usage": {
+            "prompt_tokens": 778,
+            "completion_tokens": 435,
+            "total_tokens": 1213,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 138
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00028362
+        }
+      ],
+      "status": "success",
+      "durationMs": 2432
+    },
+    {
+      "round": 9,
+      "url": "https://www.mozilla.org/en-US/firefox/new/",
+      "title": "www.mozilla.org",
+      "sha256": "430894fc79d92a1ee3ac66d98e504107c4e26a804bcdd4c807380a8d2bd14a27",
+      "characters": 2415,
+      "startedAt": "2026-09-12T14:29:13.216Z",
+      "batches": [
+        {
+          "durationMs": 3276,
+          "firstTokenMs": 965,
+          "usage": {
+            "prompt_tokens": 969,
+            "completion_tokens": 590,
+            "total_tokens": 1559,
+            "prompt_tokens_details": {
+              "cached_tokens": 768
+            },
+            "prompt_cache_hit_tokens": 768,
+            "prompt_cache_miss_tokens": 201
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000386454
+        }
+      ],
+      "status": "success",
+      "durationMs": 3276
+    },
+    {
+      "round": 10,
+      "url": "https://en.wikipedia.org/wiki/Machine_translation",
+      "title": "en.wikipedia.org",
+      "sha256": "e814a1cbc74545195e07897336bda0b4f7ed3711f230b9793312a2e46aaad4d2",
+      "characters": 5000,
+      "startedAt": "2026-09-12T14:29:16.493Z",
+      "batches": [
+        {
+          "durationMs": 5242,
+          "firstTokenMs": 874,
+          "usage": {
+            "prompt_tokens": 1335,
+            "completion_tokens": 980,
+            "total_tokens": 2315,
+            "prompt_tokens_details": {
+              "cached_tokens": 1152
+            },
+            "prompt_cache_hit_tokens": 1152,
+            "prompt_cache_miss_tokens": 183
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.0006189059999999999
+        }
+      ],
+      "status": "success",
+      "durationMs": 5242
+    },
+    {
+      "round": 10,
+      "url": "https://github.com/microsoft/vscode",
+      "title": "github.com",
+      "sha256": "3a3aafa21f14f3a6996cbb6c52ea65c464a0df53d35bb3f10a5bcc6decb4a32f",
+      "characters": 4299,
+      "startedAt": "2026-09-12T14:29:21.738Z",
+      "batches": [
+        {
+          "durationMs": 3197,
+          "firstTokenMs": 713,
+          "usage": {
+            "prompt_tokens": 1001,
+            "completion_tokens": 640,
+            "total_tokens": 1641,
+            "prompt_tokens_details": {
+              "cached_tokens": 768
+            },
+            "prompt_cache_hit_tokens": 768,
+            "prompt_cache_miss_tokens": 233
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00042125400000000003
+        },
+        {
+          "durationMs": 2173,
+          "firstTokenMs": 865,
+          "usage": {
+            "prompt_tokens": 581,
+            "completion_tokens": 337,
+            "total_tokens": 918,
+            "prompt_tokens_details": {
+              "cached_tokens": 384
+            },
+            "prompt_cache_hit_tokens": 384,
+            "prompt_cache_miss_tokens": 197
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00023290199999999997
+        }
+      ],
+      "status": "success",
+      "durationMs": 5371
+    },
+    {
+      "round": 10,
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+      "title": "developer.mozilla.org",
+      "sha256": "74d016409cd8f7fac6a93685e56a9303da4310ebd9f2708599b39e468b626f10",
+      "characters": 5000,
+      "startedAt": "2026-09-12T14:29:27.111Z",
+      "batches": [
+        {
+          "durationMs": 5666,
+          "firstTokenMs": 780,
+          "usage": {
+            "prompt_tokens": 1351,
+            "completion_tokens": 1274,
+            "total_tokens": 2625,
+            "prompt_tokens_details": {
+              "cached_tokens": 1152
+            },
+            "prompt_cache_hit_tokens": 1152,
+            "prompt_cache_miss_tokens": 199
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000797706
+        }
+      ],
+      "status": "error",
+      "usageMayBeIncomplete": true,
+      "durationMs": 5666
+    },
+    {
+      "round": 10,
+      "url": "https://www.bbc.com/news",
+      "title": "www.bbc.com",
+      "sha256": "e4582dd62c1c473c7b6bd402fffed1d3521d7b8cf81ac2ede4703404d41d3214",
+      "characters": 5000,
+      "startedAt": "2026-09-12T14:29:32.778Z",
+      "batches": [
+        {
+          "durationMs": 4051,
+          "firstTokenMs": 555,
+          "usage": {
+            "prompt_tokens": 1087,
+            "completion_tokens": 686,
+            "total_tokens": 1773,
+            "prompt_tokens_details": {
+              "cached_tokens": 896
+            },
+            "prompt_cache_hit_tokens": 896,
+            "prompt_cache_miss_tokens": 191
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000442938
+        },
+        {
+          "durationMs": 6402,
+          "firstTokenMs": 3404,
+          "usage": {
+            "prompt_tokens": 853,
+            "completion_tokens": 569,
+            "total_tokens": 1422,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 213
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00037527
+        }
+      ],
+      "status": "success",
+      "durationMs": 10454
+    },
+    {
+      "round": 10,
+      "url": "https://docs.python.org/3/tutorial/appetite.html",
+      "title": "docs.python.org",
+      "sha256": "e04a53c6c08437914022c1df47c90fadb23cc77c0a379ea5ce4c93b1f49d70f1",
+      "characters": 4389,
+      "startedAt": "2026-09-12T14:29:43.234Z",
+      "batches": [
+        {
+          "durationMs": 4183,
+          "firstTokenMs": 581,
+          "usage": {
+            "prompt_tokens": 1222,
+            "completion_tokens": 828,
+            "total_tokens": 2050,
+            "prompt_tokens_details": {
+              "cached_tokens": 1024
+            },
+            "prompt_cache_hit_tokens": 1024,
+            "prompt_cache_miss_tokens": 198
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000529572
+        }
+      ],
+      "status": "success",
+      "durationMs": 4184
+    },
+    {
+      "round": 10,
+      "url": "https://nodejs.org/en/learn/getting-started/introduction-to-nodejs",
+      "title": "nodejs.org",
+      "sha256": "8e7aa21586740d4915e35c705717492a2a32d12e523b2934fd8b7c42fdf8d3fa",
+      "characters": 2396,
+      "startedAt": "2026-09-12T14:29:47.420Z",
+      "batches": [
+        {
+          "durationMs": 2576,
+          "firstTokenMs": 763,
+          "usage": {
+            "prompt_tokens": 834,
+            "completion_tokens": 490,
+            "total_tokens": 1324,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 194
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00032502
+        }
+      ],
+      "status": "success",
+      "durationMs": 2578
+    },
+    {
+      "round": 10,
+      "url": "https://www.w3schools.com/js/js_intro.asp",
+      "title": "www.w3schools.com",
+      "sha256": "bb21bbcbb22d33d3789e282f1ec0c995d627002874b469498a2255ce80234481",
+      "characters": 3369,
+      "startedAt": "2026-09-12T14:29:50.000Z",
+      "batches": [
+        {
+          "durationMs": 2435,
+          "firstTokenMs": 660,
+          "usage": {
+            "prompt_tokens": 886,
+            "completion_tokens": 517,
+            "total_tokens": 1403,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 246
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00034901999999999996
+        },
+        {
+          "durationMs": 1911,
+          "firstTokenMs": 698,
+          "usage": {
+            "prompt_tokens": 679,
+            "completion_tokens": 371,
+            "total_tokens": 1050,
+            "prompt_tokens_details": {
+              "cached_tokens": 512
+            },
+            "prompt_cache_hit_tokens": 512,
+            "prompt_cache_miss_tokens": 167
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000249186
+        }
+      ],
+      "status": "success",
+      "durationMs": 4351
+    },
+    {
+      "round": 10,
+      "url": "https://ubuntu.com/desktop",
+      "title": "ubuntu.com",
+      "sha256": "70969cccf1a46031d080fb0b8bad810525160f86611f405b39d7ab5484deba58",
+      "characters": 5000,
+      "startedAt": "2026-09-12T14:29:54.356Z",
+      "batches": [
+        {
+          "durationMs": 3897,
+          "firstTokenMs": 784,
+          "usage": {
+            "prompt_tokens": 1174,
+            "completion_tokens": 790,
+            "total_tokens": 1964,
+            "prompt_tokens_details": {
+              "cached_tokens": 1024
+            },
+            "prompt_cache_hit_tokens": 1024,
+            "prompt_cache_miss_tokens": 150
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.000499572
+        },
+        {
+          "durationMs": 1621,
+          "firstTokenMs": 489,
+          "usage": {
+            "prompt_tokens": 518,
+            "completion_tokens": 259,
+            "total_tokens": 777,
+            "prompt_tokens_details": {
+              "cached_tokens": 384
+            },
+            "prompt_cache_hit_tokens": 384,
+            "prompt_cache_miss_tokens": 134
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00017665200000000002
+        }
+      ],
+      "status": "success",
+      "durationMs": 5520
+    },
+    {
+      "round": 10,
+      "url": "https://rust-lang.org/learn/",
+      "title": "rust-lang.org",
+      "sha256": "cb88e2be7b40b734c54e5248087a4c153422b28fd05e2fcb799ee832ac557b32",
+      "characters": 1946,
+      "startedAt": "2026-09-12T14:29:59.878Z",
+      "batches": [
+        {
+          "durationMs": 2683,
+          "firstTokenMs": 844,
+          "usage": {
+            "prompt_tokens": 778,
+            "completion_tokens": 435,
+            "total_tokens": 1213,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 138
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00028362
+        }
+      ],
+      "status": "success",
+      "durationMs": 2684
+    },
+    {
+      "round": 10,
+      "url": "https://www.mozilla.org/en-US/firefox/new/",
+      "title": "www.mozilla.org",
+      "sha256": "430894fc79d92a1ee3ac66d98e504107c4e26a804bcdd4c807380a8d2bd14a27",
+      "characters": 2415,
+      "startedAt": "2026-09-12T14:30:02.565Z",
+      "batches": [
+        {
+          "durationMs": 3124,
+          "firstTokenMs": 945,
+          "usage": {
+            "prompt_tokens": 969,
+            "completion_tokens": 592,
+            "total_tokens": 1561,
+            "prompt_tokens_details": {
+              "cached_tokens": 768
+            },
+            "prompt_cache_hit_tokens": 768,
+            "prompt_cache_miss_tokens": 201
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00038765399999999997
+        }
+      ],
+      "status": "success",
+      "durationMs": 3125
+    }
+  ]
+}

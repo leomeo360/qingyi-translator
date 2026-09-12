@@ -1,0 +1,7 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><title>适配层本地检查</title><style>body{font:15px/1.8 system-ui;padding:30px;color:#283148}button{padding:10px;margin:5px}textarea{width:500px;height:100px}#results{white-space:pre-wrap}svg{width:16px;height:16px}.ds-message{margin:12px 0;padding:12px;background:#f5f6fa}</style></head><body>
+<h1>适配层本地检查</h1><p>模拟匹配本轮回复、排除历史正文和思考内容；不会访问 DeepSeek。</p>
+<button id="run-checks">运行快速检查</button><pre id="results">等待运行</pre>
+<div id="messages"><div data-virtual-list-item-key="2"><div class="ds-message"><div class="ds-assistant-message-main-content">历史回答，绝不能当成本轮译文</div></div><div role="button"><svg><path d="M7.92136 0.349152"></path></svg></div></div></div>
+<div><div><div><textarea placeholder="给 DeepSeek 发送消息"></textarea></div><div><div role="button" id="send" class="ds-button ds-button--disabled"><svg><path d="M8.3125 0.981587"></path></svg></div><div class="ds-toggle-button" aria-pressed="false">深度思考</div></div></div></div>
+<script src="adapter-fixture.js"></script><script src="/tests/adapter-under-test.js"></script>
+</body></html>

@@ -1,0 +1,7 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>轻译 · 滚动预翻译验收</title>
+<style>body{margin:0;color:#263449;background:#fff;font:18px/1.7 system-ui}nav{position:sticky;top:0;z-index:100;background:white;padding:12px;border-bottom:1px solid #ddd}button{padding:8px;margin-right:8px;cursor:pointer}section{min-height:120vh;padding:40px;box-sizing:border-box}p{max-width:700px}.legacy-content span{display:inline-block;transform:rotate(180deg)!important;rotate:180deg!important;writing-mode:vertical-rl!important;color:red!important}</style>
+<nav role="toolbar"><button id="start">开始模拟页面翻译</button><button id="finish">完成当前模拟回复</button><button id="next">滚动到第二屏</button><button id="back">返回第一屏</button><output id="requests">请求数：0</output></nav>
+<section id="screen-one" class="legacy-content"><h1>First screen</h1><p id="first">Translate the current screen first, then prepare the next sections without changing their layout.</p></section>
+<section id="screen-two" class="legacy-content"><h2>Second screen</h2><p id="second">This paragraph should be translated before the reader scrolls down. Reaching it should not create another request.</p></section>
+<section id="screen-three"><h2>Third screen</h2><p id="third">This section can be prepared within the configured look-ahead distance.</p></section>
+<script src="scroll-fixture.js?v=37"></script><script src="/extension/lib/text-rules.js?v=37"></script><script src="/extension/source.js?v=37"></script></html>

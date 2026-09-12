@@ -1,0 +1,225 @@
+{
+  "method": "Production API transport; no local cache; same ten inputs as tests/speed.html",
+  "records": [
+    {
+      "index": 1,
+      "provider": "api",
+      "startedAt": 1789055707735,
+      "characters": 43,
+      "status": "success",
+      "text": "一点点好奇心能带你走很远。",
+      "usage": {
+        "prompt_tokens": 113,
+        "completion_tokens": 7,
+        "total_tokens": 120,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 113
+      },
+      "model": "deepseek-flash",
+      "firstTokenMs": 333,
+      "durationMs": 481,
+      "estimatedUsd": 0.00002115
+    },
+    {
+      "index": 2,
+      "provider": "api",
+      "startedAt": 1789055708223,
+      "characters": 128,
+      "status": "success",
+      "text": "好的软件让困难的任务变得简单。清晰的反馈帮助人们理解发生了什么以及接下来可以做什么。",
+      "usage": {
+        "prompt_tokens": 125,
+        "completion_tokens": 19,
+        "total_tokens": 144,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 125
+      },
+      "model": "deepseek-flash",
+      "firstTokenMs": 508,
+      "durationMs": 670,
+      "estimatedUsd": 0.000030149999999999998
+    },
+    {
+      "index": 3,
+      "provider": "api",
+      "startedAt": 1789055708893,
+      "characters": 125,
+      "status": "success",
+      "text": "会议已改到周四上午10:30。请查看所附议程，并带上你最新的项目进展。",
+      "usage": {
+        "prompt_tokens": 134,
+        "completion_tokens": 23,
+        "total_tokens": 157,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 134
+      },
+      "model": "deepseek-flash",
+      "firstTokenMs": 656,
+      "durationMs": 837,
+      "estimatedUsd": 0.0000339
+    },
+    {
+      "index": 4,
+      "provider": "api",
+      "startedAt": 1789055709731,
+      "characters": 149,
+      "status": "success",
+      "text": "当你翻译网页时，请保持原文可见。将每个翻译后的段落直接放在其源段落下方，以便读者进行比较。",
+      "usage": {
+        "prompt_tokens": 124,
+        "completion_tokens": 26,
+        "total_tokens": 150,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 124
+      },
+      "model": "deepseek-flash",
+      "firstTokenMs": 667,
+      "durationMs": 860,
+      "estimatedUsd": 0.0000342
+    },
+    {
+      "index": 5,
+      "provider": "api",
+      "startedAt": 1789055710592,
+      "characters": 156,
+      "status": "success",
+      "text": "我们的小团队在两周内构建了第一个原型。我们用十二位客户进行了测试，收集了他们的反馈，并改进了入门体验。",
+      "usage": {
+        "prompt_tokens": 133,
+        "completion_tokens": 29,
+        "total_tokens": 162,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 133
+      },
+      "model": "deepseek-flash",
+      "firstTokenMs": 543,
+      "durationMs": 724,
+      "estimatedUsd": 0.00003734999999999999
+    },
+    {
+      "index": 6,
+      "provider": "api",
+      "startedAt": 1789055711317,
+      "characters": 152,
+      "status": "success",
+      "text": "如果网络连接中断，不要静默地再次发送同一请求。显示当前状态，让用户决定是否重试。",
+      "usage": {
+        "prompt_tokens": 129,
+        "completion_tokens": 25,
+        "total_tokens": 154,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 129
+      },
+      "model": "deepseek-flash",
+      "firstTokenMs": 726,
+      "durationMs": 920,
+      "estimatedUsd": 0.000034349999999999995
+    },
+    {
+      "index": 7,
+      "provider": "api",
+      "startedAt": 1789055712238,
+      "characters": 151,
+      "status": "success",
+      "text": "隐私是一种务实的设计选择。将 API key 仅存储在此设备上，仅将其发送到官方服务，并使其远离应用程序日志。",
+      "usage": {
+        "prompt_tokens": 137,
+        "completion_tokens": 29,
+        "total_tokens": 166,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 137
+      },
+      "model": "deepseek-flash",
+      "firstTokenMs": 300,
+      "durationMs": 596,
+      "estimatedUsd": 0.00003795
+    },
+    {
+      "index": 8,
+      "provider": "api",
+      "startedAt": 1789055712835,
+      "characters": 159,
+      "status": "success",
+      "text": "图书馆早上九点开门，晚上六点关门。访客最多可借五本书，借期三周。可在线续借。",
+      "usage": {
+        "prompt_tokens": 146,
+        "completion_tokens": 29,
+        "total_tokens": 175,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 146
+      },
+      "model": "deepseek-flash",
+      "firstTokenMs": 318,
+      "durationMs": 454,
+      "estimatedUsd": 0.0000393
+    },
+    {
+      "index": 9,
+      "provider": "api",
+      "startedAt": 1789055713290,
+      "characters": 181,
+      "status": "success",
+      "text": "缓存可以让重复翻译快得多，但公平的速度比较应排除缓存响应。每种模式都使用相同的源文本和目标语言。",
+      "usage": {
+        "prompt_tokens": 140,
+        "completion_tokens": 26,
+        "total_tokens": 166,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 140
+      },
+      "model": "deepseek-flash",
+      "firstTokenMs": 523,
+      "durationMs": 702,
+      "estimatedUsd": 0.0000366
+    },
+    {
+      "index": 10,
+      "provider": "api",
+      "startedAt": 1789055713993,
+      "characters": 244,
+      "status": "success",
+      "text": "本报告比较了每种翻译方法各十次已完成的请求。它记录了首次可见文本的时间、总完成时间以及任何失败的请求。API 成本根据实际输入和输出 token 数量计算。",
+      "usage": {
+        "prompt_tokens": 147,
+        "completion_tokens": 42,
+        "total_tokens": 189,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 147
+      },
+      "model": "deepseek-flash",
+      "firstTokenMs": 658,
+      "durationMs": 985,
+      "estimatedUsd": 0.00004725
+    }
+  ]
+}

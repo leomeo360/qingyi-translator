@@ -1,0 +1,155 @@
+{
+  "date": "2026-09-12T05:03:04.336Z",
+  "method": "Production API transport; one public Python documentation viewport; no local cache; A/B/B/A single request versus two balanced concurrent requests. Two observations per mode; no browser or competitor timing. Provider cache and network may affect results.",
+  "url": "https://docs.python.org/3/tutorial/appetite.html",
+  "blocks": 18,
+  "characters": 4437,
+  "records": [
+    {
+      "mode": "single",
+      "firstReadableMs": 1365,
+      "durationMs": 4635,
+      "requests": [
+        {
+          "blocks": 18,
+          "durationMs": 4630,
+          "firstTokenMs": 913,
+          "usage": {
+            "prompt_tokens": 1182,
+            "completion_tokens": 828,
+            "total_tokens": 2010,
+            "prompt_tokens_details": {
+              "cached_tokens": 128
+            },
+            "prompt_cache_hit_tokens": 128,
+            "prompt_cache_miss_tokens": 1054
+          },
+          "estimatedUsd": 0.0006552839999999999,
+          "model": "deepseek-flash"
+        }
+      ]
+    },
+    {
+      "mode": "parallel2",
+      "firstReadableMs": 1953,
+      "durationMs": 3749,
+      "requests": [
+        {
+          "blocks": 7,
+          "durationMs": 3744,
+          "firstTokenMs": 1725,
+          "usage": {
+            "prompt_tokens": 689,
+            "completion_tokens": 423,
+            "total_tokens": 1112,
+            "prompt_tokens_details": {
+              "cached_tokens": 512
+            },
+            "prompt_cache_hit_tokens": 512,
+            "prompt_cache_miss_tokens": 177
+          },
+          "estimatedUsd": 0.00028188599999999996,
+          "model": "deepseek-flash"
+        },
+        {
+          "blocks": 11,
+          "durationMs": 3748,
+          "firstTokenMs": 1784,
+          "usage": {
+            "prompt_tokens": 655,
+            "completion_tokens": 413,
+            "total_tokens": 1068,
+            "prompt_tokens_details": {
+              "cached_tokens": 128
+            },
+            "prompt_cache_hit_tokens": 128,
+            "prompt_cache_miss_tokens": 527
+          },
+          "estimatedUsd": 0.000327234,
+          "model": "deepseek-flash"
+        }
+      ]
+    },
+    {
+      "mode": "parallel2",
+      "firstReadableMs": 1897,
+      "durationMs": 3786,
+      "requests": [
+        {
+          "blocks": 7,
+          "durationMs": 3785,
+          "firstTokenMs": 1467,
+          "usage": {
+            "prompt_tokens": 689,
+            "completion_tokens": 421,
+            "total_tokens": 1110,
+            "prompt_tokens_details": {
+              "cached_tokens": 512
+            },
+            "prompt_cache_hit_tokens": 512,
+            "prompt_cache_miss_tokens": 177
+          },
+          "estimatedUsd": 0.000280686,
+          "model": "deepseek-flash"
+        },
+        {
+          "blocks": 11,
+          "durationMs": 3705,
+          "firstTokenMs": 1466,
+          "usage": {
+            "prompt_tokens": 655,
+            "completion_tokens": 411,
+            "total_tokens": 1066,
+            "prompt_tokens_details": {
+              "cached_tokens": 512
+            },
+            "prompt_cache_hit_tokens": 512,
+            "prompt_cache_miss_tokens": 143
+          },
+          "estimatedUsd": 0.000269586,
+          "model": "deepseek-flash"
+        }
+      ]
+    },
+    {
+      "mode": "single",
+      "firstReadableMs": 4260,
+      "durationMs": 7484,
+      "requests": [
+        {
+          "blocks": 18,
+          "durationMs": 7483,
+          "firstTokenMs": 3814,
+          "usage": {
+            "prompt_tokens": 1182,
+            "completion_tokens": 825,
+            "total_tokens": 2007,
+            "prompt_tokens_details": {
+              "cached_tokens": 1024
+            },
+            "prompt_cache_hit_tokens": 1024,
+            "prompt_cache_miss_tokens": 158
+          },
+          "estimatedUsd": 0.0005217720000000001,
+          "model": "deepseek-flash"
+        }
+      ]
+    }
+  ],
+  "productionCheck": {
+    "date": "2026-09-12T05:13:30.256Z",
+    "firstReadableMs": 8298,
+    "usage": {
+      "prompt_cache_hit_tokens": 1024,
+      "prompt_cache_miss_tokens": 320,
+      "prompt_tokens": 1344,
+      "completion_tokens": 830,
+      "total_tokens": 2174
+    },
+    "model": "deepseek-flash",
+    "firstTokenMs": 8078,
+    "durationMs": 10767,
+    "requestCount": 2,
+    "estimatedUsd": 0.000549072
+  }
+}

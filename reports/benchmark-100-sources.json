@@ -1,0 +1,91 @@
+{
+  "scope": "First up to 5000 characters from p/h1/h2/h3/li elements, deduplicated; includes navigation/interface text; not full pages or production DOM extraction. Third-party page text is not distributed.",
+  "excludedCandidates": {
+    "stackoverflow.com": "HTTP extraction blocked",
+    "reddit.com": "URL fetch failed",
+    "npmjs.com": "HTTP extraction blocked",
+    "support.mozilla.org": "Insufficient extracted text"
+  },
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Machine_translation",
+      "title": "en.wikipedia.org",
+      "scope": "First 5000 extracted characters, not whole page",
+      "extractedCharacters": 46238,
+      "sampleCharacters": 5000,
+      "blocks": 15
+    },
+    {
+      "url": "https://github.com/microsoft/vscode",
+      "title": "github.com",
+      "scope": "First 5000 extracted characters, not whole page",
+      "extractedCharacters": 4299,
+      "sampleCharacters": 4299,
+      "blocks": 42
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+      "title": "developer.mozilla.org",
+      "scope": "First 5000 extracted characters, not whole page",
+      "extractedCharacters": 12464,
+      "sampleCharacters": 5000,
+      "blocks": 37
+    },
+    {
+      "url": "https://www.bbc.com/news",
+      "title": "www.bbc.com",
+      "scope": "First 5000 extracted characters, not whole page",
+      "extractedCharacters": 5987,
+      "sampleCharacters": 5000,
+      "blocks": 57
+    },
+    {
+      "url": "https://docs.python.org/3/tutorial/appetite.html",
+      "title": "docs.python.org",
+      "scope": "First 5000 extracted characters, not whole page",
+      "extractedCharacters": 4389,
+      "sampleCharacters": 4389,
+      "blocks": 17
+    },
+    {
+      "url": "https://nodejs.org/en/learn/getting-started/introduction-to-nodejs",
+      "title": "nodejs.org",
+      "scope": "First 5000 extracted characters, not whole page",
+      "extractedCharacters": 2396,
+      "sampleCharacters": 2396,
+      "blocks": 18
+    },
+    {
+      "url": "https://www.w3schools.com/js/js_intro.asp",
+      "title": "www.w3schools.com",
+      "scope": "First 5000 extracted characters, not whole page",
+      "extractedCharacters": 3368,
+      "sampleCharacters": 3368,
+      "blocks": 53
+    },
+    {
+      "url": "https://ubuntu.com/desktop",
+      "title": "ubuntu.com",
+      "scope": "First 5000 extracted characters, not whole page",
+      "extractedCharacters": 5307,
+      "sampleCharacters": 5000,
+      "blocks": 43
+    },
+    {
+      "url": "https://rust-lang.org/learn/",
+      "title": "rust-lang.org",
+      "scope": "First 5000 extracted characters, not whole page",
+      "extractedCharacters": 1946,
+      "sampleCharacters": 1946,
+      "blocks": 20
+    },
+    {
+      "url": "https://www.mozilla.org/en-US/firefox/new/",
+      "title": "www.mozilla.org",
+      "scope": "First 5000 extracted characters, not whole page",
+      "extractedCharacters": 2415,
+      "sampleCharacters": 2415,
+      "blocks": 32
+    }
+  ]
+}

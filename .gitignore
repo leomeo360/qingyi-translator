@@ -1,0 +1,14 @@
+.DS_Store
+node_modules/
+__pycache__/
+*.pyc
+
+dist/
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+reports/benchmark-inputs.json
+tests/pages/
+reports/benchmark-100-inputs.json

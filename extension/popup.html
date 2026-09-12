@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>轻译 · DeepSeek 划选翻译</title>
+  <link rel="stylesheet" href="popup.css">
+  <script type="module" src="popup.js"></script>
+</head>
+<body>
+  <main>
+    <header class="brand"><div class="brand-icon">译<span>·</span></div><div><h1>轻译</h1><p>让阅读，少一点距离。</p></div><span class="version">V2.9.0</span></header>
+    <section class="preferences mode-box" aria-label="翻译方式">
+      <label class="row"><span><strong>翻译方式</strong><small>两种方式均原位替换正文，保留代码</small></span><select id="provider" aria-label="翻译方式"><option value="web">不使用 Key · 网页</option><option value="api">使用 Key · API</option></select></label>
+      <div id="api-settings" hidden>
+        <label class="key-label" for="api-key">DeepSeek API Key</label>
+        <input id="api-key" type="password" autocomplete="off" spellcheck="false" placeholder="sk-…（仅保存在本机）">
+        <div class="button-row"><button id="save-key" class="primary">保存 Key 并授权</button><button id="delete-key" class="secondary">删除 Key</button></div>
+        <p id="key-state" class="hint"></p><p class="hint">使用 deepseek-flash，默认关闭联网搜索和深度思考。所选文字或整页正文直接发送至 DeepSeek API，按实际用量计费。</p>
+      </div>
+    </section>
+    <div id="web-settings">
+    <section class="connection" aria-labelledby="connection-title">
+      <div class="connection-top"><span class="status-dot" id="status-dot"></span><h2 id="connection-title">DeepSeek <span id="connection-status">未连接</span></h2><button class="text-button" id="connect">连接 <span aria-hidden="true">↗</span></button></div>
+      <p id="connection-detail">连接已登录的专用标签页，即可开始翻译。</p>
+      <div class="connection-actions" id="connected-actions" hidden><button class="text-button" id="refresh">检查连接</button><button class="text-button" id="visit">前往 DeepSeek ↗</button><button class="text-button muted" id="unbind">断开</button></div>
+    </section>
+
+    <section id="connect-flow" class="connect-flow" hidden aria-label="连接 DeepSeek">
+      <h2>选择你的翻译专用页</h2>
+      <p>选中的文字会发送到 DeepSeek，并可能保留在聊天历史中。轻译不会读取或导出你的密码、Cookie。</p>
+      <p class="privacy-note">请勿提交不适合发送给第三方的敏感内容。</p>
+      <div id="chat-tabs" class="chat-tabs"></div>
+      <label class="consent"><input type="checkbox" id="confirm-dedicated">我确认所选页面用于翻译，允许插件在这个会话中发送选中文字。</label>
+      <div class="button-row"><button class="primary" id="bind">确认连接</button><button class="secondary" id="new-chat">新建专用会话 ↗</button></div>
+      <p class="hint">新建会打开一个 DeepSeek 新会话页。页面就绪后，返回此面板重新选择并连接。建议在专用页关闭深度思考和智能搜索。</p>
+      <button class="text-button" id="rescan">刷新标签页列表</button>
+    </section>
+
+    </div>
+    <div class="page-actions"><button class="primary page-action" id="translate-page">翻译网页正文</button><button class="secondary page-action" id="translate-page-all">翻译全部可读内容</button></div><p class="hint">正文模式优先阅读区域；遇到漏译可使用“全部可读内容”或按 Alt+W。两种模式都保留路径、HTTP 方法、代码、密码和输入框。</p>
+    <div class="section-label">翻译偏好</div>
+    <section class="preferences" aria-label="翻译设置">
+      <label class="row"><span><strong>启用轻译</strong><small>选中之后，由你决定是否翻译</small></span><input class="switch" type="checkbox" id="enabled" checked aria-label="启用轻译"></label>
+      <label class="row"><span><strong>翻译为</strong><small>自动识别原文语言</small></span><select id="language" aria-label="默认目标语言"></select></label>
+      <label class="row"><span><strong>显示划选按钮</strong><small>在已授权的网站显示「译」</small></span><input class="switch" type="checkbox" id="selectionButton" checked aria-label="显示划选按钮"></label>
+    </section>
+
+    <section class="site-section" aria-labelledby="site-title">
+      <div class="site-heading"><h2 id="site-title">当前网站</h2><span id="site-origin">无法读取此页面</span></div>
+      <button class="site-permission" id="grant-site"><span class="plus" aria-hidden="true">＋</span><span>在此网站启用划选按钮</span><span aria-hidden="true">→</span></button>
+      <label class="row compact"><span>在此网站停用</span><input class="switch" type="checkbox" id="disable-site" aria-label="在当前网站停用"></label>
+      <p class="hint" id="site-hint">无需长期授权，也可使用右键菜单或快捷键。</p>
+    </section>
+
+    <button class="shortcut-row" id="shortcuts"><span>翻译快捷键</span><kbd id="shortcut-value">未设置</kbd><span class="muted" aria-hidden="true">↗</span></button>
+    <details class="advanced"><summary>高级设置 <span aria-hidden="true">⌄</span></summary><div class="advanced-body">
+      <label class="row"><span>响应超时</span><select id="timeout" aria-label="响应超时"><option value="30">30 秒</option><option value="60" selected>60 秒</option><option value="120">120 秒</option></select></label>
+      <label class="row"><span>向下预翻译<small>会提前使用翻译额度</small></span><select id="prefetchScreens" aria-label="向下预翻译"><option value="0">关闭</option><option value="1">1 屏</option><option value="2" selected>2 屏</option><option value="3">3 屏</option></select></label>
+      <label class="row"><span>当前网站翻译范围</span><select id="site-mode" aria-label="当前网站翻译范围"><option value="smart">正文优先</option><option value="all">全部可读内容</option></select></label>
+      <label for="custom-terms">保留术语</label>
+      <textarea id="custom-terms" rows="3" maxlength="16200" placeholder="每行一个，例如产品名或缩写"></textarea>
+      <small>API、SDK、React 等常见技术术语已内置。这里可添加最多 200 个术语，区分大小写。</small>
+      <button id="save-terms" class="text-button" type="button">保存术语</button>
+      <label class="row"><span>临时译文缓存<small>最多 1,500 条，保留 30 分钟</small></span><input class="switch" type="checkbox" id="cache" checked aria-label="临时译文缓存"></label>
+      <button class="text-button" id="export-metrics">导出用量与速度记录</button>
+      <h3>网站授权</h3><div id="permissions-list" class="list"></div>
+      <button class="text-button" id="grant-all">在所有普通网站启用划选按钮</button>
+      <h3>已停用网站</h3><div id="disabled-list" class="list"></div>
+      <div class="maintenance"><button class="secondary" id="clear">清除临时数据</button><button class="secondary" id="reset">恢复默认设置</button></div>
+      <div class="test"><button class="text-button" id="test">测试翻译 →</button><p class="hint">会使用当前方式发送固定文本 “Hello, world!”。</p><p id="test-result" class="test-result" hidden></p></div>
+      <p class="hint">清除缓存或恢复默认设置不会删除 DeepSeek 聊天历史，也不会自动撤销浏览器权限。</p>
+    </div></details>
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+    <footer><span class="lock" aria-hidden="true">◇</span> 设置仅保存在本机 <span class="footer-dot">·</span> 由你选择划选或整页翻译</footer>
+  </main>
+  <dialog id="reset-dialog"><h2>恢复默认设置？</h2><p>将取消翻译任务并清除临时译文。已授予的网站权限和 DeepSeek 聊天记录会保留。</p><div class="button-row"><button class="secondary" id="reset-cancel">取消</button><button class="primary" id="reset-confirm">恢复默认</button></div></dialog>
+</body>
+</html>

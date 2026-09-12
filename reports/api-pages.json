@@ -1,0 +1,371 @@
+{
+  "method": "Ten complete local prose snapshots; production API transport, batching and paragraph validation; no local cache",
+  "records": [
+    {
+      "index": 1,
+      "title": "1. Whetting Your Appetite",
+      "url": "https://docs.python.org/3/tutorial/appetite.html",
+      "characters": 4437,
+      "blocks": 18,
+      "startedAt": 1789055748101,
+      "batches": [
+        {
+          "blocks": 18,
+          "durationMs": 4484,
+          "firstTokenMs": 812,
+          "usage": {
+            "prompt_tokens": 1109,
+            "completion_tokens": 830,
+            "total_tokens": 1939,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "prompt_cache_hit_tokens": 0,
+            "prompt_cache_miss_tokens": 1109
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.0006643500000000001,
+          "completed": true
+        }
+      ],
+      "status": "success",
+      "durationMs": 4494,
+      "estimatedUsd": 0.0006643500000000001,
+      "inputTokens": 1109,
+      "outputTokens": 830
+    },
+    {
+      "index": 2,
+      "title": "2. Using the Python Interpreter",
+      "url": "https://docs.python.org/3/tutorial/interpreter.html",
+      "characters": 5342,
+      "blocks": 28,
+      "startedAt": 1789055752597,
+      "batches": [
+        {
+          "blocks": 28,
+          "durationMs": 4824,
+          "firstTokenMs": 598,
+          "usage": {
+            "prompt_tokens": 1416,
+            "completion_tokens": 1119,
+            "total_tokens": 2535,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "prompt_cache_hit_tokens": 0,
+            "prompt_cache_miss_tokens": 1416
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.0008837999999999999,
+          "completed": true
+        }
+      ],
+      "status": "success",
+      "durationMs": 4827,
+      "estimatedUsd": 0.0008837999999999999,
+      "inputTokens": 1416,
+      "outputTokens": 1119
+    },
+    {
+      "index": 3,
+      "title": "10. Brief tour of the standard library",
+      "url": "https://docs.python.org/3/tutorial/stdlib.html",
+      "characters": 5897,
+      "blocks": 47,
+      "startedAt": 1789055757427,
+      "batches": [
+        {
+          "blocks": 47,
+          "durationMs": 5542,
+          "firstTokenMs": 991,
+          "usage": {
+            "prompt_tokens": 1578,
+            "completion_tokens": 1213,
+            "total_tokens": 2791,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "prompt_cache_hit_tokens": 0,
+            "prompt_cache_miss_tokens": 1578
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.0009645,
+          "completed": true
+        }
+      ],
+      "status": "success",
+      "durationMs": 5544,
+      "estimatedUsd": 0.0009645,
+      "inputTokens": 1578,
+      "outputTokens": 1213
+    },
+    {
+      "index": 4,
+      "title": "11. Brief tour of the standard library — part II",
+      "url": "https://docs.python.org/3/tutorial/stdlib2.html",
+      "characters": 7581,
+      "blocks": 46,
+      "startedAt": 1789055762971,
+      "batches": [
+        {
+          "blocks": 46,
+          "durationMs": 6434,
+          "firstTokenMs": 696,
+          "usage": {
+            "prompt_tokens": 1811,
+            "completion_tokens": 1438,
+            "total_tokens": 3249,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "prompt_cache_hit_tokens": 0,
+            "prompt_cache_miss_tokens": 1811
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.0011344499999999997,
+          "completed": true
+        }
+      ],
+      "status": "success",
+      "durationMs": 6435,
+      "estimatedUsd": 0.0011344499999999997,
+      "inputTokens": 1811,
+      "outputTokens": 1438
+    },
+    {
+      "index": 5,
+      "title": "12. Virtual Environments and Packages",
+      "url": "https://docs.python.org/3/tutorial/venv.html",
+      "characters": 4949,
+      "blocks": 32,
+      "startedAt": 1789055769407,
+      "batches": [
+        {
+          "blocks": 32,
+          "durationMs": 4584,
+          "firstTokenMs": 781,
+          "usage": {
+            "prompt_tokens": 1301,
+            "completion_tokens": 1008,
+            "total_tokens": 2309,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "prompt_cache_hit_tokens": 0,
+            "prompt_cache_miss_tokens": 1301
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.0007999499999999999,
+          "completed": true
+        }
+      ],
+      "status": "success",
+      "durationMs": 4584,
+      "estimatedUsd": 0.0007999499999999999,
+      "inputTokens": 1301,
+      "outputTokens": 1008
+    },
+    {
+      "index": 6,
+      "title": "13. What Now?",
+      "url": "https://docs.python.org/3/tutorial/whatnow.html",
+      "characters": 3063,
+      "blocks": 19,
+      "startedAt": 1789055773992,
+      "batches": [
+        {
+          "blocks": 19,
+          "durationMs": 3052,
+          "firstTokenMs": 596,
+          "usage": {
+            "prompt_tokens": 850,
+            "completion_tokens": 635,
+            "total_tokens": 1485,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "prompt_cache_hit_tokens": 0,
+            "prompt_cache_miss_tokens": 850
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.0005085,
+          "completed": true
+        }
+      ],
+      "status": "success",
+      "durationMs": 3052,
+      "estimatedUsd": 0.0005085,
+      "inputTokens": 850,
+      "outputTokens": 635
+    },
+    {
+      "index": 7,
+      "title": "14. Interactive Input Editing and History Substitution",
+      "url": "https://docs.python.org/3/tutorial/interactive.html",
+      "characters": 1994,
+      "blocks": 8,
+      "startedAt": 1789055777044,
+      "batches": [
+        {
+          "blocks": 8,
+          "durationMs": 2088,
+          "firstTokenMs": 533,
+          "usage": {
+            "prompt_tokens": 511,
+            "completion_tokens": 374,
+            "total_tokens": 885,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "prompt_cache_hit_tokens": 0,
+            "prompt_cache_miss_tokens": 511
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00030105,
+          "completed": true
+        }
+      ],
+      "status": "success",
+      "durationMs": 2089,
+      "estimatedUsd": 0.00030105,
+      "inputTokens": 511,
+      "outputTokens": 374
+    },
+    {
+      "index": 8,
+      "title": "15. Floating-Point Arithmetic: Issues and Limitations",
+      "url": "https://docs.python.org/3/tutorial/floatingpoint.html",
+      "characters": 9482,
+      "blocks": 50,
+      "startedAt": 1789055779134,
+      "batches": [
+        {
+          "blocks": 40,
+          "durationMs": 7263,
+          "firstTokenMs": 562,
+          "usage": {
+            "prompt_tokens": 2188,
+            "completion_tokens": 1754,
+            "total_tokens": 3942,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "prompt_cache_hit_tokens": 0,
+            "prompt_cache_miss_tokens": 2188
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.0013805999999999998,
+          "completed": true
+        },
+        {
+          "blocks": 10,
+          "durationMs": 1915,
+          "firstTokenMs": 766,
+          "usage": {
+            "prompt_tokens": 441,
+            "completion_tokens": 311,
+            "total_tokens": 752,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "prompt_cache_hit_tokens": 0,
+            "prompt_cache_miss_tokens": 441
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00025275,
+          "completed": true
+        }
+      ],
+      "status": "success",
+      "durationMs": 9180,
+      "estimatedUsd": 0.0016333499999999998,
+      "inputTokens": 2629,
+      "outputTokens": 2065
+    },
+    {
+      "index": 9,
+      "title": "16. Appendix",
+      "url": "https://docs.python.org/3/tutorial/appendix.html",
+      "characters": 4702,
+      "blocks": 25,
+      "startedAt": 1789055788315,
+      "batches": [
+        {
+          "blocks": 25,
+          "durationMs": 4265,
+          "firstTokenMs": 507,
+          "usage": {
+            "prompt_tokens": 1267,
+            "completion_tokens": 1008,
+            "total_tokens": 2275,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "prompt_cache_hit_tokens": 0,
+            "prompt_cache_miss_tokens": 1267
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.0007948499999999999,
+          "completed": true
+        }
+      ],
+      "status": "success",
+      "durationMs": 4266,
+      "estimatedUsd": 0.0007948499999999999,
+      "inputTokens": 1267,
+      "outputTokens": 1008
+    },
+    {
+      "index": 10,
+      "title": "8. Errors and Exceptions",
+      "url": "https://docs.python.org/3/tutorial/errors.html",
+      "characters": 12580,
+      "blocks": 71,
+      "startedAt": 1789055792584,
+      "batches": [
+        {
+          "blocks": 48,
+          "durationMs": 6620,
+          "firstTokenMs": 932,
+          "usage": {
+            "prompt_tokens": 2012,
+            "completion_tokens": 1501,
+            "total_tokens": 3513,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "prompt_cache_hit_tokens": 0,
+            "prompt_cache_miss_tokens": 2012
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.0012024000000000002,
+          "completed": true
+        },
+        {
+          "blocks": 23,
+          "durationMs": 4123,
+          "firstTokenMs": 718,
+          "usage": {
+            "prompt_tokens": 1149,
+            "completion_tokens": 857,
+            "total_tokens": 2006,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "prompt_cache_hit_tokens": 0,
+            "prompt_cache_miss_tokens": 1149
+          },
+          "model": "deepseek-flash",
+          "estimatedUsd": 0.00068655,
+          "completed": true
+        }
+      ],
+      "status": "success",
+      "durationMs": 10745,
+      "estimatedUsd": 0.0018889500000000001,
+      "inputTokens": 3161,
+      "outputTokens": 2358
+    }
+  ]
+}
