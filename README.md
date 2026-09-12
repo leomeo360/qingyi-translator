@@ -2,11 +2,11 @@
   <img src="extension/icons/128.png" alt="Qingyi icon" width="96" height="96">
 </p>
 
-# Qingyi · Free AI webpage translation
+# Qingyi · A free webpage translation extension for Chrome
 
 English · [简体中文](README.zh-CN.md)
 
-Read translated text right where the original appeared. Qingyi translates selected text and webpage content while preserving links, typography and layout. It prioritizes the first viewport and prepares upcoming content as you read.
+Qingyi is a free Chrome extension for translating selected text and webpages with AI. Translations appear in place, preserving links, typography and layout. It prioritizes the first viewport and prepares upcoming content as you read, making foreign-language pages easier to follow.
 
 **Free to use, with source available. Commercial use requires a separate license.**
 
