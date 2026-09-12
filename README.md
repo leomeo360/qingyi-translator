@@ -1,10 +1,10 @@
-# Qingyi · Free personal AI webpage translation
+# Qingyi · Free AI webpage translation
 
 English · [简体中文](README.zh-CN.md)
 
 Read translated text right where the original appeared. Qingyi translates selected text and webpage content while preserving links, typography and layout. It prioritizes the first viewport and prepares upcoming content as you read.
 
-**Free for personal noncommercial use, with source available. Commercial use requires a separate license.**
+**Free to use, with source available. Commercial use requires a separate license.**
 
 ## Two ways to translate
 

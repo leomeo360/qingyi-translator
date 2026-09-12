@@ -24,7 +24,7 @@ detail+='\n[原始记录 / Raw records](../reports/benchmark-100-results.json) �
 (root/'docs/API_SAMPLE_TIMINGS.md').write_text(detail)
 # README prose is editorial content; regenerate only the bounded cost table.
 labels={'en.wikipedia.org':'维基百科','github.com':'GitHub','developer.mozilla.org':'MDN','www.bbc.com':'BBC','docs.python.org':'Python 文档','nodejs.org':'Node.js 文档','www.w3schools.com':'W3Schools','ubuntu.com':'Ubuntu','rust-lang.org':'Rust','www.mozilla.org':'Firefox'}
-table='| 网站 | 测试次数 | 平均输入词元 | 平均输出词元 | 每次费用估算（元） |\n|---|---:|---:|---:|---:|\n'
+table='| 网站 | 测试次数 | 平均输入token | 平均输出token | 每次费用估算（元） |\n|---|---:|---:|---:|---:|\n'
 for r in rows:
  host=r['url'].split('/')[2]
  table+=f"| [{labels.get(host,host)}]({r['url']}) | {r['attempts']} | {r['meanCacheHitInputTokens']+r['meanCacheMissInputTokens']:.1f} | {r['meanOutputTokens']:.1f} | {r['estimatedCnyPerAttempt']:.5f} |\n"
