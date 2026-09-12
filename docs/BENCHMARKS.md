@@ -2,7 +2,7 @@
 
 ## Evidence boundaries / 数据边界
 
-README tables are calculated from `reports/api-pages.json`: ten Python documentation
+Historical tables were calculated from `reports/api-pages.json`: ten Python documentation
 pages, one run per page, historical API-only measurements. No claim of 100 completed
 runs or independent website coverage is made. Tokens include prompt overhead and
 output structure. The historical runner predates current production batching; its
@@ -48,8 +48,10 @@ translation. Errors count as attempts; partial usage is retained where returned.
 Unknown usage is not counted as zero cost. Provider billing is authoritative.
 
 真正的浏览器验收还应固定 Chrome/系统版本、设备、网络、视口 1440×900、目标简体中文，
-记录从点击到首段显示、首屏完成、滚动整篇完成三个时间点。每次冷启动页面，关闭预取
-测基线；另外分组测默认两屏预取和暖缓存。禁止将 API 计时写成点击到绘制耗时。
+记录从点击到首段实际绘制、点击时首屏全部可译正文完成两个时间点。每次冷启动页面，
+保持默认两屏预翻译，固定首屏范围；后台预取不延长首屏完成时间。另记录滚动时预取命中率、
+命中后的绘制时间、未命中等待时间；可关闭预取作为对照。费用包含首屏和后台实际消耗，
+不能因为后台时间不计入首屏等待就删除后台费用。禁止将 API 首 token 或样本完成时间写成真实首屏耗时。
 
 ## Other scheduled tests / 其他可安排的测试
 

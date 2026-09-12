@@ -1,0 +1,14 @@
+{
+  "source": "User-reported DeepSeek console bill; not an independently downloaded invoice",
+  "periodLocalTime": "22:00–23:00 Asia/Shanghai (as reported by user)",
+  "currency": "CNY",
+  "reportedAmountCny": 0.38,
+  "totalTokens": 220199,
+  "cacheHitInputTokens": 97408,
+  "cacheMissInputTokens": 35272,
+  "outputTokens": 87519,
+  "pricingSource": "https://api-docs.deepseek.com/zh-cn/quick_start/pricing/",
+  "pricingCheckedOn": "2026-09-12",
+  "offPeakCnyPerMillion": {"cacheHitInput": 0.02, "cacheMissInput": 1, "output": 4},
+  "note": "Token counts reconcile exactly with 140 returned API usages across 100 attempts. Tariff calculation is 0.38729616 CNY; reported console amount is 0.38 CNY. The 0.00729616 CNY difference is unresolved; do not assume rounding or claim exact amount reconciliation. No per-site invoices were provided."
+}

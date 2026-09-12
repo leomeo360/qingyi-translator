@@ -1,39 +1,54 @@
-"""Summarize every recorded attempt, keeping failures and unknown usage explicit."""
+"""Reconcile token evidence and publish distinct UX, API and billing metrics."""
 import json, math, statistics
 from pathlib import Path
 root=Path(__file__).resolve().parent.parent
 records=json.loads((root/'reports/benchmark-100-results.json').read_text())['records']
-groups={}
-for r in records:groups.setdefault(r['url'],[]).append(r)
+bill=json.loads((root/'reports/benchmark-100-billing.json').read_text())
+def tokens(rs,field):
+ return sum((b.get('usage') or {}).get(field,0) for r in rs for b in r['batches'])
+def cny(rs):
+ return (tokens(rs,'prompt_cache_hit_tokens')*.02+tokens(rs,'prompt_cache_miss_tokens')+tokens(rs,'completion_tokens')*4)/1e6
+for field,key in [('total_tokens','totalTokens'),('prompt_cache_hit_tokens','cacheHitInputTokens'),('prompt_cache_miss_tokens','cacheMissInputTokens'),('completion_tokens','outputTokens')]:
+ assert tokens(records,field)==bill[key],f'Billing snapshot does not match records: {field}'
 rows=[]
-for url,rs in groups.items():
- ok=[r for r in rs if r['status']=='success'];times=sorted(r['durationMs']/1000 for r in ok)
- usages=[b.get('usage') for r in rs for b in r['batches']]
- known_cost=sum(b.get('estimatedUsd') or 0 for r in rs for b in r['batches'])
- def avg_token(field):return sum((b.get('usage') or {}).get(field,0) for r in ok for b in r['batches'])/len(ok) if ok and all(b.get('usage') for r in ok for b in r['batches']) else None
- rows.append(dict(url=url,attempts=len(rs),successes=len(ok),meanSeconds=statistics.mean(times) if times else None,medianSeconds=statistics.median(times) if times else None,p95Seconds=times[math.ceil(len(times)*.95)-1] if times else None,meanInputTokens=avg_token('prompt_tokens'),meanOutputTokens=avg_token('completion_tokens'),knownAttemptCostUsd=known_cost,knownMeanAttemptInputTokens=sum((u or {}).get('prompt_tokens',0) for u in usages)/len(rs),knownMeanAttemptOutputTokens=sum((u or {}).get('completion_tokens',0) for u in usages)/len(rs),meanSuccessfulCostUsd=sum(b.get('estimatedUsd') or 0 for r in ok for b in r['batches'])/len(ok) if ok and all(b.get('estimatedUsd') is not None for r in ok for b in r['batches']) else None))
-summary=dict(attempts=len(records),successes=sum(r['status']=='success' for r in records),meanSuccessfulSeconds=statistics.mean(r['durationMs']/1000 for r in records if r['status']=='success') if any(r['status']=='success' for r in records) else None,knownCostUsd=sum(x['knownAttemptCostUsd'] for x in rows),usageMayBeIncomplete=any(r.get('usageMayBeIncomplete') or any(not b.get('usage') for b in r['batches']) for r in records),sites=rows)
-(root/'reports/benchmark-100-summary.json').write_text(json.dumps(summary,indent=2))
-def fmt(v,n=3):return 'N/A' if v is None else f'{v:.{n}f}'
-table='| Website / 网站 | Success / 次数 | Mean s | Median s | P95 s | Input tokens | Output tokens | USD/success |\n|---|---:|---:|---:|---:|---:|---:|---:|\n'
-for x in rows:table+=f"| [{x['url'].split('/')[2]}]({x['url']}) | {x['successes']}/{x['attempts']} | {fmt(x['meanSeconds'])} | {fmt(x['medianSeconds'])} | {fmt(x['p95Seconds'])} | {fmt(x['meanInputTokens'],1)} | {fmt(x['meanOutputTokens'],1)} | {fmt(x['meanSuccessfulCostUsd'],6)} |\n"
-for name,zh in [('README.md',False),('README.zh-CN.md',True)]:
+for url in dict.fromkeys(r['url'] for r in records):
+ rs=[r for r in records if r['url']==url];ts=sorted(r['durationMs']/1000 for r in rs if r['status']=='success')
+ rows.append(dict(url=url,attempts=len(rs),successes=len(ts),meanSeconds=statistics.mean(ts) if ts else None,medianSeconds=statistics.median(ts) if ts else None,p95Seconds=ts[math.ceil(len(ts)*.95)-1] if ts else None,meanCacheHitInputTokens=tokens(rs,'prompt_cache_hit_tokens')/len(rs),meanCacheMissInputTokens=tokens(rs,'prompt_cache_miss_tokens')/len(rs),meanOutputTokens=tokens(rs,'completion_tokens')/len(rs),estimatedCnyPerAttempt=cny(rs)/len(rs)))
+summary=dict(attempts=len(records),successes=sum(r['status']=='success' for r in records),firstViewportPaintMs=None,firstViewportCompleteMs=None,firstViewportStatus='Not measured in real browser',reportedBillCny=bill['reportedAmountCny'],tariffEstimateCny=cny(records),tokenCountsReconciled=True,amountDifferenceCny=cny(records)-bill['reportedAmountCny'],sites=rows)
+(root/'reports/benchmark-100-summary.json').write_text(json.dumps(summary,indent=2)+'\n')
+# Keep API completion timings available without presenting them as reader wait times.
+detail='# API 文本样本完成耗时 / API excerpt completion times\n\n这些是固定文本样本的 API 完成耗时，不是首屏开始显示、首屏翻译完成或滚动等待时间。均值/中位数/P95 仅统计成功样本；P95 使用最近秩。原始失败记录保留。\n\nThese are API excerpt completion times, not first-viewport or scroll latency. Statistics include successful attempts only; failures remain in the denominator.\n\n| 网站 / Site | 成功 / Attempts | Mean s | Median s | P95 s |\n|---|---:|---:|---:|---:|\n'
+def fmt(x):return 'N/A' if x is None else f'{x:.3f}'
+for r in rows:detail+=f"| {r['url'].split('/')[2]} | {r['successes']}/{r['attempts']} | {fmt(r['meanSeconds'])} | {fmt(r['medianSeconds'])} | {fmt(r['p95Seconds'])} |\n"
+detail+='\n[原始记录 / Raw records](../reports/benchmark-100-results.json) · [测试方法 / Method](BENCHMARKS.md)\n'
+(root/'docs/API_SAMPLE_TIMINGS.md').write_text(detail)
+for name,zh in [('README.zh-CN.md',True),('README.md',False)]:
  p=root/name;s=p.read_text().split('\n<!-- LIVE_BENCHMARK -->')[0]
- text=('\n## 本次十站 × 十次实测\n\n' if zh else '\n## New ten-site × ten-attempt benchmark\n\n')
- text+=('2026-09-12，每站固定取最多 5,000 个字符，包含正文和界面文字，不是整页翻译；API 串行合批计时，不代表扩展并行调度或点击到屏幕显示。各站十次尝试，无自动重试。均值、中位数和 P95 只统计成功样本，失败包含在成功率分母中。P95 用最近秩，小样本通常等于最大值。\n\n' if zh else '2026-09-12: fixed excerpts of up to 5,000 characters per site, including prose and UI text, not whole pages. API-only sequential batching, not extension parallel scheduling or click-to-paint timing. Ten attempts per site, no automatic retries. Mean/median/p95 include successes only; failures remain in the denominator. Nearest-rank p95 is usually the maximum with this sample size.\n\n')
- text+=(f"成功样本整体平均耗时：{summary['meanSuccessfulSeconds']:.3f} 秒。\n\n" if zh else f"Overall mean successful completion time: {summary['meanSuccessfulSeconds']:.3f} seconds.\n\n") if summary['meanSuccessfulSeconds'] is not None else ''
- text+=table
- text+=('\n所有尝试的已返回用量（包含失败，每次平均；未返回用量不在其中）：\n\n' if zh else '\nKnown returned usage per attempt, including failures (unreported usage excluded):\n\n')
- text+='| Site | Input tokens/attempt | Output tokens/attempt | Known USD/attempt |\n|---|---:|---:|---:|\n'
- for x in rows:text+=f"| {x['url'].split('/')[2]} | {x['knownMeanAttemptInputTokens']:.1f} | {x['knownMeanAttemptOutputTokens']:.1f} | {x['knownAttemptCostUsd']/x['attempts']:.6f} |\n"
- if len(records)==100:
-  text+=(f"\n按本轮每天重复 100 次同等样本尝试（包含失败），已知用量估算约 US${summary['knownCostUsd']:.5f}/天，30 天约 US${summary['knownCostUsd']*30:.5f}；这不等于每天成功翻译 100 页的费用。\n" if zh else f"\nRepeating these 100 excerpt attempts per day, including failures, gives a known-usage estimate of US${summary['knownCostUsd']:.5f}/day or US${summary['knownCostUsd']*30:.5f}/30 days. This does not buy 100 successfully translated whole pages.\n")
- text+=(f"\n共 {summary['attempts']} 次尝试，成功 {summary['successes']} 次；已返回用量对应的历史费率估算费用合计 US${summary['knownCostUsd']:.6f}。失败请求可能有未返回的用量，费用可能不完整。结果只能说明这些固定文本样本；失败和等待时间表明仍需改进，不能宣称普遍快速或优于竞品。\n" if zh else f"\n{summary['successes']} successes out of {summary['attempts']} attempts. Known returned usage costs US${summary['knownCostUsd']:.6f} under the historical tariff assumptions. Failed calls may have unreported billable usage. These fixed text samples reveal remaining reliability/latency limitations and do not demonstrate general speed or superiority over competitors.\n")
- # Equal-weight sites, successful workload cost. No silent zero for failed sites.
- costs=[r['meanSuccessfulCostUsd'] for r in rows]
- if len(costs)==10 and all(c is not None for c in costs):
-  daily=sum(costs)*10
-  text+=(f'\n按每站成功样本平均费用、每天各站 10 页的相同文本量外推：每天约 US${daily:.5f}，30 天约 US${daily*30:.5f}；不含额外失败重试，不适用于完整长网页。\n' if zh else f'\nEqual site weighting, ten equivalent successful excerpts per site per day: approximately US${daily:.5f}/day or US${daily*30:.5f}/30 days, excluding additional failed attempts/retries. This is not a full-length webpage budget.\n')
- text+='\n[Raw records / 原始数据](reports/benchmark-100-results.json) · [Summary / 汇总](reports/benchmark-100-summary.json) · [Sources and exclusions / 来源与排除项](reports/benchmark-100-sources.json)\n'
- p.write_text(s+'\n<!-- LIVE_BENCHMARK -->\n'+text)
-print(json.dumps({k:v for k,v in summary.items() if k!='sites'}))
+ if zh:
+  text='''## 十站各十次：Token 与人民币费用
+
+本轮共 100 次文本样本尝试，83 次通过结构校验。每站最多 5,000 字符，包含正文和界面文字；不是整页浏览器测试。Token 包含失败尝试，不删掉失败调用产生的费用。每站费用按官方空闲时段人民币单价估算，**不是每站独立账单，也不是首屏单独费用**。
+
+| 网站 | 通过校验/尝试 | 平均缓存命中输入 Token | 平均未命中输入 Token | 平均输出 Token | 每次估算（元） |
+|---|---:|---:|---:|---:|---:|
+'''
+ else:
+  text='''## Ten sites × ten attempts: reconciled usage
+
+100 fixed text-excerpt attempts, 83 structurally validated successes. Each excerpt contains up to 5,000 characters of prose/UI text. This is not a browser first-viewport benchmark. Usage includes failed attempts. Per-site prices below use the official off-peak CNY tariff; they are estimates, not per-site invoices or first-viewport-only costs.
+
+| Site | Validated/attempts | Mean cache-hit input tokens | Mean cache-miss input tokens | Mean output tokens | Estimated CNY/attempt |
+|---|---:|---:|---:|---:|---:|
+'''
+ for r in rows:text+=f"| [{r['url'].split('/')[2]}]({r['url']}) | {r['successes']}/{r['attempts']} | {r['meanCacheHitInputTokens']:.1f} | {r['meanCacheMissInputTokens']:.1f} | {r['meanOutputTokens']:.1f} | {r['estimatedCnyPerAttempt']:.5f} |\n"
+ if zh:
+  text+='''
+你实际需要关注的是首屏等待时间，见上方说明。[API 样本完成耗时](docs/API_SAMPLE_TIMINGS.md) 单独保留，不能把其中的 4–5 秒当成首屏或每次滚动的等待时间。83/100 是此测试脚本的结构校验通过率，不能等同于浏览器扩展的整页成功率；失败原因仍需进一步诊断。
+'''
+ else:
+  text+='''
+[API excerpt completion times](docs/API_SAMPLE_TIMINGS.md) are retained separately. The roughly 4–5 second sample completion time is not first-viewport or per-scroll waiting time. The 83/100 validation rate belongs to this custom harness, not a measured whole-page extension success rate; failures need further diagnosis.
+'''
+ text+='\n[Raw records / 原始数据](reports/benchmark-100-results.json) · [Billing reconciliation / 账单核对](reports/benchmark-100-billing.json) · [Summary / 汇总](reports/benchmark-100-summary.json) · [Sources / 来源](reports/benchmark-100-sources.json)\n'
+ p.write_text(s+'\n<!-- LIVE_BENCHMARK -->\n\n'+text)
+print(f"Reconciled {len(records)} attempts, {tokens(records,'total_tokens')} tokens; bill CNY {bill['reportedAmountCny']}; tariff CNY {cny(records):.8f}")
