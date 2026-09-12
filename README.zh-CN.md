@@ -2,7 +2,7 @@
   <img src="extension/icons/128.png" alt="轻译图标" width="96" height="96">
 </p>
 
-# 轻译 · 免费，原位阅读外文网页
+# 轻译 · 免费，网页翻译
 
 简体中文 · [英文版](README.md)
 
