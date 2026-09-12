@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="extension/icons/128.png" alt="Qingyi icon" width="96" height="96">
+</p>
+
 # Qingyi · Free AI webpage translation
 
 English · [简体中文](README.zh-CN.md)
@@ -10,10 +14,10 @@ Read translated text right where the original appeared. Qingyi translates select
 
 | Mode | Setup | Available provider | Cost |
 |---|---|---|---|
-| Browser session | Connect an open, signed-in model tab; no API key | DeepSeek website | No translation fee from Qingyi; website allowances apply |
+| Browser session | Use web versions such as DeepSeek and Doubao at no charge | DeepSeek website | Uses website free allowances; no API charges |
 | Your own API key | Save your provider key; no conversation tab needed | DeepSeek API | Provider usage charges |
 
-Doubao and additional providers are planned.
+DeepSeek web is available now. Doubao and other web providers are planned below.
 
 ## Built for reading
 
@@ -48,6 +52,18 @@ Each excerpt contained up to 5,000 characters, and the bill includes all benchma
 ## Privacy
 
 API keys stay in local extension storage and cannot be read by webpage content scripts. Translation text goes directly to DeepSeek without a project relay server. Website-mode conversation history is managed by the provider account.
+
+## Web provider roadmap
+
+- [x] DeepSeek
+- [ ] Doubao
+- [ ] GLM (Zhipu Qingyan)
+- [ ] ChatGPT
+- [ ] Gemini
+- [ ] Qwen
+- [ ] Claude
+
+Unchecked providers are planned integrations. The support list will be updated as they become available.
 
 ## Development
 
