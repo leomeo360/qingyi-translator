@@ -190,6 +190,7 @@ function runApi(task, key) {
     state.active = null; await maintain();
   })).catch(error => serial(async () => {
     if (state.active?.id !== task.id) return;
+    if (error.requestCount) Object.assign(task, { requestCount: error.requestCount, usage: error.usage, estimatedUsd: error.estimatedUsd });
     await failActive(error.name === 'AbortError' ? 'API 请求已取消或超时' : error.message);
     await maintain();
   }));

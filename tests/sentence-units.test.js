@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import vm from 'node:vm';
 import { readFileSync } from 'node:fs';
-import { parseBlocks, blocksPrompt, planBlocks } from '../extension/lib/core.js';
+import { parseBlocks, blocksPrompt, planBlocks, partialTranslations } from '../extension/lib/core.js';
 const { maskProtectedSentence: mask, restoreProtectedSentence: restore, validProtectedMarkers: valid, proseFragments } = globalThis.QYTextRules;
 
 test('技术混排整句只产生一个翻译单元，本地还原技术文本且允许调整语序', () => {
@@ -57,4 +57,17 @@ test('忙碌时不重发，收集窗口结束后可在下一次事件重新调�
   const schedule=vm.runInNewContext(scheduler+';schedulePage;',{pageRun:run,paintReadyVisible:()=>{},interruptPrefetch:()=>{},setTimeout:fn=>{timers.push(fn);return timers.length;},translateVisible:()=>sends++});
   schedule(run);timers.shift()();assert.equal(sends,0);
   run.busy=false;schedule(run);timers.shift()();assert.equal(sends,1);
+});
+
+// Plain-text prompts must not prime the model to invent code placeholders.
+test('没有保护标记的原文不注入占位符示例', () => {
+  const plain=blocksPrompt([{id:'1',text:'Dynamic creation (via ) is supported.'}],'简体中文');
+  assert(!plain.includes('QY_KEEP'));
+  const protectedPrompt=blocksPrompt([{id:'1',text:'Use ⟪QY_KEEP_0⟫.'}],'简体中文');
+  assert(protectedPrompt.includes('必须原样保留恰好一次'));
+});
+
+test('完整字段恢复不接受未闭合字符串或未转义的引号片段', () => {
+  assert.deepEqual({...partialTranslations('{"1":"完整","2":"残缺}', ['1','2'], true)}, {'1':'完整'});
+  assert.deepEqual({...partialTranslations('{"1":"hello"world"}', ['1'], true)}, {});
 });

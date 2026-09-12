@@ -22,33 +22,12 @@ def fmt(x):return 'N/A' if x is None else f'{x:.3f}'
 for r in rows:detail+=f"| {r['url'].split('/')[2]} | {r['successes']}/{r['attempts']} | {fmt(r['meanSeconds'])} | {fmt(r['medianSeconds'])} | {fmt(r['p95Seconds'])} |\n"
 detail+='\n[原始记录 / Raw records](../reports/benchmark-100-results.json) · [测试方法 / Method](BENCHMARKS.md)\n'
 (root/'docs/API_SAMPLE_TIMINGS.md').write_text(detail)
-for name,zh in [('README.zh-CN.md',True),('README.md',False)]:
- p=root/name;s=p.read_text().split('\n<!-- LIVE_BENCHMARK -->')[0]
- if zh:
-  text='''## 十站各十次：Token 与人民币费用
-
-本轮共 100 次文本样本尝试，83 次通过结构校验。每站最多 5,000 字符，包含正文和界面文字；不是整页浏览器测试。Token 包含失败尝试，不删掉失败调用产生的费用。每站费用按官方空闲时段人民币单价估算，**不是每站独立账单，也不是首屏单独费用**。
-
-| 网站 | 通过校验/尝试 | 平均缓存命中输入 Token | 平均未命中输入 Token | 平均输出 Token | 每次估算（元） |
-|---|---:|---:|---:|---:|---:|
-'''
- else:
-  text='''## Ten sites × ten attempts: reconciled usage
-
-100 fixed text-excerpt attempts, 83 structurally validated successes. Each excerpt contains up to 5,000 characters of prose/UI text. This is not a browser first-viewport benchmark. Usage includes failed attempts. Per-site prices below use the official off-peak CNY tariff; they are estimates, not per-site invoices or first-viewport-only costs.
-
-| Site | Validated/attempts | Mean cache-hit input tokens | Mean cache-miss input tokens | Mean output tokens | Estimated CNY/attempt |
-|---|---:|---:|---:|---:|---:|
-'''
- for r in rows:text+=f"| [{r['url'].split('/')[2]}]({r['url']}) | {r['successes']}/{r['attempts']} | {r['meanCacheHitInputTokens']:.1f} | {r['meanCacheMissInputTokens']:.1f} | {r['meanOutputTokens']:.1f} | {r['estimatedCnyPerAttempt']:.5f} |\n"
- if zh:
-  text+='''
-你实际需要关注的是首屏等待时间，见上方说明。[API 样本完成耗时](docs/API_SAMPLE_TIMINGS.md) 单独保留，不能把其中的 4–5 秒当成首屏或每次滚动的等待时间。83/100 是此测试脚本的结构校验通过率，不能等同于浏览器扩展的整页成功率；失败原因仍需进一步诊断。
-'''
- else:
-  text+='''
-[API excerpt completion times](docs/API_SAMPLE_TIMINGS.md) are retained separately. The roughly 4–5 second sample completion time is not first-viewport or per-scroll waiting time. The 83/100 validation rate belongs to this custom harness, not a measured whole-page extension success rate; failures need further diagnosis.
-'''
- text+='\n[Raw records / 原始数据](reports/benchmark-100-results.json) · [Billing reconciliation / 账单核对](reports/benchmark-100-billing.json) · [Summary / 汇总](reports/benchmark-100-summary.json) · [Sources / 来源](reports/benchmark-100-sources.json)\n'
- p.write_text(s+'\n<!-- LIVE_BENCHMARK -->\n\n'+text)
+# README prose is editorial content; regenerate only the bounded cost table.
+labels={'en.wikipedia.org':'维基百科','github.com':'GitHub','developer.mozilla.org':'MDN','www.bbc.com':'BBC','docs.python.org':'Python 文档','nodejs.org':'Node.js 文档','www.w3schools.com':'W3Schools','ubuntu.com':'Ubuntu','rust-lang.org':'Rust','www.mozilla.org':'Firefox'}
+table='| 网站 | 测试次数 | 平均输入词元 | 平均输出词元 | 每次费用估算（元） |\n|---|---:|---:|---:|---:|\n'
+for r in rows:
+ host=r['url'].split('/')[2]
+ table+=f"| [{labels.get(host,host)}]({r['url']}) | {r['attempts']} | {r['meanCacheHitInputTokens']+r['meanCacheMissInputTokens']:.1f} | {r['meanOutputTokens']:.1f} | {r['estimatedCnyPerAttempt']:.5f} |\n"
+p=root/'README.zh-CN.md';s=p.read_text();start='<!-- COST_TABLE_START -->';end='<!-- COST_TABLE_END -->'
+if start in s and end in s:p.write_text(s.split(start)[0]+start+'\n\n'+table+'\n'+end+s.split(end,1)[1])
 print(f"Reconciled {len(records)} attempts, {tokens(records,'total_tokens')} tokens; bill CNY {bill['reportedAmountCny']}; tariff CNY {cny(records):.8f}")

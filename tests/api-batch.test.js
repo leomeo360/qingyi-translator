@@ -85,13 +85,55 @@ test('长批最多两路，乱序流按原编号合并并汇总 token 与费用'
   assert.equal(api.active, 0);
 });
 
-test('一路返回无效段落时中止另一路，保留首个错误且不自动重发', async t => {
+const waitCalls = async (api, count) => within((async () => {
+  while (api.calls.length < count) await new Promise(resolve => setTimeout(resolve, 1));
+})());
+
+test('一段缺失只补译该段，保留其他段及并行请求，汇总两次费用', async t => {
+  const api = mockApi(t), blocks = [{ id:'1', text:'First sentence.' }, { id:'2', text:'Second sentence.' }];
+  const request = translateApiBlocks(options(blocks));
+  api.calls[0].token('{"1":"第一句。"}'); api.calls[0].finish({prompt_tokens:10,completion_tokens:5,total_tokens:15});
+  await waitCalls(api,2);
+  assert.deepEqual(api.calls[1].blocks, [blocks[1]]);
+  api.calls[1].token('{"2":"第二句。"}'); api.calls[1].finish({prompt_tokens:6,completion_tokens:3,total_tokens:9});
+  const result=await request;
+  assert.deepEqual(JSON.parse(result.text), {'1':'第一句。','2':'第二句。'});
+  assert.equal(result.requestCount,2); assert.equal(result.usage.total_tokens,24);
+});
+
+test('多余字段按编号过滤，不误判整批失败或增加请求', async t => {
+  const api=mockApi(t), request=translateApiBlocks(options([{id:'7',text:'Example.'}]));
+  api.calls[0].token('{"7":"示例。","note":"说明","999":"无关段落"}');api.calls[0].finish();
+  const result=await request;
+  assert.deepEqual(JSON.parse(result.text),{'7':'示例。'});assert.equal(api.calls.length,1);
+});
+
+test('无效段落只恢复一次，仍失败则中止另一路并保留已知用量', async t => {
   const api = mockApi(t), request = translateApiBlocks(options(longBlocks()));
-  api.calls[0].token('{"wrong":"错误编号"}'); api.calls[0].finish();
-  await assert.rejects(within(request), /段落译文格式不完整/);
-  assert.equal(api.calls.length, 2);
-  assert(api.calls[1].signal.aborted);
-  assert.equal(api.active, 0);
+  const rejected=assert.rejects(within(request), error => /补译后仍不完整/.test(error.message) && error.usage.total_tokens===30);
+  api.calls[0].token('{"wrong":"错误编号"}'); api.calls[0].finish({prompt_tokens:10,completion_tokens:5,total_tokens:15});
+  await waitCalls(api,3);
+  assert(!api.calls[1].signal.aborted);
+  api.calls[2].token('{}');api.calls[2].finish({prompt_tokens:10,completion_tokens:5,total_tokens:15});
+  await rejected;
+  assert.equal(api.calls.length, 3);assert(api.calls[1].signal.aborted);assert.equal(api.active,0);
+});
+
+test('保护标记损坏的段落必须补译，不能把不安全结果当作成功', async t => {
+  const api=mockApi(t),block={id:'1',text:'Use ⟪QY_KEEP_0⟫ now.'},request=translateApiBlocks(options([block]));
+  api.calls[0].token('{"1":"立即使用。"}');api.calls[0].finish();
+  await waitCalls(api,2);
+  api.calls[1].token('{"1":"立即使用 ⟪QY_KEEP_0⟫。"}');api.calls[1].finish();
+  assert.equal(JSON.parse((await request).text)['1'],'立即使用 ⟪QY_KEEP_0⟫。');
+});
+
+test('补译期间用户取消会停止请求，不继续恢复', async t => {
+  const api=mockApi(t),controller=new AbortController();
+  const request=translateApiBlocks({...options([{id:'1',text:'Example.'}]),signal:controller.signal});
+  const rejected=assert.rejects(within(request), /用户取消/);
+  api.calls[0].token('{}');api.calls[0].finish();await waitCalls(api,2);
+  controller.abort(new DOMException('用户取消','AbortError'));await rejected;
+  assert.equal(api.calls.length,2);assert.equal(api.active,0);
 });
 
 test('外部取消中止两路；预先取消不发起请求', async t => {
@@ -132,4 +174,13 @@ test('外部取消不等待已读完流的最终显示回调', async t => {
     assert.equal(api.calls.length, 1);
     assert.equal(api.active, 0);
   } finally { releasePaint.resolve(); await request.catch(() => {}); }
+});
+
+test('末尾字符串未闭合时保留完整段落，只补译残缺的末段', async t => {
+  const api=mockApi(t),blocks=[{id:'1',text:'First.'},{id:'2',text:'By 1998, a program could translate betwe'}];
+  const request=translateApiBlocks(options(blocks));
+  api.calls[0].token('{"1":"第一段。","2":"未闭合译文}');api.calls[0].finish();
+  await waitCalls(api,2);assert.deepEqual(api.calls[1].blocks,[blocks[1]]);
+  api.calls[1].token('{"2":"第二段。"}');api.calls[1].finish();
+  assert.deepEqual(JSON.parse((await request).text),{'1':'第一段。','2':'第二段。'});
 });

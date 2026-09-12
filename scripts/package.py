@@ -15,7 +15,7 @@ with zipfile.ZipFile(output / name, 'w', zipfile.ZIP_DEFLATED) as archive:
     for document in (root / 'docs').glob('*.md'):
         archive.write(document, document.relative_to(root))
     archive.write(root / 'reports/api-pages.json', 'reports/api-pages.json')
-    for document in (root / 'reports').glob('benchmark-100-*.json'):
+    for document in list((root / 'reports').glob('benchmark-100-*.json')) + list((root / 'reports').glob('response-*.json')):
         if document.name != 'benchmark-100-inputs.json':
             archive.write(document, document.relative_to(root))
     archive.write(root / 'TEST_REPORT.md', 'TEST_REPORT.md')

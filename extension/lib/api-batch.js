@@ -23,36 +23,67 @@ export async function translateApiBlocks({ blocks, language, key, signal, onProg
   const abort = () => controller.abort(signal.reason);
   if (signal?.aborted) abort();
   else signal?.addEventListener('abort', abort, { once: true });
-  const values = Object.create(null), batches = splitApiBlocks(blocks);
-  let firstTokenMs = null, failure;
+  const values = Object.create(null), batches = splitApiBlocks(blocks), results = [];
+  let firstTokenMs = null, failure, requestCount = 0;
   let rejectOnAbort;
   const aborted = new Promise((_, reject) => { rejectOnAbort = () => reject(controller.signal.reason); });
   controller.signal.addEventListener('abort', rejectOnAbort, { once: true });
   try {
-    const settled = await Promise.allSettled(batches.map(async batch => {
-      const offset = Date.now() - startedAt;
+    await Promise.allSettled(batches.map(async batch => {
       try {
-        // Cancellation must not wait for a stalled display callback after SSE has ended.
-        const result = await Promise.race([translateApi({ key, prompt: blocksPrompt(batch, language), json: true, signal: controller.signal,
-          onProgress: (text, first) => {
-            if (controller.signal.aborted) return;
-            if (first != null) firstTokenMs = Math.min(firstTokenMs ?? Infinity, offset + first);
-            Object.assign(values, partialTranslations(text, batch.map(b => b.id)));
-            return onProgress(JSON.stringify(values), firstTokenMs);
+        let pending = batch;
+        for (let attempt = 0; attempt < 2; attempt++) {
+          controller.signal.throwIfAborted();
+          const offset = Date.now() - startedAt, current = pending;
+          // Retry only completed but structurally incomplete model output, never transport errors.
+          requestCount++;
+          const result = await Promise.race([translateApi({ key, prompt: blocksPrompt(current, language), json: true, signal: controller.signal,
+            onProgress: (text, first) => {
+              if (controller.signal.aborted) return;
+              if (first != null) firstTokenMs = Math.min(firstTokenMs ?? Infinity, offset + first);
+              Object.assign(values, partialTranslations(text, current.map(b => b.id)));
+              return onProgress(JSON.stringify(values), firstTokenMs);
+            }
+          }), aborted]);
+          results.push(result);
+          if (result.firstTokenMs != null) firstTokenMs = Math.min(firstTokenMs ?? Infinity, offset + result.firstTokenMs);
+          let parsed;
+          try { parsed = JSON.parse(result.text.trim().replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/, '')); } catch { parsed = partialTranslations(result.text, current.map(b => b.id), true); }
+          pending = [];
+          for (const block of current) {
+            // Match by explicit original ID; never guess order or accept damaged protected text.
+            try {
+              if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed) || !Object.hasOwn(parsed, block.id)) throw new Error('missing');
+              const valid = parseBlocks(JSON.stringify({ [block.id]: parsed[block.id] }), [block]);
+              Object.assign(values, valid);
+            } catch { delete values[block.id]; pending.push(block); }
           }
-        }), aborted]);
-        Object.assign(values, parseBlocks(result.text, batch));
-        if (result.firstTokenMs != null) firstTokenMs = Math.min(firstTokenMs ?? Infinity, offset + result.firstTokenMs);
-        return result;
+          if (!pending.length) return;
+        }
+        const error = new Error('部分段落补译后仍不完整，请继续翻译');
+        error.code = 'TRANSLATION_INCOMPLETE';
+        throw error;
       } catch (error) {
         failure ??= error;
         controller.abort(error);
         throw error;
       }
     }));
-    if (failure) throw failure;
+    if (failure) {
+      // Preserve known billed usage even when recovery ultimately fails.
+      failure.requestCount = requestCount;
+      failure.usage = results.length > 0 && results.every(r => r.usage) ? results.reduce((sum, r) => {
+        for (const field of ['prompt_tokens', 'completion_tokens', 'total_tokens']) sum[field] = (sum[field] || 0) + (r.usage[field] || 0);
+        const hit = r.usage.prompt_cache_hit_tokens ?? r.usage.prompt_tokens_details?.cached_tokens ?? 0;
+        sum.prompt_cache_hit_tokens = (sum.prompt_cache_hit_tokens || 0) + hit;
+        sum.prompt_cache_miss_tokens = (sum.prompt_cache_miss_tokens || 0) + (r.usage.prompt_cache_miss_tokens ?? Math.max(0, r.usage.prompt_tokens - hit));
+        return sum;
+      }, {}) : null;
+      failure.estimatedUsd = results.length > 0 && results.every(r => r.estimatedUsd != null) ? results.reduce((n, r) => n + r.estimatedUsd, 0) : null;
+      throw failure;
+    }
     signal?.throwIfAborted();
-    const results = settled.map(r => r.value);
+
     const text = JSON.stringify(values);
     parseBlocks(text, blocks);
     const usage = results.every(r => r.usage) ? results.reduce((sum, r) => {

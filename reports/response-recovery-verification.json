@@ -1,0 +1,83 @@
+{
+  "method": "One full fixed excerpt per previously failing site; production numeric IDs and parallel API scheduler; not browser UI or first-viewport measurement",
+  "records": [
+    {
+      "host": "developer.mozilla.org",
+      "status": "success",
+      "batches": [
+        {
+          "blocks": 32,
+          "requestCount": 2,
+          "usage": {
+            "prompt_cache_hit_tokens": 256,
+            "prompt_cache_miss_tokens": 1206,
+            "prompt_tokens": 1462,
+            "completion_tokens": 873,
+            "total_tokens": 2335
+          },
+          "durationMs": 2764
+        },
+        {
+          "blocks": 5,
+          "requestCount": 1,
+          "usage": {
+            "prompt_cache_hit_tokens": 0,
+            "prompt_cache_miss_tokens": 251,
+            "prompt_tokens": 251,
+            "completion_tokens": 59,
+            "total_tokens": 310
+          },
+          "durationMs": 1020
+        }
+      ]
+    },
+    {
+      "host": "en.wikipedia.org",
+      "status": "success",
+      "batches": [
+        {
+          "blocks": 15,
+          "requestCount": 3,
+          "usage": {
+            "prompt_cache_hit_tokens": 256,
+            "prompt_cache_miss_tokens": 1417,
+            "prompt_tokens": 1673,
+            "completion_tokens": 1048,
+            "total_tokens": 2721
+          },
+          "durationMs": 3984
+        }
+      ]
+    },
+    {
+      "host": "www.bbc.com",
+      "status": "success",
+      "batches": [
+        {
+          "blocks": 32,
+          "requestCount": 2,
+          "usage": {
+            "prompt_cache_hit_tokens": 256,
+            "prompt_cache_miss_tokens": 942,
+            "prompt_tokens": 1198,
+            "completion_tokens": 658,
+            "total_tokens": 1856
+          },
+          "durationMs": 3033
+        },
+        {
+          "blocks": 25,
+          "requestCount": 2,
+          "usage": {
+            "prompt_cache_hit_tokens": 256,
+            "prompt_cache_miss_tokens": 715,
+            "prompt_tokens": 971,
+            "completion_tokens": 534,
+            "total_tokens": 1505
+          },
+          "durationMs": 2580
+        }
+      ]
+    }
+  ]
+}

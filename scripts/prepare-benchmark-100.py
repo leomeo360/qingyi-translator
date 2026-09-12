@@ -5,12 +5,12 @@ from pathlib import Path
 class Extract(HTMLParser):
  def __init__(self):super().__init__();self.skip=0;self.tag=None;self.parts=[];self.blocks=[]
  def handle_starttag(self,t,a):
-  if t in ('script','style','pre','code','noscript','svg'):self.skip+=1
+  if t in ('script','style','pre','noscript','svg'):self.skip+=1
   if not self.skip and t in ('p','h1','h2','h3','li'):self.tag=t;self.parts=[]
  def handle_data(self,d):
   if not self.skip and self.tag:self.parts.append(d)
  def handle_endtag(self,t):
-  if t in ('script','style','pre','code','noscript','svg') and self.skip:self.skip-=1
+  if t in ('script','style','pre','noscript','svg') and self.skip:self.skip-=1
   if t==self.tag:
    s=re.sub(r'\s+',' ',''.join(self.parts)).strip()
    if len(s)>30:self.blocks.append(s)
@@ -23,7 +23,8 @@ def get(url):
   p=Extract();p.feed(html);blocks=list(dict.fromkeys(p.blocks));total=sum(map(len,blocks));selected=[];n=0
   for b in blocks:
    if n>=5000:break
-   selected.append(b[:5000-n]);n+=len(selected[-1])
+   if n+len(b)>5000:break
+   selected.append(b);n+=len(b)
   if n<400:raise ValueError('Insufficient text')
   return dict(url=url,title=url.split('/')[2],blocks=[dict(id=f'b{i+1}',text=b) for i,b in enumerate(selected)],scope='First 5000 extracted characters, not whole page',extractedCharacters=total)
  except Exception as e:return dict(url=url,error=type(e).__name__)

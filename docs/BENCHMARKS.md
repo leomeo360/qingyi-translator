@@ -72,6 +72,10 @@ page snapshots, settings and same-session measurements.
 
 Actual source substitutions and extraction scope are recorded in [source metadata](../reports/benchmark-100-sources.json). Stack Overflow, Reddit and npm extraction failed; Ubuntu, Rust and Firefox replaced them. The Mozilla support candidate also had insufficient text. No claim of successful access to excluded sites is made.
 
-Summarize completed records with `python3 scripts/summarize-benchmark-100.py`. This updates both README tables. Different collection dates can yield different text hashes.
+Summarize completed records with `python3 scripts/summarize-benchmark-100.py`. This updates the bounded Chinese README cost table only. Different collection dates can yield different text hashes.
 
 The custom API harness uses b-prefixed sample IDs and direct `translateApi`/`parseBlocks` calls, not the extension background worker, DOM protection preprocessing or two-lane scheduler. Failures describe this harness workload; diagnose them before attributing them to the installed extension. Returned translations are not retained, so this run does not support a translation-quality score or a precise root-cause classification for errors.
+
+## 2.9.1 更新
+
+[失败原因与恢复验证](V2.9.1_RELIABILITY.md)。上文历史调度和字母编号描述适用于旧数据；当前脚本改用生产并行调度和数字编号。汇总脚本仅更新中文说明中标记范围内的费用表，不再生成宣发正文。
