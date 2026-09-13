@@ -6,6 +6,8 @@ let apiController;
 const emptyState = () => ({ binding: null, active: null, queue: [], cache: [], sources: {}, epoch: 0, notice: '', metrics: [] });
 let state;
 let settings;
+let loadPromise;
+let recoveryPromise;
 let chain = Promise.resolve();
 let deadlineTimer;
 const serial = fn => { const result = chain.then(fn); chain = result.catch(() => {}); return result; };
@@ -17,28 +19,40 @@ const sameTaskSource = (task, value) => (task.sourceKey || `tab:${task.tabId}`) 
 const popupSender = sender => sender.id === chrome.runtime.id && sender.url === chrome.runtime.getURL('popup.html');
 const safe = promise => promise.catch(() => undefined);
 
-async function init() {
+async function loadState() {
   if (state) return;
-  await chrome.storage.local.setAccessLevel?.({ accessLevel: 'TRUSTED_CONTEXTS' });
-  await chrome.storage.session.setAccessLevel?.({ accessLevel: 'TRUSTED_CONTEXTS' });
-  const [local, session] = await Promise.all([chrome.storage.local.get('settings'), chrome.storage.session.get('runtime')]);
-  settings = settingsFrom(local.settings);
-  state = { ...emptyState(), ...session.runtime };
-  for (const [key, source] of Object.entries(state.sources || {})) {
-    if (source.tabId == null && /^\d+$/.test(key)) Object.assign(source, { tabId: Number(key), frameId: 0 });
-  }
-  state.cache = pruneCache(state.cache);
-  // Persisted sending lock is never replayed. The adapter is the submission witness.
-  if (state.active?.provider === 'api') await failActive('API 连接已中断；不会自动重发，请手动重试');
-  if (state.active) {
-    try {
-      const status = await adapter('STATUS');
-      if (status.pageId !== state.binding?.pageId) throw new Error('page replaced');
-      if (status.job?.id === state.active.id) await applyAdapter(status.job, status);
-      else await failActive(MESSAGES.uncertain, true);
-    } catch { await failActive(MESSAGES.uncertain, true); }
-  }
-  await maintain();
+  loadPromise ??= (async () => {
+    await chrome.storage.local.setAccessLevel?.({ accessLevel: 'TRUSTED_CONTEXTS' });
+    await chrome.storage.session.setAccessLevel?.({ accessLevel: 'TRUSTED_CONTEXTS' });
+    const [local, session] = await Promise.all([chrome.storage.local.get('settings'), chrome.storage.session.get('runtime')]);
+    settings = settingsFrom(local.settings);
+    state = { ...emptyState(), ...session.runtime };
+    for (const [key, source] of Object.entries(state.sources || {})) {
+      if (source.tabId == null && /^\d+$/.test(key)) Object.assign(source, { tabId: Number(key), frameId: 0 });
+    }
+    state.cache = pruneCache(state.cache);
+  })();
+  try { await loadPromise; }
+  catch (error) { loadPromise = null; throw error; }
+}
+
+async function init() {
+  await loadState();
+  recoveryPromise ??= (async () => {
+    // Persisted sending lock is never replayed. The adapter is the submission witness.
+    if (state.active?.provider === 'api') await failActive('API 连接已中断；不会自动重发，请手动重试');
+    if (state.active) {
+      try {
+        const status = await adapter('STATUS');
+        if (status.pageId !== state.binding?.pageId) throw new Error('page replaced');
+        if (status.job?.id === state.active.id) await applyAdapter(status.job, status);
+        else await failActive(MESSAGES.uncertain, true);
+      } catch { await failActive(MESSAGES.uncertain, true); }
+    }
+    await maintain();
+  })();
+  try { await recoveryPromise; }
+  catch (error) { recoveryPromise = null; throw error; }
 }
 
 async function adapter(type, extra = {}, binding = state.binding) {
@@ -363,6 +377,12 @@ async function embeddedOrigins(tab) {
 
 async function panel(message) {
   switch (message.type) {
+    case 'GET_PANEL_FAST': {
+      const [tabs, keyState, commands, permissions] = await Promise.all([chrome.tabs.query({ active: true, currentWindow: true }), chrome.storage.local.get('apiKey'), chrome.commands.getAll(), chrome.permissions.getAll()]);
+      const current = tabs[0], origin = originOf(current?.url);
+      const status = state.binding ? { checking: true, job: state.active ? { status: state.active.status } : null } : null;
+      return { apiConfigured: !!keyState.apiKey, settings, binding: state.binding, status, current: { id: current?.id, origin, frameOrigins: [], supported: supported(current?.url) && !current?.incognito }, shortcut: commands.find(c => c.name === 'translate-selection')?.shortcut || '', permissions, testResult: state.testResult, queueCount: state.queue.length };
+    }
     case 'GET_PANEL': {
       let status = null;
       if (state.binding && settings.provider === 'web') {
@@ -479,6 +499,12 @@ async function handle(message, sender) {
 }
 
 chrome.runtime.onMessage.addListener((message, sender, respond) => {
+  // The popup's first read bypasses the translation queue and remote-session
+  // recovery. It only loads local state so Chrome can paint the panel at once.
+  if (message?.channel === 'qy-panel' && message.type === 'GET_PANEL_FAST' && popupSender(sender)) {
+    loadState().then(() => panel(message)).then(data => respond({ ok: true, data }), error => respond({ ok: false, message: error.message || '插件暂不可用，请重新加载扩展' }));
+    return true;
+  }
   serial(() => handle(message, sender)).then(data => respond({ ok: true, data }), error => respond({ ok: false, message: error.message || '插件暂不可用，请重新加载扩展' }));
   return true;
 });

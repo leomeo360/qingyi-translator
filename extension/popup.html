@@ -5,11 +5,10 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>轻译 · DeepSeek 划选翻译</title>
   <link rel="stylesheet" href="popup.css">
-  <script type="module" src="popup.js"></script>
 </head>
-<body>
+<body aria-busy="true">
   <main>
-    <header class="brand"><div class="brand-icon">译<span>·</span></div><div><h1>轻译</h1><p>让阅读，少一点距离。</p></div><span class="version">V2.9.0</span></header>
+    <header class="brand"><div class="brand-icon">译<span>·</span></div><div><h1>轻译</h1><p>让阅读，少一点距离。</p></div><span class="version">V2.9.2</span></header>
     <section class="preferences mode-box" aria-label="翻译方式">
       <label class="row"><span><strong>翻译方式</strong><small>两种方式均原位替换正文，保留代码</small></span><select id="provider" aria-label="翻译方式"><option value="web">不使用 Key · 网页</option><option value="api">使用 Key · API</option></select></label>
       <div id="api-settings" hidden>
@@ -75,5 +74,6 @@
     <footer><span class="lock" aria-hidden="true">◇</span> 设置仅保存在本机 <span class="footer-dot">·</span> 由你选择划选或整页翻译</footer>
   </main>
   <dialog id="reset-dialog"><h2>恢复默认设置？</h2><p>将取消翻译任务并清除临时译文。已授予的网站权限和 DeepSeek 聊天记录会保留。</p><div class="button-row"><button class="secondary" id="reset-cancel">取消</button><button class="primary" id="reset-confirm">恢复默认</button></div></dialog>
+  <script type="module" src="popup.js"></script>
 </body>
 </html>

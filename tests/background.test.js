@@ -22,7 +22,7 @@ function harness(shared, apiOverride = apiModule, batchOverride = apiBatchModule
       query: async () => [{ id: 1, url: 'https://example.com/article' }], onRemoved: event(), onUpdated: event(),
       sendMessage: async (tabId, message, options) => {
         if (message.channel === 'qy-adapter') {
-          if (message.type === 'STATUS') { data.statusCalls++; return structuredClone(data.status); }
+          if (message.type === 'STATUS') { data.statusCalls++; if (data.statusGate) await data.statusGate.promise; return structuredClone(data.status); }
           if (message.type === 'RUN') { data.sent.push(structuredClone(message.job)); data.status = { ...data.status, ready: false, job: { id: message.job.id, status: 'waiting', text: '', owned: true } }; return { ok: true }; }
           if (message.type === 'CANCEL') return structuredClone(data.status);
         }
@@ -63,6 +63,22 @@ test('面板的全部可读内容范围会传给页面内容脚本', async () =>
   const message = h.data.output.find(item => item.type === 'PAGE');
   assert.equal(message.scope, 'all');
   assert.equal(message.options.frameId, 0);
+});
+
+test('快速面板不等待远端连接检查或后台串行队列', async () => {
+  const h = harness(); await h.panel('BIND', { tabId: 90 });
+  let release;
+  h.data.statusGate = { promise: new Promise(resolve => { release = resolve; }) };
+  const full = h.panel('GET_PANEL');
+  await new Promise(resolve => setImmediate(resolve));
+  const fast = await Promise.race([
+    h.panel('GET_PANEL_FAST'),
+    new Promise((_, reject) => setTimeout(() => reject(new Error('快速面板被远端检查阻塞')), 50))
+  ]);
+  assert.equal(fast.ok, true);
+  assert.equal(fast.data.status.checking, true);
+  assert.equal(h.data.statusCalls, 2);
+  release(); await full;
 });
 
 test('后台集成：三入口共用任务，重复点击去重，成功缓存不访问 DeepSeek，重试绕过缓存', async () => {

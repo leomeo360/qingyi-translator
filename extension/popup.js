@@ -5,6 +5,7 @@ const API_PATTERN = 'https://api.deepseek.com/*';
 let view;
 let selectedChat;
 let polling;
+let loadSequence = 0;
 const notify = (message, error = false) => { $('toast').textContent = message; $('toast').className = `toast${error ? ' error' : ''}`; $('toast').hidden = false; };
 const api = async (type, extra = {}) => {
   const result = await chrome.runtime.sendMessage({ channel: 'qy-panel', type, ...extra });
@@ -36,8 +37,8 @@ function renderLists() {
     await save({ disabledSites: view.settings.disabledSites.filter(x => x !== origin) });
   }));
 }
-async function load() {
-  view = await api('GET_PANEL');
+function render(nextView) {
+  view = nextView;
   for (const key of ['enabled', 'selectionButton', 'cache']) $(key).checked = view.settings[key];
   $('provider').value = view.settings.provider || 'web';
   $('api-settings').hidden = view.settings.provider !== 'api';
@@ -56,16 +57,22 @@ async function load() {
   $('site-origin').title = view.current.origin || '';
   $('disable-site').disabled = !view.current.supported;
   $('disable-site').checked = view.settings.disabledSites.includes(view.current.origin);
-  const permitted = view.current.origin && await chrome.permissions.contains({ origins: [`${view.current.origin}/*`] });
-  $('grant-site').disabled = !view.current.supported || !!permitted;
-  $('grant-site').children[1].textContent = permitted ? '此网站已获得划选按钮授权' : '在此网站启用划选按钮';
+  $('grant-site').disabled = !view.current.supported;
+  $('grant-site').children[1].textContent = '在此网站启用划选按钮';
+  const renderedView = view;
+  const permission = view.current.origin ? chrome.permissions.contains({ origins: [`${view.current.origin}/*`] }) : Promise.resolve(false);
+  void permission.catch(() => false).then(permitted => {
+    if (view !== renderedView) return;
+    $('grant-site').disabled = !view.current.supported || permitted;
+    $('grant-site').children[1].textContent = permitted ? '此网站已获得划选按钮授权' : '在此网站启用划选按钮';
+  });
   $('site-hint').textContent = !view.current.supported ? '请在普通网页上打开面板。内部页和 PDF 暂不支持。' : '跨网站嵌入内容首次翻译时，Chrome 可能请求该嵌入网站的权限。';
   const busy = !!view.status?.job && ['waiting', 'streaming'].includes(view.status.job.status);
-  const state = !view.binding ? '未连接' : view.status?.ready ? '已就绪' : busy ? '忙碌' : '需要处理';
+  const state = !view.binding ? '未连接' : view.status?.checking ? '检查中' : view.status?.ready ? '已就绪' : busy ? '忙碌' : '需要处理';
   $('connection-status').textContent = state;
-  $('status-dot').className = `status-dot ${state === '已就绪' ? 'ready' : state === '忙碌' ? 'busy' : state === '需要处理' ? 'error' : ''}`;
+  $('status-dot').className = `status-dot ${state === '已就绪' ? 'ready' : ['检查中', '忙碌'].includes(state) ? 'busy' : state === '需要处理' ? 'error' : ''}`;
   const selectedModes = view.status?.mode?.split('|').filter(x => x.endsWith(':true')).map(x => x.slice(0, -5));
-  $('connection-detail').textContent = !view.binding ? '连接已登录的专用标签页，即可开始翻译。' : view.status?.ready ? (selectedModes?.length ? `已连接。建议在专用页关闭${selectedModes.join('、')}，减少翻译等待。` : '已连接专用页。返回网页，选中一段文字试试。') : view.status?.message || '正在翻译，请稍候…';
+  $('connection-detail').textContent = !view.binding ? '连接已登录的专用标签页，即可开始翻译。' : view.status?.checking ? '面板已打开，正在后台检查连接…' : view.status?.ready ? (selectedModes?.length ? `已连接。建议在专用页关闭${selectedModes.join('、')}，减少翻译等待。` : '已连接专用页。返回网页，选中一段文字试试。') : view.status?.message || '正在翻译，请稍候…';
   $('connect').textContent = view.binding ? '更换 ↗' : '连接 ↗';
   $('connected-actions').hidden = !view.binding;
   renderLists();
@@ -74,6 +81,17 @@ async function load() {
     $('test-result').textContent = [view.testResult.message, view.testResult.text].filter(Boolean).join('\n');
     if (['success', 'error', 'cancelled'].includes(view.testResult.status)) { clearInterval(polling); polling = null; }
   }
+}
+async function load() {
+  const sequence = ++loadSequence, nextView = await api('GET_PANEL');
+  if (sequence === loadSequence) render(nextView);
+}
+async function openImmediately() {
+  const sequence = ++loadSequence, nextView = await api('GET_PANEL_FAST');
+  if (sequence !== loadSequence) return;
+  render(nextView);
+  document.body.removeAttribute('aria-busy');
+  void load().catch(error => notify(`状态刷新失败：${error.message}`, true));
 }
 async function save(patch) {
   await api('SET_SETTINGS', { patch });
@@ -141,7 +159,10 @@ action('test', async () => {
   clearInterval(polling); polling = setInterval(() => load().catch(e => { clearInterval(polling); notify(e.message, true); }), 1000);
 });
 window.addEventListener('pagehide', () => clearInterval(polling));
-load().catch(error => notify(`请从已加载的 Chrome 扩展打开此面板。${error.message}`, true));
+openImmediately().catch(error => {
+  document.body.removeAttribute('aria-busy');
+  notify(`请从已加载的 Chrome 扩展打开此面板。${error.message}`, true);
+});
 
 action('save-key', async () => {
   const granted = await chrome.permissions.request({ origins: [API_PATTERN] });
