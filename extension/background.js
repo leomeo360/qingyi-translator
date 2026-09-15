@@ -485,7 +485,11 @@ async function handle(message, sender) {
   if (message.type === 'PAGE_REQUEST') {
     const source = state.sources[sourceKey(sender.tab.id, sender.documentId)];
     if (sender.frameId !== 0 || source?.instance !== message.instance) throw new Error('页面已更新，请刷新后重试');
-    await trigger(sender.tab, { page: true, scope: 'all' }); return {};
+    // The floating button already runs in the exact document that should be
+    // translated. Deliver to it directly instead of reinjecting every frame;
+    // awaiting this message also lets delivery failures reach the button.
+    await tabMessage(sender.tab.id, { channel: 'qy-source', type: 'PAGE', scope: 'all' }, sender.documentId);
+    return {};
   }
   if (message.type === 'CANCEL') {
     await cancelQueued(t => t.id === message.id && matchesSource(t, sender, message.instance));

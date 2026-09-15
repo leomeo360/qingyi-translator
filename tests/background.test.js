@@ -11,7 +11,7 @@ const code = readFileSync(new URL('../extension/background.js', import.meta.url)
 const uid = () => webcrypto.randomUUID();
 const event = () => ({ listeners: [], addListener(fn) { this.listeners.push(fn); } });
 function harness(shared, apiOverride = apiModule, batchOverride = apiBatchModule) {
-  const data = shared || { local: {}, session: {}, sent: [], output: [], status: { ready: true, pageId: 'adapter-page', guard: 0, session: '/a/chat/s/dedicated', mode: '深度思考:false', job: null }, statusCalls: 0 };
+  const data = shared || { local: {}, session: {}, sent: [], output: [], scriptingCalls: 0, status: { ready: true, pageId: 'adapter-page', guard: 0, session: '/a/chat/s/dedicated', mode: '深度思考:false', job: null }, statusCalls: 0 };
   data.menus ||= [];
   const timers = new Map(); let timerId = 0;
   const storage = key => ({ get: async field => ({ [field]: structuredClone(data[key][field]) }), set: async value => { Object.assign(data[key], structuredClone(value)); }, remove: async field => { delete data[key][field]; } });
@@ -27,10 +27,11 @@ function harness(shared, apiOverride = apiModule, batchOverride = apiBatchModule
           if (message.type === 'RUN') { data.sent.push(structuredClone(message.job)); data.status = { ...data.status, ready: false, job: { id: message.job.id, status: 'waiting', text: '', owned: true } }; return { ok: true }; }
           if (message.type === 'CANCEL') return structuredClone(data.status);
         }
+        if (data.failPageDelivery && message.type === 'PAGE') throw new Error('页面消息发送失败');
         data.output.push({ tabId, options: structuredClone(options), ...structuredClone(message) }); return { ok: true };
       }
     },
-    scripting: { executeScript: async () => [], unregisterContentScripts: async () => {}, registerContentScripts: async () => {} },
+    scripting: { executeScript: async () => { data.scriptingCalls++; return []; }, unregisterContentScripts: async () => {}, registerContentScripts: async () => {} },
     permissions: { contains: async () => true, getAll: async () => ({ origins: [] }), onAdded: event(), onRemoved: event() },
     contextMenus: { removeAll: async () => { data.menus = []; }, create: menu => { data.menus.push(structuredClone(menu)); }, onClicked: event() },
     commands: { getAll: async () => [], onCommand: event() },
@@ -86,6 +87,16 @@ test('页面悬浮按钮请求会触发全部可读内容翻译', async () => {
   assert.equal(result.ok, true);
   const message = h.data.output.find(item => item.type === 'PAGE');
   assert.equal(message.scope, 'all');
+  assert.equal(message.options.documentId, source.documentId);
+  assert.equal(h.data.scriptingCalls, 0);
+});
+
+test('页面悬浮按钮会收到消息投递失败并允许用户重试', async () => {
+  const h = harness(), source = await h.hello();
+  h.data.failPageDelivery = true;
+  const result = await h.request({ channel: 'qy-source', type: 'PAGE_REQUEST', instance: source.instance }, h.sender(source.tabId, source.documentId, source.frameId, source.url));
+  assert.equal(result.ok, false);
+  assert.equal(result.message, '页面消息发送失败');
 });
 
 test('DeepSeek 专用翻译页不显示网页悬浮操作条', async () => {
