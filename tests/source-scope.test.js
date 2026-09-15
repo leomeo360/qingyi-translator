@@ -38,3 +38,10 @@ test('全部可读内容为默认范围，明确选择正文优先时才跳过�
   const defaultAll = functions(selector => selector.startsWith('nav,aside,footer'));
   assert.equal(defaultAll.pageExcluded(defaultAll.node, { scope: 'smart' }), false);
 });
+
+test('整页翻译只使用右侧贴边操作条，不再显示底部进度框', () => {
+  assert.match(source, /\.page-launch\{[^}]*position:fixed;[^}]*right:0;/);
+  const pageFlow = source.slice(source.indexOf('  async function translateVisible('), source.indexOf('  resume.onclick'));
+  assert.doesNotMatch(pageFlow, /showBar\(/);
+  assert.match(pageFlow, /showPageState\(/);
+});

@@ -5,7 +5,10 @@ import assert from 'node:assert/strict';
 const manifest = JSON.parse(readFileSync('extension/manifest.json', 'utf8'));
 assert.equal(manifest.manifest_version, 3);
 assert(!manifest.permissions.some(p => ['tabs', 'cookies', 'webRequest', 'debugger'].includes(p)));
-assert(!manifest.host_permissions && !manifest.externally_connectable);
+assert.deepEqual(manifest.host_permissions, ['https://*/*', 'http://*/*']);
+assert(!manifest.optional_host_permissions && !manifest.externally_connectable);
+assert.equal(manifest.content_scripts?.length, 1);
+assert.deepEqual(manifest.content_scripts[0].js, ['lib/text-rules.js', 'source.js']);
 for (const path of [manifest.background.service_worker, manifest.action.default_popup, ...Object.values(manifest.icons)]) assert(existsSync(join('extension', path)), `Missing ${path}`);
 function check(dir) {
   for (const entry of readdirSync(dir, { withFileTypes: true })) {

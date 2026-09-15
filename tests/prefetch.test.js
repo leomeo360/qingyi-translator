@@ -29,7 +29,7 @@ function harness({screens=2}={}) {
     collectVisible:(_,ahead=0)=>paragraphs.filter(p=>p.node.isConnected&&!p.parent.blocked&&visible([p.node],ahead)).flatMap(p=>api.groupsFor(p.node,'')),
     makeReplacement:original=>{const parent=original.parentElement,output={textContent:'',parentElement:parent,isConnected:true,dataset:{}};original.parentElement=null;parent.card=output;return{node:output,output,original};},
     restoreCard:card=>{card.original.parentElement=card.node.parentElement;delete card.node.parentElement.card;card.node.isConnected=false;},
-    showBar(){},updatePageStats(){},disconnectPage(){},queueIndex(){},
+    showBar(){},showPageState(){},updatePageStats(){},disconnectPage(){},queueIndex(){},
     setTimeout:fn=>{timers.push(fn);return timers.length;},clearTimeout(){},
     send:async(type,{id})=>{const job=jobs.find(j=>j.id===id);job.cancelled=true;job.finish({status:'cancelled'});return{};},
     receive:(_task,value)=>jobs.at(-1).finish(value),

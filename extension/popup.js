@@ -1,7 +1,6 @@
-import { CHAT_ORIGIN, CHAT_PATTERN, LANGUAGES } from './lib/core.js';
+import { CHAT_ORIGIN, LANGUAGES } from './lib/core.js';
 
 const $ = id => document.getElementById(id);
-const API_PATTERN = 'https://api.deepseek.com/*';
 let view;
 let selectedChat;
 let polling;
@@ -27,11 +26,6 @@ function listRow(text, label, handler) {
   row.append(span, button); return row;
 }
 function renderLists() {
-  $('permissions-list').replaceChildren();
-  for (const origin of view.permissions.origins || []) $('permissions-list').append(listRow(origin, '撤销', async () => {
-    await chrome.permissions.remove({ origins: [origin] });
-    await api('SYNC_PERMISSIONS'); await load(); notify('已撤销该授权。其他覆盖此网站的授权可能仍然有效。');
-  }));
   $('disabled-list').replaceChildren();
   for (const origin of view.settings.disabledSites) $('disabled-list').append(listRow(origin, '恢复', async () => {
     await save({ disabledSites: view.settings.disabledSites.filter(x => x !== origin) });
@@ -57,16 +51,7 @@ function render(nextView) {
   $('site-origin').title = view.current.origin || '';
   $('disable-site').disabled = !view.current.supported;
   $('disable-site').checked = view.settings.disabledSites.includes(view.current.origin);
-  $('grant-site').disabled = !view.current.supported;
-  $('grant-site').children[1].textContent = '在此网站启用悬浮翻译按钮';
-  const renderedView = view;
-  const permission = view.current.origin ? chrome.permissions.contains({ origins: [`${view.current.origin}/*`] }) : Promise.resolve(false);
-  void permission.catch(() => false).then(permitted => {
-    if (view !== renderedView) return;
-    $('grant-site').disabled = !view.current.supported || permitted;
-    $('grant-site').children[1].textContent = permitted ? '此网站已启用悬浮翻译按钮' : '在此网站启用悬浮翻译按钮';
-  });
-  $('site-hint').textContent = !view.current.supported ? '请在普通网页上打开面板。内部页和 PDF 暂不支持。' : '跨网站嵌入内容首次翻译时，Chrome 可能请求该嵌入网站的权限。';
+  $('site-hint').textContent = !view.current.supported ? '请在普通网页上打开面板。内部页和 PDF 暂不支持。' : '悬浮翻译操作条固定显示在网页右侧，刷新网页后生效。';
   const busy = !!view.status?.job && ['waiting', 'streaming'].includes(view.status.job.status);
   const state = !view.binding ? '未连接' : view.status?.checking ? '检查中' : view.status?.ready ? '已就绪' : busy ? '忙碌' : '需要处理';
   $('connection-status').textContent = state;
@@ -120,9 +105,6 @@ async function scan() {
   $('chat-tabs').append(select);
 }
 action('connect', async () => {
-  // Permission requests are invoked directly from a user gesture, before any await.
-  const granted = await chrome.permissions.request({ origins: [CHAT_PATTERN] });
-  if (!granted) throw new Error('未授权 DeepSeek。可稍后点击连接重新授权。');
   $('connect-flow').hidden = false; await scan();
 });
 action('rescan', scan);
@@ -135,20 +117,6 @@ action('new-chat', () => api('OPEN_CHAT', { fresh: true }));
 action('visit', () => api('OPEN_CHAT'));
 action('refresh', async () => { await load(); notify(view.status?.ready ? '连接已就绪' : view.status?.message || '请先连接 DeepSeek', !view.status?.ready); });
 action('unbind', async () => { await api('UNBIND'); await load(); notify('已断开连接并清除临时译文'); });
-action('grant-site', async () => {
-  const origin = view?.current.origin;
-  if (!origin) throw new Error('此页面暂不支持划选翻译');
-  const granted = await chrome.permissions.request({ origins: [`${origin}/*`] });
-  if (!granted) throw new Error('未授予长期权限，仍可使用右键菜单或快捷键');
-  await api('SYNC_PERMISSIONS');
-  await chrome.scripting.executeScript({ target: { tabId: view.current.id }, files: ['lib/text-rules.js', 'source.js'] });
-  await load(); notify('此网站已授权；刷新网页后右侧会显示“翻译”按钮');
-});
-action('grant-all', async () => {
-  const granted = await chrome.permissions.request({ origins: ['http://*/*', 'https://*/*'] });
-  if (!granted) throw new Error('未授予所有网站权限，现有站点授权仍保留');
-  await api('SYNC_PERMISSIONS'); await load(); notify('已授权普通网站；已打开的其他网页刷新后生效');
-});
 action('shortcuts', () => api('SHORTCUTS'));
 action('clear', async () => { await api('CLEAR'); $('test-result').hidden = true; clearInterval(polling); await load(); notify('临时数据已清除；不会删除 DeepSeek 聊天记录'); });
 action('reset', () => $('reset-dialog').showModal());
@@ -165,19 +133,14 @@ openImmediately().catch(error => {
 });
 
 action('save-key', async () => {
-  const granted = await chrome.permissions.request({ origins: [API_PATTERN] });
-  if (!granted) throw new Error('需要授权 DeepSeek API 域名才能使用 Key 翻译');
   try { await api('SET_KEY', { key: $('api-key').value }); }
   finally { $('api-key').value = ''; }
   await load(); notify('Key 已保存，可返回网页翻译');
 });
 action('delete-key', async () => { await api('DELETE_KEY'); $('api-key').value = ''; await load(); notify('本机保存的 Key 已删除'); });
 async function translatePage(scope) {
-  const origins = (view.current.frameOrigins || []).map(origin => `${origin}/*`);
-  const framesGranted = !origins.length || await chrome.permissions.request({ origins });
   await api('PAGE', { scope });
-  if (framesGranted) window.close();
-  else notify('已翻译主页面；嵌入页面未授权，因此其中内容保持原样。', true);
+  window.close();
 }
 action('translate-page', () => translatePage('smart'));
 action('translate-page-all', () => translatePage('all'));

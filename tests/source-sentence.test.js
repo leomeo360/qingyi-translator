@@ -42,7 +42,7 @@ function harness(text) {
       const output = new TextNode(''); original.replaceWith(output);
       return { node: output, output, original };
     },
-    restoreCard, skipNode:()=>false, pageExcluded:()=>false, getComputedStyle:()=>({}), showBar() {}, updatePageStats() {}, disconnectPage() {}, queueIndex() {}, visibleNodes: () => true,
+    restoreCard, skipNode:()=>false, pageExcluded:()=>false, getComputedStyle:()=>({}), showBar() {}, showPageState() {}, updatePageStats() {}, disconnectPage() {}, queueIndex() {}, visibleNodes: () => true,
     collectVisible: () => node.isConnected ? api.groupsFor(node, '') : [],
     request: ({ blocks }) => {
       requests.push(blocks);

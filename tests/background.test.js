@@ -88,6 +88,13 @@ test('页面悬浮按钮请求会触发全部可读内容翻译', async () => {
   assert.equal(message.scope, 'all');
 });
 
+test('DeepSeek 专用翻译页不显示网页悬浮操作条', async () => {
+  const h = harness(), instance = uid(), source = h.sender(90, 'chat-doc', 0, core.CHAT_ORIGIN + '/a/chat/s/dedicated');
+  const result = await h.request({ channel: 'qy-source', type: 'HELLO', instance }, source);
+  assert.equal(result.ok, true);
+  assert.equal(result.data.buttonAllowed, false);
+});
+
 test('快速面板不等待远端连接检查或后台串行队列', async () => {
   const h = harness(); await h.panel('BIND', { tabId: 90 });
   let release;

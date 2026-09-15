@@ -65,8 +65,7 @@ async function adapter(type, extra = {}, binding = state.binding) {
 
 async function sourceSettings(sender) {
   const origin = originOf(sender.url);
-  const permitted = origin && await chrome.permissions.contains({ origins: [`${origin}/*`] });
-  return { ...settings, buttonAllowed: !!permitted && settings.enabled && settings.selectionButton && !settings.disabledSites.includes(origin) };
+  return { ...settings, buttonAllowed: !!origin && origin !== CHAT_ORIGIN && settings.enabled && settings.selectionButton && !settings.disabledSites.includes(origin) };
 }
 
 async function update(task, patch) {
@@ -327,10 +326,7 @@ async function translate(message, sender, test = false) {
 }
 
 async function syncScripts() {
-  const { origins = [] } = await chrome.permissions.getAll();
-  const matches = origins.filter(x => !x.startsWith(API_ORIGIN) && ( /^https?:\/\//.test(x) || x === '<all_urls>'));
   await chrome.scripting.unregisterContentScripts({ ids: ['qy-selection'] }).catch(() => {});
-  if (matches.length) await chrome.scripting.registerContentScripts([{ id: 'qy-selection', matches, js: ['lib/text-rules.js', 'source.js'], runAt: 'document_idle', allFrames: true, matchOriginAsFallback: true, persistAcrossSessions: true }]);
   for (const source of Object.values(state.sources)) {
     const sender = { url: source.origin };
     await safe(tabMessage(source.tabId, { channel: 'qy-source', type: 'SETTINGS', settings: await sourceSettings(sender) }, source.documentId));

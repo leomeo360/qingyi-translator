@@ -6,7 +6,7 @@
   const tasks = new Map(), cards = new Set();
   let presentationEpoch = 0;
   const el = (tag, text, cls) => { const n = document.createElement(tag); if (text != null) n.textContent = text; if (cls) n.className = cls; return n; };
-  const css = `:host{color-scheme:light dark}*{box-sizing:border-box}[hidden]{display:none!important}button{font:inherit;cursor:pointer;border:0;border-radius:6px;padding:4px 8px;color:#5268d4;background:#edf0ff}button:disabled{opacity:.4;cursor:default}button:focus-visible{outline:2px solid #5268e9;outline-offset:2px}.bar{font:13px/1.7 -apple-system,sans-serif;background:#fff;color:#273044;border:1px solid #dfe4f4;border-radius:12px;padding:10px 13px;box-shadow:0 4px 20px #22334b22;display:flex;align-items:center;gap:9px;flex-wrap:wrap}.launch{pointer-events:auto;position:fixed;width:32px;height:32px;padding:0;background:#5268e9;color:#fff;box-shadow:0 3px 14px #26357d38}.page-launch{pointer-events:auto;position:fixed;top:50%;right:14px;transform:translateY(-50%);height:42px;min-width:72px;padding:0 17px;border:1px solid #ffffff55;border-radius:22px;background:#5268e9;color:#fff;font:600 14px/1 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:.08em;box-shadow:0 5px 20px #26357d45;transition:transform .15s ease,box-shadow .15s ease,background .15s ease}.page-launch:hover{transform:translateY(-50%) scale(1.04);background:#4058df;box-shadow:0 7px 24px #26357d55}.page-launch:active{transform:translateY(-50%) scale(.98)}.page-launch[data-active="true"]{border-color:#5268e966;background:#fff;color:#4058df;box-shadow:0 5px 20px #26357d35}.page-launch[data-active="true"]:hover{background:#f2f4ff}.bar{pointer-events:auto;position:fixed;bottom:18px;right:18px;max-width:calc(100vw - 36px)}@media(max-width:600px){.page-launch{right:8px;min-width:64px;height:38px;padding:0 13px}}@media(prefers-color-scheme:dark){.bar{background:#252a38;color:#e3e7f3;border-color:#485069}button{background:#38426a;color:#c7d0ff}.page-launch{background:#6076f0;color:#fff}.page-launch[data-active="true"]{background:#252a38;color:#c7d0ff;border-color:#6076f0}}`;
+  const css = `:host{color-scheme:light dark}*{box-sizing:border-box}[hidden]{display:none!important}button{font:inherit;cursor:pointer;border:0;border-radius:6px;padding:4px 8px;color:#5268d4;background:#edf0ff}button:disabled{opacity:.4;cursor:default}button:focus-visible{outline:2px solid #f27b9e;outline-offset:2px}.bar{font:13px/1.7 -apple-system,sans-serif;background:#fff;color:#273044;border:1px solid #dfe4f4;border-radius:12px;padding:10px 13px;box-shadow:0 4px 20px #22334b22;display:flex;align-items:center;gap:9px;flex-wrap:wrap}.launch{pointer-events:auto;position:fixed;width:32px;height:32px;padding:0;background:#5268e9;color:#fff;box-shadow:0 3px 14px #26357d38}.page-launch{pointer-events:auto;position:fixed;top:50%;right:0;transform:translateY(-50%);width:64px;height:88px;padding:10px 6px 9px;border:0;border-radius:20px 0 0 20px;background:#11161b;color:#f5f7fa;font:600 12px/1.1 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;box-shadow:-4px 5px 22px #10141b38;transition:width .15s ease,background .15s ease}.page-launch::before{content:'译A';display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:#d36b8b;color:#fff;font:700 16px/1 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:-.12em;text-indent:-.12em;box-shadow:inset 0 0 0 1px #ffffff35}.page-launch:hover{width:68px;background:#1b222a}.page-launch:active::before{transform:scale(.95)}.page-launch[data-active="true"]::before{content:'原';background:#566de8;letter-spacing:0;text-indent:0}.page-launch[data-state="busy"]::before{box-shadow:0 0 0 4px #d36b8b30,inset 0 0 0 1px #ffffff35}.page-launch[data-state="error"]::before{background:#d45252}.bar{pointer-events:auto;position:fixed;bottom:18px;right:18px;max-width:calc(100vw - 36px)}@media(max-width:600px){.page-launch{width:56px;height:80px;border-radius:17px 0 0 17px}.page-launch::before{width:38px;height:38px}.page-launch:hover{width:60px}}@media(prefers-color-scheme:dark){.bar{background:#252a38;color:#e3e7f3;border-color:#485069}button{background:#38426a;color:#c7d0ff}}`;
   function shadow(host) { const root = host.attachShadow({ mode: 'open' }); root.append(el('style', css)); return root; }
   const host = el('div'); host.dataset.qyRoot = '';
   host.style.cssText = 'all:initial!important;position:fixed!important;inset:0 auto auto 0!important;width:0!important;height:0!important;z-index:2147483647!important;pointer-events:none!important';
@@ -32,6 +32,7 @@
     pageLaunch.setAttribute('aria-label', active ? '恢复网页原文' : '翻译网页全部可读内容');
     pageLaunch.title = active ? '恢复网页原文' : '翻译网页';
   }
+  function showPageState(text, state = 'busy') { pageLaunch.dataset.state = state; pageLaunch.title = text; }
   const hello = () => send('HELLO').then(s => { settings = s; bootError = null; syncLaunches(); }).catch(e => { bootError = e; });
   let boot = hello();
   const excluded = '.monaco-editor,.CodeMirror,.cm-editor,.ace_editor,.terminal,.blob-code,[role="textbox"],[role="log"],[data-sensitive],[data-private],[data-secret],script,style,noscript,template,svg,canvas,iframe,pre,code,kbd,input,textarea,select,[contenteditable]:not([contenteditable="false"]),[data-qy-root],[data-qy-inline],[hidden],[aria-hidden="true"]';
@@ -548,8 +549,8 @@
         }
         if (!candidates.length) {
           host.dataset.pageStatus = run.indexing ? 'indexing' : 'waiting-scroll';
-          if (run.indexing && !run.count) showBar('正在查找当前可见内容…', true);
-          else { bar.hidden = !run.showControls; if (run.showControls) showBar(`后续内容已准备 · 已完成 ${run.count} 段`, true); }
+          bar.hidden = true;
+          showPageState(run.indexing && !run.count ? '正在查找当前可见内容' : `后续内容已准备 · 已完成 ${run.count} 段`, run.indexing ? 'busy' : 'ready');
           break;
         }
         // Pack visible fragments by actual payload size, sharing repeated context.
@@ -558,8 +559,8 @@
         run.batchKind = kind;
         if (kind === 'prefetch') run.prefetchChars = (run.prefetchChars || 0) + batch.reduce((sum, b) => sum + b.text.length, 0);
         host.dataset.pageStatus = 'running'; updatePageStats(run);
-        if (kind === 'page' || run.showControls) showBar(`${kind === 'prefetch' ? '正在准备下方内容' : '正在翻译当前屏幕'} · 已完成 ${run.count} 段`, true);
-        else bar.hidden = true;
+        bar.hidden = true;
+        showPageState(`${kind === 'prefetch' ? '正在准备下方内容' : '正在翻译当前屏幕'} · 已完成 ${run.count} 段`);
         const startedAt = Date.now();
         run.firstRequestMs ??= performance.now() - run.startedAt; updatePageStats(run);
         const task = request({ kind, blocks: batch.map(({ id, text, context }) => ({ id, text, ...(context ? { context } : {}) })) }, value => {
@@ -569,7 +570,7 @@
             if (displayBlocks(run, batch, parsed, value.status)) run.firstPaintMs ??= performance.now() - run.startedAt;
           }
           const label = { queued: '已排队，等待前一项完成', sending: '正在发送当前屏幕', waiting: '等待 DeepSeek 返回译文', streaming: '正在显示译文' }[value.status];
-          if (label && (kind === 'page' || run.showControls || batch.some(b => visibleNodes([b.group.card?.output || b.group.node])))) showBar(`${kind === 'prefetch' ? '正在准备后续译文' : label} · 已完成 ${run.count} 段`, true);
+          if (label) showPageState(`${kind === 'prefetch' ? '正在准备后续译文' : label} · 已完成 ${run.count} 段`);
         });
         run.currentBatch = batch; run.taskId = task.id;
         const value = await task.promise; run.taskId = null; run.activeMs += Date.now() - startedAt;
@@ -608,27 +609,27 @@
       if (run.currentBatch) for (const group of new Set(run.currentBatch.map(b => b.group))) if (group.card) { restoreCard(group.card); group.card = null; }
       if (run.currentBatch) for (const b of run.currentBatch) { if (b.status === 'working') { b.status = 'pending'; b.output = ''; } }
       run.currentBatch = null; run.done = true; run.paused = true; disconnectPage(run); host.dataset.pageStatus = 'error';
-      showBar(`已保留 ${run.count} 段译文 · ${error.message}`);
+      bar.hidden = true; showPageState(`已保留 ${run.count} 段译文 · ${error.message}`, 'error');
     } finally { run.busy = false; updatePageStats(run); }
   }
   async function wholePage(scope = 'smart') {
-    showBar('正在准备页面翻译…');
+    bar.hidden = true; showPageState('正在准备页面翻译');
     await boot;
-    if (bootError) { showBar(bootError.message); return; }
+    if (bootError) { setPageLaunchActive(false); showPageState(bootError.message, 'error'); return; }
     if (pageRun && !pageRun.done) {
       if (scope === 'all' && pageRun.scope !== 'all') {
         pageRun.scope = 'all'; queueIndex(pageRun, document.body);
-        showBar(`已切换为全部可读内容 · 已完成 ${pageRun.count} 段`, true);
-      } else showBar(`滚动翻译已开启 · 已完成 ${pageRun.count} 段`, true);
+        showPageState(`已切换为全部可读内容 · 已完成 ${pageRun.count} 段`);
+      } else showPageState(`网页翻译已开启 · 已完成 ${pageRun.count} 段`);
       pageRun.showControls = true; schedulePage(pageRun); return;
     }
-    if (tasks.size) { showBar('本页仍有翻译在处理，请等待完成后开启页面翻译'); return; }
+    if (tasks.size) { setPageLaunchActive(false); showPageState('本页仍有翻译在处理，请等待完成后开启页面翻译', 'error'); return; }
     const previous = pageRun?.paused ? pageRun : null;
     if (!previous) restoreAll();
     const run = previous || { startedAt: performance.now(), cancelled: false, done: false, busy: false, groups: new Map(), total: 0, count: 0, characters: 0, usd: 0, usageKnown: true, inputTokens: 0, outputTokens: 0, activeMs: 0, provider: settings.provider, language: settings.language };
     run.scope = scope === 'all' ? 'all' : (run.scope || 'smart');
     run.done = false; run.cancelled = false; run.paused = false; resume.hidden = true;
-    pageRun = run; showBar(`正在查找当前可见内容 · 已完成 ${run.count} 段`, true);
+    pageRun = run; showPageState(`正在查找当前可见内容 · 已完成 ${run.count} 段`);
     run.scanQueue = []; run.scanJob = null; run.scanTimer = null; run.scanSlices = 0; run.maxScanMs = 0;
     run.index = new Map(); run.targets = new Map(); run.visibleParents = new Set(); run.fullScans = 0;
     run.visibility = new IntersectionObserver(entries => {
@@ -680,13 +681,13 @@
   }
   resume.onclick = () => { void wholePage(); };
   stopPage.onclick = () => { if (selectionRun) void cancelSelection(); else void cancelPage(); };
-  function clear() { void cancelSelection(); void cancelPage(); if (pageRun) pageRun.paused = false; resume.hidden = true; restoreAll(); bar.hidden = true; launch.hidden = true; setPageLaunchActive(false); }
+  function clear() { void cancelSelection(); void cancelPage(); if (pageRun) pageRun.paused = false; resume.hidden = true; restoreAll(); bar.hidden = true; launch.hidden = true; setPageLaunchActive(false); showPageState('翻译网页', 'idle'); }
   restore.onclick = clear; hide.onclick = () => { if (selectionRun) selectionRun.hidden = true; if (pageRun) pageRun.showControls = false; bar.hidden = true; };
   launch.onpointerdown = e => e.preventDefault(); launch.onclick = () => { if (snapshot) void selection(snapshot); };
   pageLaunch.onpointerdown = e => e.preventDefault(); pageLaunch.onclick = () => {
     if (pageLaunch.dataset.active === 'true') { clear(); return; }
-    setPageLaunchActive(true); showBar('正在准备页面翻译…');
-    void send('PAGE_REQUEST', { scope: 'all' }).catch(e => { setPageLaunchActive(false); showBar(e.message); });
+    setPageLaunchActive(true); bar.hidden = true; showPageState('正在准备页面翻译');
+    void send('PAGE_REQUEST', { scope: 'all' }).catch(e => { setPageLaunchActive(false); showPageState(e.message, 'error'); });
   };
   document.addEventListener('selectionchange', selected);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') launch.hidden = true; });

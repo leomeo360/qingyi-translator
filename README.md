@@ -41,7 +41,7 @@ Requires Chrome 120 or newer.
 3. Connect a signed-in DeepSeek conversation or save your API key. Keep the connected conversation dedicated to translation while it runs.
 4. Click the floating **Translate** button on the right side of the page, or right-click and choose **Translate**. Both translate all readable content while preserving code, special symbols, URLs and protected terms. Use `Alt+Shift+T` for selected text or `Alt+W` for the page.
 
-You can also download this repository and load `extension/` directly, without building. Cross-origin embedded content requires permission for its website.
+You can also download this repository and load `extension/` directly, without building. Chrome requests access to regular websites so Qingyi can display the right-side control, read text selected for translation and place translations back into the page.
 
 ## Cost example
 

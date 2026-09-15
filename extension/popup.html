@@ -8,7 +8,7 @@
 </head>
 <body aria-busy="true">
   <main>
-    <header class="brand"><div class="brand-icon">译<span>·</span></div><div><h1>轻译</h1><p>让阅读，少一点距离。</p></div><span class="version">V2.11.0</span></header>
+    <header class="brand"><div class="brand-icon">译<span>·</span></div><div><h1>轻译</h1><p>让阅读，少一点距离。</p></div><span class="version">V2.12.0</span></header>
     <section class="preferences mode-box" aria-label="翻译方式">
       <label class="row"><span><strong>翻译方式</strong><small>两种方式均原位替换正文，保留代码</small></span><select id="provider" aria-label="翻译方式"><option value="web">不使用 Key · 网页</option><option value="api">使用 Key · API</option></select></label>
       <div id="api-settings" hidden>
@@ -47,9 +47,8 @@
 
     <section class="site-section" aria-labelledby="site-title">
       <div class="site-heading"><h2 id="site-title">当前网站</h2><span id="site-origin">无法读取此页面</span></div>
-      <button class="site-permission" id="grant-site"><span class="plus" aria-hidden="true">＋</span><span>在此网站启用悬浮翻译按钮</span><span aria-hidden="true">→</span></button>
       <label class="row compact"><span>在此网站停用</span><input class="switch" type="checkbox" id="disable-site" aria-label="在当前网站停用"></label>
-      <p class="hint" id="site-hint">无需长期授权，也可使用右键菜单或快捷键。</p>
+      <p class="hint" id="site-hint">悬浮翻译操作条固定显示在网页右侧。</p>
     </section>
 
     <button class="shortcut-row" id="shortcuts"><span>翻译快捷键</span><kbd id="shortcut-value">未设置</kbd><span class="muted" aria-hidden="true">↗</span></button>
@@ -63,8 +62,6 @@
       <button id="save-terms" class="text-button" type="button">保存术语</button>
       <label class="row"><span>临时译文缓存<small>最多 1,500 条，保留 30 分钟</small></span><input class="switch" type="checkbox" id="cache" checked aria-label="临时译文缓存"></label>
       <button class="text-button" id="export-metrics">导出用量与速度记录</button>
-      <h3>网站授权</h3><div id="permissions-list" class="list"></div>
-      <button class="text-button" id="grant-all">在所有普通网站启用悬浮翻译按钮</button>
       <h3>已停用网站</h3><div id="disabled-list" class="list"></div>
       <div class="maintenance"><button class="secondary" id="clear">清除临时数据</button><button class="secondary" id="reset">恢复默认设置</button></div>
       <div class="test"><button class="text-button" id="test">测试翻译 →</button><p class="hint">会使用当前方式发送固定文本 “Hello, world!”。</p><p id="test-result" class="test-result" hidden></p></div>
