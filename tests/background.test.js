@@ -12,6 +12,7 @@ const uid = () => webcrypto.randomUUID();
 const event = () => ({ listeners: [], addListener(fn) { this.listeners.push(fn); } });
 function harness(shared, apiOverride = apiModule, batchOverride = apiBatchModule) {
   const data = shared || { local: {}, session: {}, sent: [], output: [], status: { ready: true, pageId: 'adapter-page', guard: 0, session: '/a/chat/s/dedicated', mode: '深度思考:false', job: null }, statusCalls: 0 };
+  data.menus ||= [];
   const timers = new Map(); let timerId = 0;
   const storage = key => ({ get: async field => ({ [field]: structuredClone(data[key][field]) }), set: async value => { Object.assign(data[key], structuredClone(value)); }, remove: async field => { delete data[key][field]; } });
   const chrome = {
@@ -31,7 +32,7 @@ function harness(shared, apiOverride = apiModule, batchOverride = apiBatchModule
     },
     scripting: { executeScript: async () => [], unregisterContentScripts: async () => {}, registerContentScripts: async () => {} },
     permissions: { contains: async () => true, getAll: async () => ({ origins: [] }), onAdded: event(), onRemoved: event() },
-    contextMenus: { removeAll: async () => {}, create: () => {}, onClicked: event() },
+    contextMenus: { removeAll: async () => { data.menus = []; }, create: menu => { data.menus.push(structuredClone(menu)); }, onClicked: event() },
     commands: { getAll: async () => [], onCommand: event() },
     alarms: { create: () => {}, clear: async () => {}, onAlarm: event() },
     action: { setBadgeText: async () => {}, setTitle: async () => {} }
@@ -63,6 +64,28 @@ test('面板的全部可读内容范围会传给页面内容脚本', async () =>
   const message = h.data.output.find(item => item.type === 'PAGE');
   assert.equal(message.scope, 'all');
   assert.equal(message.options.frameId, 0);
+});
+
+test('右键只显示一个“翻译”，点击后翻译全部可读内容', async () => {
+  const h = harness();
+  await h.panel('SET_SETTINGS', { patch: { enabled: true, language: '简体中文' } });
+  assert.equal(h.data.menus.length, 1);
+  assert.equal(h.data.menus[0].id, 'qy-translate');
+  assert.equal(h.data.menus[0].title, '翻译');
+  assert.deepEqual(Array.from(h.data.menus[0].contexts), ['page', 'selection']);
+  h.chrome.contextMenus.onClicked.listeners[0]({ menuItemId: 'qy-translate', selectionText: 'Selected text' }, { id: 1, url: 'https://example.com/article' });
+  await h.panel('GET_PANEL');
+  const message = h.data.output.find(item => item.type === 'PAGE');
+  assert.equal(message.scope, 'all');
+  assert.equal(message.options.frameId, 0);
+});
+
+test('页面悬浮按钮请求会触发全部可读内容翻译', async () => {
+  const h = harness(), source = await h.hello();
+  const result = await h.request({ channel: 'qy-source', type: 'PAGE_REQUEST', instance: source.instance }, h.sender(source.tabId, source.documentId, source.frameId, source.url));
+  assert.equal(result.ok, true);
+  const message = h.data.output.find(item => item.type === 'PAGE');
+  assert.equal(message.scope, 'all');
 });
 
 test('快速面板不等待远端连接检查或后台串行队列', async () => {

@@ -58,13 +58,13 @@ function render(nextView) {
   $('disable-site').disabled = !view.current.supported;
   $('disable-site').checked = view.settings.disabledSites.includes(view.current.origin);
   $('grant-site').disabled = !view.current.supported;
-  $('grant-site').children[1].textContent = '在此网站启用划选按钮';
+  $('grant-site').children[1].textContent = '在此网站启用悬浮翻译按钮';
   const renderedView = view;
   const permission = view.current.origin ? chrome.permissions.contains({ origins: [`${view.current.origin}/*`] }) : Promise.resolve(false);
   void permission.catch(() => false).then(permitted => {
     if (view !== renderedView) return;
     $('grant-site').disabled = !view.current.supported || permitted;
-    $('grant-site').children[1].textContent = permitted ? '此网站已获得划选按钮授权' : '在此网站启用划选按钮';
+    $('grant-site').children[1].textContent = permitted ? '此网站已启用悬浮翻译按钮' : '在此网站启用悬浮翻译按钮';
   });
   $('site-hint').textContent = !view.current.supported ? '请在普通网页上打开面板。内部页和 PDF 暂不支持。' : '跨网站嵌入内容首次翻译时，Chrome 可能请求该嵌入网站的权限。';
   const busy = !!view.status?.job && ['waiting', 'streaming'].includes(view.status.job.status);
@@ -142,7 +142,7 @@ action('grant-site', async () => {
   if (!granted) throw new Error('未授予长期权限，仍可使用右键菜单或快捷键');
   await api('SYNC_PERMISSIONS');
   await chrome.scripting.executeScript({ target: { tabId: view.current.id }, files: ['lib/text-rules.js', 'source.js'] });
-  await load(); notify('此网站已授权；选中文字后即可看到「译」按钮');
+  await load(); notify('此网站已授权；刷新网页后右侧会显示“翻译”按钮');
 });
 action('grant-all', async () => {
   const granted = await chrome.permissions.request({ origins: ['http://*/*', 'https://*/*'] });

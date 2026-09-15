@@ -339,9 +339,7 @@ async function syncScripts() {
 
 async function updateMenu() {
   await chrome.contextMenus.removeAll();
-  chrome.contextMenus.create({ id: 'qy-page', title: '翻译整个网页（替换正文，保留代码）', contexts: ['page'], documentUrlPatterns: ['http://*/*', 'https://*/*'], enabled: settings.enabled });
-  chrome.contextMenus.create({ id: 'qy-page-all', title: '翻译全部可读内容', contexts: ['page'], documentUrlPatterns: ['http://*/*', 'https://*/*'], enabled: settings.enabled });
-  chrome.contextMenus.create({ id: 'qy-translate', title: `翻译为${settings.language}`, contexts: ['selection'], documentUrlPatterns: ['http://*/*', 'https://*/*'], enabled: settings.enabled });
+  chrome.contextMenus.create({ id: 'qy-translate', title: '翻译', contexts: ['page', 'selection'], documentUrlPatterns: ['http://*/*', 'https://*/*'], enabled: settings.enabled });
 }
 
 async function setSettings(patch) {
@@ -488,6 +486,11 @@ async function handle(message, sender) {
     await save(); return sourceSettings(sender);
   }
   if (message.type === 'TRANSLATE') return translate(message, sender);
+  if (message.type === 'PAGE_REQUEST') {
+    const source = state.sources[sourceKey(sender.tab.id, sender.documentId)];
+    if (sender.frameId !== 0 || source?.instance !== message.instance) throw new Error('页面已更新，请刷新后重试');
+    await trigger(sender.tab, { page: true, scope: 'all' }); return {};
+  }
   if (message.type === 'CANCEL') {
     await cancelQueued(t => t.id === message.id && matchesSource(t, sender, message.instance));
     if (state.active?.id === message.id && matchesSource(state.active, sender, message.instance)) await cancelActive();
@@ -525,7 +528,7 @@ async function trigger(tab, context) {
   } catch { await chrome.action.setBadgeText({ tabId: tab.id, text: '!' }); await chrome.action.setTitle({ tabId: tab.id, title: '此页面暂不支持划选翻译，或页面权限不可用' }); }
 }
 chrome.contextMenus.onClicked.addListener((info, tab) => {
-  if (['qy-translate', 'qy-page', 'qy-page-all'].includes(info.menuItemId)) serial(() => trigger(tab, { ...info, page: info.menuItemId !== 'qy-translate', scope: info.menuItemId === 'qy-page-all' ? 'all' : 'smart' }));
+  if (info.menuItemId === 'qy-translate') serial(() => trigger(tab, { ...info, page: true, scope: 'all' }));
 });
 chrome.commands.onCommand.addListener((command, tab) => {
   if (command === 'translate-selection') serial(() => trigger(tab));

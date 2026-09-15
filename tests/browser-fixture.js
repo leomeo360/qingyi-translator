@@ -7,6 +7,10 @@ const preferences = { enabled: true, provider: 'api', language: '简体中文', 
 const emit = message => listeners.forEach(fn => fn({channel:'qy-source',type:'RESULT',...message}, {id:'fixture'}, () => {}));
 window.chrome = { runtime: { id: 'fixture', onMessage: { addListener: fn => listeners.push(fn) }, sendMessage: async message => {
   if (message.type === 'HELLO') return {ok:true,data:preferences};
+  if (message.type === 'PAGE_REQUEST') {
+    queueMicrotask(()=>listeners.forEach(fn=>fn({channel:'qy-source',type:'PAGE',scope:'all'},{id:'fixture'},()=>{})));
+    return {ok:true,data:{}};
+  }
   if (message.type === 'TRANSLATE') {
     count++; document.getElementById('count').textContent=`已提交 ${count} 个模拟任务`;
     previous = activeId && jobs.get(activeId); activeId=message.id;
@@ -21,4 +25,4 @@ window.chrome = { runtime: { id: 'fixture', onMessage: { addListener: fn => list
 document.getElementById('select').onclick=()=>{const range=document.createRange();range.selectNodeContents(document.getElementById('sample'));getSelection().removeAllRanges();getSelection().addRange(range);};
 document.getElementById('late').onclick=()=>{if(previous)emit({...previous,status:'success',text:'错误：这是旧任务，不应覆盖当前译文'});};
 
-const pageButton=document.createElement('button');pageButton.textContent='模拟整页翻译';pageButton.onclick=()=>listeners.forEach(fn=>fn({channel:'qy-source',type:'PAGE'},{id:'fixture'},()=>{}));document.body.prepend(pageButton);
+const pageButton=document.createElement('button');pageButton.textContent='模拟整页翻译';pageButton.onclick=()=>listeners.forEach(fn=>fn({channel:'qy-source',type:'PAGE',scope:'all'},{id:'fixture'},()=>{}));document.body.prepend(pageButton);

@@ -6,22 +6,27 @@
   const tasks = new Map(), cards = new Set();
   let presentationEpoch = 0;
   const el = (tag, text, cls) => { const n = document.createElement(tag); if (text != null) n.textContent = text; if (cls) n.className = cls; return n; };
-  const css = `:host{color-scheme:light dark}*{box-sizing:border-box}[hidden]{display:none!important}button{font:inherit;cursor:pointer;border:0;border-radius:6px;padding:4px 8px;color:#5268d4;background:#edf0ff}button:disabled{opacity:.4;cursor:default}button:focus-visible{outline:2px solid #5268e9;outline-offset:2px}.bar{font:13px/1.7 -apple-system,sans-serif;background:#fff;color:#273044;border:1px solid #dfe4f4;border-radius:12px;padding:10px 13px;box-shadow:0 4px 20px #22334b22;display:flex;align-items:center;gap:9px;flex-wrap:wrap}.launch{pointer-events:auto;position:fixed;width:32px;height:32px;padding:0;background:#5268e9;color:#fff;box-shadow:0 3px 14px #26357d38}.bar{pointer-events:auto;position:fixed;bottom:18px;right:18px;max-width:calc(100vw - 36px)}@media(prefers-color-scheme:dark){.bar{background:#252a38;color:#e3e7f3;border-color:#485069}button{background:#38426a;color:#c7d0ff}}`;
+  const css = `:host{color-scheme:light dark}*{box-sizing:border-box}[hidden]{display:none!important}button{font:inherit;cursor:pointer;border:0;border-radius:6px;padding:4px 8px;color:#5268d4;background:#edf0ff}button:disabled{opacity:.4;cursor:default}button:focus-visible{outline:2px solid #5268e9;outline-offset:2px}.bar{font:13px/1.7 -apple-system,sans-serif;background:#fff;color:#273044;border:1px solid #dfe4f4;border-radius:12px;padding:10px 13px;box-shadow:0 4px 20px #22334b22;display:flex;align-items:center;gap:9px;flex-wrap:wrap}.launch{pointer-events:auto;position:fixed;width:32px;height:32px;padding:0;background:#5268e9;color:#fff;box-shadow:0 3px 14px #26357d38}.page-launch{pointer-events:auto;position:fixed;top:50%;right:14px;transform:translateY(-50%);height:42px;min-width:72px;padding:0 17px;border:1px solid #ffffff55;border-radius:22px;background:#5268e9;color:#fff;font:600 14px/1 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:.08em;box-shadow:0 5px 20px #26357d45;transition:transform .15s ease,box-shadow .15s ease,background .15s ease}.page-launch:hover{transform:translateY(-50%) scale(1.04);background:#4058df;box-shadow:0 7px 24px #26357d55}.page-launch:active{transform:translateY(-50%) scale(.98)}.bar{pointer-events:auto;position:fixed;bottom:18px;right:18px;max-width:calc(100vw - 36px)}@media(max-width:600px){.page-launch{right:8px;min-width:64px;height:38px;padding:0 13px}}@media(prefers-color-scheme:dark){.bar{background:#252a38;color:#e3e7f3;border-color:#485069}button{background:#38426a;color:#c7d0ff}.page-launch{background:#6076f0;color:#fff}}`;
   function shadow(host) { const root = host.attachShadow({ mode: 'open' }); root.append(el('style', css)); return root; }
   const host = el('div'); host.dataset.qyRoot = '';
   host.style.cssText = 'all:initial!important;position:fixed!important;inset:0 auto auto 0!important;width:0!important;height:0!important;z-index:2147483647!important;pointer-events:none!important';
-  const root = shadow(host), launch = el('button', '译', 'launch'), bar = el('div', null, 'bar'), summary = el('span');
+  const root = shadow(host), launch = el('button', '译', 'launch'), pageLaunch = el('button', '翻译', 'page-launch'), bar = el('div', null, 'bar'), summary = el('span');
   launch.type = 'button'; launch.setAttribute('aria-label', '翻译选中文字'); launch.hidden = true;
+  pageLaunch.type = 'button'; pageLaunch.setAttribute('aria-label', '翻译网页全部可读内容'); pageLaunch.title = '翻译网页'; pageLaunch.hidden = true;
   const resume = el('button', '继续翻译'); resume.hidden = true;
   const stopPage = el('button', '取消翻译'), restore = el('button', '恢复原文'), hide = el('button', '收起');
-  bar.append(summary, stopPage, resume, restore, hide); bar.hidden = true; root.append(launch, bar); document.documentElement.append(host);
+  bar.append(summary, stopPage, resume, restore, hide); bar.hidden = true; root.append(launch, pageLaunch, bar); document.documentElement.append(host);
   const send = async (type, extra = {}) => {
     const result = await chrome.runtime.sendMessage({ channel: 'qy-source', type, instance, ...extra });
     if (!result?.ok) throw new Error(result?.message || '扩展已更新，请刷新页面后重试');
     return result.data;
   };
   let bootError;
-  const hello = () => send('HELLO').then(s => { settings = s; bootError = null; }).catch(e => { bootError = e; });
+  function syncLaunches() {
+    pageLaunch.hidden = window.top !== window || !settings.buttonAllowed;
+    if (!settings.buttonAllowed) launch.hidden = true;
+  }
+  const hello = () => send('HELLO').then(s => { settings = s; bootError = null; syncLaunches(); }).catch(e => { bootError = e; });
   let boot = hello();
   const excluded = '.monaco-editor,.CodeMirror,.cm-editor,.ace_editor,.terminal,.blob-code,[role="textbox"],[role="log"],[data-sensitive],[data-private],[data-secret],script,style,noscript,template,svg,canvas,iframe,pre,code,kbd,input,textarea,select,[contenteditable]:not([contenteditable="false"]),[data-qy-root],[data-qy-inline],[hidden],[aria-hidden="true"]';
   const blockSelector = 'p,h1,h2,h3,h4,h5,h6,li,blockquote,figcaption,td,th,caption,dt,dd,div,section,article,main,header,footer,nav';
@@ -670,6 +675,7 @@
   function clear() { void cancelSelection(); void cancelPage(); if (pageRun) pageRun.paused = false; resume.hidden = true; restoreAll(); bar.hidden = true; launch.hidden = true; }
   restore.onclick = clear; hide.onclick = () => { if (selectionRun) selectionRun.hidden = true; if (pageRun) pageRun.showControls = false; bar.hidden = true; };
   launch.onpointerdown = e => e.preventDefault(); launch.onclick = () => { if (snapshot) void selection(snapshot); };
+  pageLaunch.onpointerdown = e => e.preventDefault(); pageLaunch.onclick = () => { showBar('正在准备页面翻译…'); void send('PAGE_REQUEST', { scope: 'all' }).catch(e => showBar(e.message)); };
   document.addEventListener('selectionchange', selected);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') launch.hidden = true; });
   document.addEventListener('pointerdown', e => { if (!e.composedPath().includes(host)) launch.hidden = true; });
@@ -694,7 +700,7 @@
     else if (message.type === 'PAGE') { navigationChanged(); void wholePage(message.scope); }
     else if (message.type === 'RESULT' && message.instance === instance) { const task = tasks.get(message.id); if (task) { task.event = true; receive(task, message); } }
     else if (message.type === 'PING') { navigationChanged(); respond({ ok: message.instance === instance }); return; }
-    else if (message.type === 'SETTINGS') { const termsChanged = JSON.stringify([settings.customTerms || [], settings.siteModes || {}]) !== JSON.stringify([message.settings.customTerms || [], message.settings.siteModes || {}]); settings = message.settings; if (!settings.buttonAllowed) launch.hidden = true; if (selectionRun && (termsChanged || !settings.enabled || settings.provider !== selectionRun.provider || settings.language !== selectionRun.language)) void cancelSelection(); if (pageRun && (termsChanged || !settings.enabled || settings.provider !== pageRun.provider || settings.language !== pageRun.language)) { if (pageRun.paused) { pageRun.paused = false; resume.hidden = true; } void cancelPage(); } }
+    else if (message.type === 'SETTINGS') { const termsChanged = JSON.stringify([settings.customTerms || [], settings.siteModes || {}]) !== JSON.stringify([message.settings.customTerms || [], message.settings.siteModes || {}]); settings = message.settings; syncLaunches(); if (selectionRun && (termsChanged || !settings.enabled || settings.provider !== selectionRun.provider || settings.language !== selectionRun.language)) void cancelSelection(); if (pageRun && (termsChanged || !settings.enabled || settings.provider !== pageRun.provider || settings.language !== pageRun.language)) { if (pageRun.paused) { pageRun.paused = false; resume.hidden = true; } void cancelPage(); } }
     else if (message.type === 'CLEAR') clear();
     respond({ ok: true });
   });

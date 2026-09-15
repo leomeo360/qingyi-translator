@@ -6,7 +6,7 @@
 
 English · [简体中文](README.zh-CN.md)
 
-Qingyi is a free Chrome extension for translating selected text and webpages with AI. Translations appear in place, preserving links, typography and layout. It prioritizes the first viewport and prepares upcoming content as you read, making foreign-language pages easier to follow.
+Qingyi is a free Chrome extension for one-click webpage and selected-text translation with AI. Click the floating **Translate** button on the right side of a webpage to translate all readable content. Translations appear in place, preserving links, typography and layout. It prioritizes the first viewport and prepares upcoming content as you read.
 
 **Free to use, with source available. Commercial use requires a separate license.**
 
@@ -21,7 +21,9 @@ DeepSeek web is available now. Doubao and other web providers are planned below.
 
 ## Built for reading
 
-- Translate a selection with a shortcut or context menu.
+- Start full-page translation from the floating button on the right side of the page.
+- Use the single **Translate** context-menu item to translate all readable page content.
+- Translate selected text with the nearby button or keyboard shortcut.
 - Stream translations in place while preserving links and page styles.
 - Translate the visible content first, without waiting for the entire article.
 - Prefetch roughly two screens after the first viewport completes. Prepared translations appear as you scroll without another model wait.
@@ -37,7 +39,7 @@ Requires Chrome 120 or newer.
 1. Download and extract the [latest release](https://github.com/leomeo360/qingyi-translator/releases/latest).
 2. Open `chrome://extensions`, enable Developer mode, choose **Load unpacked**, and select the extracted folder.
 3. Connect a signed-in DeepSeek conversation or save your API key. Keep the connected conversation dedicated to translation while it runs.
-4. Select text and press `Alt+Shift+T`. Use webpage-body translation for articles, or all-readable-content translation (`Alt+W`) for navigation and interface text.
+4. Click the floating **Translate** button on the right side of the page, or right-click and choose **Translate**. Both translate all readable content while preserving code, special symbols, URLs and protected terms. Use `Alt+Shift+T` for selected text or `Alt+W` for the page.
 
 You can also download this repository and load `extension/` directly, without building. Cross-origin embedded content requires permission for its website.
 
