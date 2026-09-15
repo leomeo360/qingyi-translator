@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "轻译 · DeepSeek 双语翻译",
-  "version": "2.10.0",
+  "version": "2.11.0",
   "description": "使用 API Key 或已登录网页，流式翻译正文、嵌入页面、导航和文字按钮。",
   "minimum_chrome_version": "120",
   "permissions": [

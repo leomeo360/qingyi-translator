@@ -31,8 +31,10 @@ test('全部可读内容仅覆盖网页误标，代码保护仍不可绕过', ()
   assert.equal(code.skipNode(code.node, true), true);
 });
 
-test('全部可读内容覆盖正文区域筛选，默认模式仍跳过导航', () => {
-  const nav = functions(selector => selector.startsWith('nav,aside,footer'));
+test('全部可读内容为默认范围，明确选择正文优先时才跳过导航', () => {
+  const nav = functions(selector => selector.startsWith('nav,aside,footer'), { 'https://example.com': 'smart' });
   assert.equal(nav.pageExcluded(nav.node, { scope: 'smart' }), true);
   assert.equal(nav.pageExcluded(nav.node, { scope: 'all' }), false);
+  const defaultAll = functions(selector => selector.startsWith('nav,aside,footer'));
+  assert.equal(defaultAll.pageExcluded(defaultAll.node, { scope: 'smart' }), false);
 });

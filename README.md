@@ -21,16 +21,16 @@ DeepSeek web is available now. Doubao and other web providers are planned below.
 
 ## Built for reading
 
-- Start full-page translation from the floating button on the right side of the page.
+- Start full-page translation from the floating control on the right side of the page, then click **Original** to switch back.
 - Use the single **Translate** context-menu item to translate all readable page content.
 - Translate selected text with the nearby button or keyboard shortcut.
 - Stream translations in place while preserving links and page styles.
 - Translate the visible content first, without waiting for the entire article.
-- Prefetch roughly two screens after the first viewport completes. Prepared translations appear as you scroll without another model wait.
+- Prefetch the rest of the page by default after the first viewport completes. Prepared translations appear as you scroll without another model wait.
 - Protect code, URLs, file paths and icon fonts; skip input fields.
 - Restore the original with the progress control or by refreshing.
 
-Adjust or disable prefetch in advanced settings. If you scroll beyond prepared content, Qingyi prioritizes the newly visible text.
+Limit prefetch to one, two or three screens, or disable it in advanced settings. Qingyi continues to prioritize newly visible text on long pages.
 
 ## Install
 

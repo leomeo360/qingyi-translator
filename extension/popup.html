@@ -8,7 +8,7 @@
 </head>
 <body aria-busy="true">
   <main>
-    <header class="brand"><div class="brand-icon">译<span>·</span></div><div><h1>轻译</h1><p>让阅读，少一点距离。</p></div><span class="version">V2.10.0</span></header>
+    <header class="brand"><div class="brand-icon">译<span>·</span></div><div><h1>轻译</h1><p>让阅读，少一点距离。</p></div><span class="version">V2.11.0</span></header>
     <section class="preferences mode-box" aria-label="翻译方式">
       <label class="row"><span><strong>翻译方式</strong><small>两种方式均原位替换正文，保留代码</small></span><select id="provider" aria-label="翻译方式"><option value="web">不使用 Key · 网页</option><option value="api">使用 Key · API</option></select></label>
       <div id="api-settings" hidden>
@@ -55,8 +55,8 @@
     <button class="shortcut-row" id="shortcuts"><span>翻译快捷键</span><kbd id="shortcut-value">未设置</kbd><span class="muted" aria-hidden="true">↗</span></button>
     <details class="advanced"><summary>高级设置 <span aria-hidden="true">⌄</span></summary><div class="advanced-body">
       <label class="row"><span>响应超时</span><select id="timeout" aria-label="响应超时"><option value="30">30 秒</option><option value="60" selected>60 秒</option><option value="120">120 秒</option></select></label>
-      <label class="row"><span>向下预翻译<small>会提前使用翻译额度</small></span><select id="prefetchScreens" aria-label="向下预翻译"><option value="0">关闭</option><option value="1">1 屏</option><option value="2" selected>2 屏</option><option value="3">3 屏</option></select></label>
-      <label class="row"><span>当前网站翻译范围</span><select id="site-mode" aria-label="当前网站翻译范围"><option value="smart">正文优先</option><option value="all">全部可读内容</option></select></label>
+      <label class="row"><span>向下预翻译<small>会提前使用翻译额度</small></span><select id="prefetchScreens" aria-label="向下预翻译"><option value="-1" selected>全部内容</option><option value="0">关闭</option><option value="1">1 屏</option><option value="2">2 屏</option><option value="3">3 屏</option></select></label>
+      <label class="row"><span>当前网站翻译范围</span><select id="site-mode" aria-label="当前网站翻译范围"><option value="all" selected>全部可读内容</option><option value="smart">正文优先</option></select></label>
       <label for="custom-terms">保留术语</label>
       <textarea id="custom-terms" rows="3" maxlength="16200" placeholder="每行一个，例如产品名或缩写"></textarea>
       <small>API、SDK、React 等常见技术术语已内置。这里可添加最多 200 个术语，区分大小写。</small>

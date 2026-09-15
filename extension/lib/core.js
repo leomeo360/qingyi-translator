@@ -4,7 +4,7 @@ export const CHAT_ORIGIN = 'https://chat.deepseek.com';
 export const CHAT_PATTERN = `${CHAT_ORIGIN}/*`;
 export const LANGUAGES = ['简体中文', '繁體中文', 'English', '日本語', '한국어', 'Français', 'Deutsch', 'Español'];
 export const VERSION = 'prompt-4:sentences-2026-09-12';
-export const DEFAULTS = Object.freeze({ enabled: true, provider: 'web', language: LANGUAGES[0], selectionButton: true, showSource: false, timeout: 60, cache: true, prefetchScreens: 2, disabledSites: [], customTerms: [], siteModes: {} });
+export const DEFAULTS = Object.freeze({ settingsVersion: 2, enabled: true, provider: 'web', language: LANGUAGES[0], selectionButton: true, showSource: false, timeout: 60, cache: true, prefetchScreens: -1, disabledSites: [], customTerms: [], siteModes: {} });
 export const TERMINAL = new Set(['success', 'error', 'cancelled']);
 export const MESSAGES = {
   queued: '前一个翻译正在处理，已排队', sending: '正在发送到 DeepSeek…',
@@ -27,7 +27,7 @@ export function settingsFrom(value = {}) {
   if (['web', 'api'].includes(value.provider)) s.provider = value.provider;
   if (LANGUAGES.includes(value.language)) s.language = value.language;
   if ([30, 60, 120].includes(value.timeout)) s.timeout = value.timeout;
-  if ([0, 1, 2, 3].includes(value.prefetchScreens)) s.prefetchScreens = value.prefetchScreens;
+  if ([-1, 0, 1, 2, 3].includes(value.prefetchScreens)) s.prefetchScreens = value.settingsVersion == null && value.prefetchScreens === 2 ? -1 : value.prefetchScreens;
   s.disabledSites = Array.isArray(value.disabledSites) ? [...new Set(value.disabledSites.filter(x => typeof x === 'string' && originOf(x) === x))].slice(0, 500) : [];
   s.customTerms = Array.isArray(value.customTerms) ? [...new Set(value.customTerms.filter(x => typeof x === 'string').map(x => x.trim()).filter(x => x && x.length <= 80))].slice(0, 200) : [];
   s.siteModes = Object.fromEntries(Object.entries(value.siteModes || {}).filter(([origin, mode]) => originOf(origin) === origin && ['smart', 'all'].includes(mode)).slice(0, 500));

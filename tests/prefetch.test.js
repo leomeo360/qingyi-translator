@@ -24,7 +24,7 @@ function harness({screens=2}={}) {
   const visible=(nodes,ahead=0)=>nodes.some(node=>{const p=node.parentElement;return p && p.top+80>y && p.top<y+500+ahead;});
   let api;
   const context={QYTextRules:globalThis.QYTextRules,settings:{enabled:true,provider:'api',language:'简体中文',prefetchScreens:screens},pageRun:run,presentationEpoch:0,
-    document:{hidden:false},innerHeight:500,performance,host:{dataset:{}},bar:{},tasks,
+    document:{hidden:false,documentElement:{scrollHeight:6000},body:{scrollHeight:6000}},innerHeight:500,performance,host:{dataset:{}},bar:{},tasks,
     visibleNodes:visible,skipNode:n=>n.parentElement?.blocked,pageExcluded:()=>false,getComputedStyle:()=>({}),
     collectVisible:(_,ahead=0)=>paragraphs.filter(p=>p.node.isConnected&&!p.parent.blocked&&visible([p.node],ahead)).flatMap(p=>api.groupsFor(p.node,'')),
     makeReplacement:original=>{const parent=original.parentElement,output={textContent:'',parentElement:parent,isConnected:true,dataset:{}};original.parentElement=null;parent.card=output;return{node:output,output,original};},
@@ -53,6 +53,15 @@ test('当前屏幕先发，向下两屏预译但不改DOM；不滚动不会继�
   h.complete(h.jobs[1]);await done;
   assert.equal(h.jobs.length,2);assert.equal(h.paragraphs[1].node.textContent,h.paragraphs[1].original);
   assert.equal(h.paragraphs[2].parent.card,undefined);assert.equal(h.paragraphs[3].parent.card,undefined);
+});
+
+test('全部内容模式在首屏后预翻译页面剩余内容',async()=>{
+  const h=harness({screens:-1}),done=h.start();
+  assert.equal(h.jobs[0].kind,'page');assert.equal(h.jobs[0].blocks.length,1);
+  h.complete(h.jobs[0]);await tick();
+  assert.equal(h.jobs[1].kind,'prefetch');assert.equal(h.jobs[1].blocks.length,11);
+  h.complete(h.jobs[1]);await done;
+  assert.equal(h.jobs.length,2);assert.equal(h.paragraphs[11].parent.card,undefined);
 });
 
 test('滚到已预译内容时即使另一批仍忙碌也立即本地显示，无需新请求',async()=>{

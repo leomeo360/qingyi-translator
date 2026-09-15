@@ -6,7 +6,7 @@
   const tasks = new Map(), cards = new Set();
   let presentationEpoch = 0;
   const el = (tag, text, cls) => { const n = document.createElement(tag); if (text != null) n.textContent = text; if (cls) n.className = cls; return n; };
-  const css = `:host{color-scheme:light dark}*{box-sizing:border-box}[hidden]{display:none!important}button{font:inherit;cursor:pointer;border:0;border-radius:6px;padding:4px 8px;color:#5268d4;background:#edf0ff}button:disabled{opacity:.4;cursor:default}button:focus-visible{outline:2px solid #5268e9;outline-offset:2px}.bar{font:13px/1.7 -apple-system,sans-serif;background:#fff;color:#273044;border:1px solid #dfe4f4;border-radius:12px;padding:10px 13px;box-shadow:0 4px 20px #22334b22;display:flex;align-items:center;gap:9px;flex-wrap:wrap}.launch{pointer-events:auto;position:fixed;width:32px;height:32px;padding:0;background:#5268e9;color:#fff;box-shadow:0 3px 14px #26357d38}.page-launch{pointer-events:auto;position:fixed;top:50%;right:14px;transform:translateY(-50%);height:42px;min-width:72px;padding:0 17px;border:1px solid #ffffff55;border-radius:22px;background:#5268e9;color:#fff;font:600 14px/1 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:.08em;box-shadow:0 5px 20px #26357d45;transition:transform .15s ease,box-shadow .15s ease,background .15s ease}.page-launch:hover{transform:translateY(-50%) scale(1.04);background:#4058df;box-shadow:0 7px 24px #26357d55}.page-launch:active{transform:translateY(-50%) scale(.98)}.bar{pointer-events:auto;position:fixed;bottom:18px;right:18px;max-width:calc(100vw - 36px)}@media(max-width:600px){.page-launch{right:8px;min-width:64px;height:38px;padding:0 13px}}@media(prefers-color-scheme:dark){.bar{background:#252a38;color:#e3e7f3;border-color:#485069}button{background:#38426a;color:#c7d0ff}.page-launch{background:#6076f0;color:#fff}}`;
+  const css = `:host{color-scheme:light dark}*{box-sizing:border-box}[hidden]{display:none!important}button{font:inherit;cursor:pointer;border:0;border-radius:6px;padding:4px 8px;color:#5268d4;background:#edf0ff}button:disabled{opacity:.4;cursor:default}button:focus-visible{outline:2px solid #5268e9;outline-offset:2px}.bar{font:13px/1.7 -apple-system,sans-serif;background:#fff;color:#273044;border:1px solid #dfe4f4;border-radius:12px;padding:10px 13px;box-shadow:0 4px 20px #22334b22;display:flex;align-items:center;gap:9px;flex-wrap:wrap}.launch{pointer-events:auto;position:fixed;width:32px;height:32px;padding:0;background:#5268e9;color:#fff;box-shadow:0 3px 14px #26357d38}.page-launch{pointer-events:auto;position:fixed;top:50%;right:14px;transform:translateY(-50%);height:42px;min-width:72px;padding:0 17px;border:1px solid #ffffff55;border-radius:22px;background:#5268e9;color:#fff;font:600 14px/1 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:.08em;box-shadow:0 5px 20px #26357d45;transition:transform .15s ease,box-shadow .15s ease,background .15s ease}.page-launch:hover{transform:translateY(-50%) scale(1.04);background:#4058df;box-shadow:0 7px 24px #26357d55}.page-launch:active{transform:translateY(-50%) scale(.98)}.page-launch[data-active="true"]{border-color:#5268e966;background:#fff;color:#4058df;box-shadow:0 5px 20px #26357d35}.page-launch[data-active="true"]:hover{background:#f2f4ff}.bar{pointer-events:auto;position:fixed;bottom:18px;right:18px;max-width:calc(100vw - 36px)}@media(max-width:600px){.page-launch{right:8px;min-width:64px;height:38px;padding:0 13px}}@media(prefers-color-scheme:dark){.bar{background:#252a38;color:#e3e7f3;border-color:#485069}button{background:#38426a;color:#c7d0ff}.page-launch{background:#6076f0;color:#fff}.page-launch[data-active="true"]{background:#252a38;color:#c7d0ff;border-color:#6076f0}}`;
   function shadow(host) { const root = host.attachShadow({ mode: 'open' }); root.append(el('style', css)); return root; }
   const host = el('div'); host.dataset.qyRoot = '';
   host.style.cssText = 'all:initial!important;position:fixed!important;inset:0 auto auto 0!important;width:0!important;height:0!important;z-index:2147483647!important;pointer-events:none!important';
@@ -25,6 +25,12 @@
   function syncLaunches() {
     pageLaunch.hidden = window.top !== window || !settings.buttonAllowed;
     if (!settings.buttonAllowed) launch.hidden = true;
+  }
+  function setPageLaunchActive(active) {
+    pageLaunch.dataset.active = String(active);
+    pageLaunch.textContent = active ? '原文' : '翻译';
+    pageLaunch.setAttribute('aria-label', active ? '恢复网页原文' : '翻译网页全部可读内容');
+    pageLaunch.title = active ? '恢复网页原文' : '翻译网页';
   }
   const hello = () => send('HELLO').then(s => { settings = s; bootError = null; syncLaunches(); }).catch(e => { bootError = e; });
   let boot = hello();
@@ -101,7 +107,7 @@
   }
   function pageExcluded(node, run) {
     if (run?.scope === 'all') return false;
-    if (settings.siteModes?.[location.origin] === 'all') return false;
+    if ((settings.siteModes?.[location.origin] || 'all') === 'all') return false;
     // Google Ads is an application whose primary content lives in navigation,
     // toolbars and buttons. Google Business marketing pages also put meaningful
     // calls to action and support copy in those regions.
@@ -439,7 +445,8 @@
     return painted;
   }
   function prefetchDistance() {
-    const screens = settings.prefetchScreens ?? 2;
+    const screens = settings.prefetchScreens ?? -1;
+    if (screens === -1 && !document.hidden) return Math.max(document.scrollingElement?.scrollHeight || 0, document.documentElement?.scrollHeight || 0, document.body?.scrollHeight || 0, innerHeight);
     return screens && !document.hidden ? Math.min(4000, innerHeight * screens) : 0;
   }
   function paintReadyVisible(run) {
@@ -530,7 +537,8 @@
         if (!settings.enabled || settings.provider !== run.provider || settings.language !== run.language) throw new Error('翻译设置已改变，请重新开始页面翻译');
         paintReadyVisible(run);
         let candidates = pageCandidates(run), kind = 'page';
-        const ahead = prefetchDistance(run), budget = (settings.prefetchScreens ?? 2) * 5000 - (run.prefetchChars || 0);
+        const ahead = prefetchDistance(run), screens = settings.prefetchScreens ?? -1;
+        const budget = screens === -1 ? Infinity : screens * 5000 - (run.prefetchChars || 0);
         if (!candidates.length && ahead && budget > 0) {
           kind = 'prefetch'; let chars = 0;
           candidates = pageCandidates(run, ahead).filter(b => {
@@ -672,10 +680,14 @@
   }
   resume.onclick = () => { void wholePage(); };
   stopPage.onclick = () => { if (selectionRun) void cancelSelection(); else void cancelPage(); };
-  function clear() { void cancelSelection(); void cancelPage(); if (pageRun) pageRun.paused = false; resume.hidden = true; restoreAll(); bar.hidden = true; launch.hidden = true; }
+  function clear() { void cancelSelection(); void cancelPage(); if (pageRun) pageRun.paused = false; resume.hidden = true; restoreAll(); bar.hidden = true; launch.hidden = true; setPageLaunchActive(false); }
   restore.onclick = clear; hide.onclick = () => { if (selectionRun) selectionRun.hidden = true; if (pageRun) pageRun.showControls = false; bar.hidden = true; };
   launch.onpointerdown = e => e.preventDefault(); launch.onclick = () => { if (snapshot) void selection(snapshot); };
-  pageLaunch.onpointerdown = e => e.preventDefault(); pageLaunch.onclick = () => { showBar('正在准备页面翻译…'); void send('PAGE_REQUEST', { scope: 'all' }).catch(e => showBar(e.message)); };
+  pageLaunch.onpointerdown = e => e.preventDefault(); pageLaunch.onclick = () => {
+    if (pageLaunch.dataset.active === 'true') { clear(); return; }
+    setPageLaunchActive(true); showBar('正在准备页面翻译…');
+    void send('PAGE_REQUEST', { scope: 'all' }).catch(e => { setPageLaunchActive(false); showBar(e.message); });
+  };
   document.addEventListener('selectionchange', selected);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') launch.hidden = true; });
   document.addEventListener('pointerdown', e => { if (!e.composedPath().includes(host)) launch.hidden = true; });
@@ -697,7 +709,7 @@
     }
     if (sender.id !== chrome.runtime.id || sender.tab || message?.channel !== 'qy-source') return;
     if (message.type === 'TRIGGER') { navigationChanged(); try { snapshot = readSelection(message); void selection(snapshot); } catch (e) { showBar(e.message); } }
-    else if (message.type === 'PAGE') { navigationChanged(); void wholePage(message.scope); }
+    else if (message.type === 'PAGE') { navigationChanged(); setPageLaunchActive(true); void wholePage(message.scope); }
     else if (message.type === 'RESULT' && message.instance === instance) { const task = tasks.get(message.id); if (task) { task.event = true; receive(task, message); } }
     else if (message.type === 'PING') { navigationChanged(); respond({ ok: message.instance === instance }); return; }
     else if (message.type === 'SETTINGS') { const termsChanged = JSON.stringify([settings.customTerms || [], settings.siteModes || {}]) !== JSON.stringify([message.settings.customTerms || [], message.settings.siteModes || {}]); settings = message.settings; syncLaunches(); if (selectionRun && (termsChanged || !settings.enabled || settings.provider !== selectionRun.provider || settings.language !== selectionRun.language)) void cancelSelection(); if (pageRun && (termsChanged || !settings.enabled || settings.provider !== pageRun.provider || settings.language !== pageRun.language)) { if (pageRun.paused) { pageRun.paused = false; resume.hidden = true; } void cancelPage(); } }

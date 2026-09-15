@@ -49,10 +49,10 @@ function render(nextView) {
   $('translate-page-all').disabled = !view.current.supported || !view.settings.enabled;
   if (document.activeElement !== $('custom-terms')) $('custom-terms').value = (view.settings.customTerms || []).join('\n');
   $('language').value = view.settings.language; $('timeout').value = String(view.settings.timeout);
-  $('prefetchScreens').value = String(view.settings.prefetchScreens ?? 2);
+  $('prefetchScreens').value = String(view.settings.prefetchScreens ?? -1);
   $('shortcut-value').textContent = view.shortcut || '未设置';
   $('site-origin').textContent = view.current.origin ? new URL(view.current.origin).host : '此页面暂不支持';
-  $('site-mode').value = view.settings.siteModes?.[view.current.origin] || 'smart';
+  $('site-mode').value = view.settings.siteModes?.[view.current.origin] || 'all';
   $('site-mode').disabled = !view.current.supported;
   $('site-origin').title = view.current.origin || '';
   $('disable-site').disabled = !view.current.supported;

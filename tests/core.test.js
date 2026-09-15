@@ -34,10 +34,11 @@ test('划选、可见正文、预翻译依次排队，队满时前台只淘汰�
   assert.deepEqual(samePage.replaced, [prefetch]);
   assert.deepEqual(samePage.queue.map(task => task.id), ['selection', 'page', 'replacement']);
 });
-test('向下预翻译默认两屏，只接受关闭或一至三屏的数值设置', () => {
-  assert.equal(settingsFrom().prefetchScreens, 2);
-  for (const value of [0, 1, 2, 3]) assert.equal(settingsFrom({ prefetchScreens: value }).prefetchScreens, value);
-  for (const value of [-1, 4, 1.5, '3', true, null, NaN, Infinity]) assert.equal(settingsFrom({ prefetchScreens: value }).prefetchScreens, 2);
+test('向下预翻译默认全部内容，也接受关闭或一至三屏', () => {
+  assert.equal(settingsFrom().prefetchScreens, -1);
+  for (const value of [-1, 0, 1, 2, 3]) assert.equal(settingsFrom({ settingsVersion: 2, prefetchScreens: value }).prefetchScreens, value);
+  assert.equal(settingsFrom({ prefetchScreens: 2 }).prefetchScreens, -1);
+  for (const value of [4, 1.5, '3', true, null, NaN, Infinity]) assert.equal(settingsFrom({ prefetchScreens: value }).prefetchScreens, -1);
 });
 test('缓存区分语言和模式，执行过期、条数和空间上限', () => {
   assert.notEqual(cacheKey('hello','English','a'),cacheKey('hello','简体中文','a'));
